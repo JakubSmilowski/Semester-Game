@@ -1,4 +1,6 @@
-﻿namespace GameRuntime
+using Map.cs;
+
+namespace GameRuntime
 {
     class GameRuntime
     {
@@ -15,7 +17,10 @@
             Naming();
             //Disclaimer? If needed
             Intro();
-            //Launch the Map, if that's what we start with
+            //SET THE STAMINA, DAY, OTHER STUFF THAT NEEDS TO BE SET
+            //Launch the Map, if that's what we start with. This would probably work but I'm not sure
+            Map mapClass = new Map();
+            mapClass.OpenMap();
         }
 
         static void Naming()
