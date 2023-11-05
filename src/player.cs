@@ -2,8 +2,10 @@ using System.Diagnostics.Tracing;
 
 namespace PlayerClass
 {
-    class Player
+    class Player()
     {
+        static string name;
+
         static int turn = 1;
         static int actionPoints = 3;
         static int level = 1;
@@ -18,6 +20,11 @@ namespace PlayerClass
 
         static int currentXPosition = 1;
         static int currentYPosition = 1;
+
+        //Set name 
+        static void  NameThePlayer(string newName) {
+            name = newName;
+        }
 
         //Next day
         static void NextTurn(int endOfTheWorld){
