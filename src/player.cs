@@ -1,33 +1,41 @@
 using System.Diagnostics.Tracing;
 
-namespace PlayerClass
+namespace FOODMAN
 {
-    class Player()
+    class Player
     {
-        static string name;
+        public static string name { get; set; } = "";
+        public static int turn { get; set; } = 1;
+        public static int actionPoints { get; set; } = 3;
+        public static int level { get; set; } = 1;
+        public static int levelPoints { get; set; } = 0;
 
-        static int turn = 1;
-        static int actionPoints = 3;
-        static int level = 1;
+        public static int money { get; private set; } = 100;
+        public static int maxActionPoints { get; private set; } = 5;
+        public static int maxInventoryCapacity { get; private set; } = 5;
+        public static double moneyMultiplier { get; private set; } = 1;
+        public static double xpMultiplier { get; private set; } = 1;
+        public static int endOfTheWorld {get; private set; } = 7;
+        
 
-        static int money = 100;
-        static int levelPoints = 0;
-
-        static int maxActionPoints = 5;
-        static int maxInventoryCapacity = 5;
-        static int moneyMultiplier = 1;
-        static int xpMultiplier = 1;
-
-        static int currentXPosition = 1;
-        static int currentYPosition = 1;
+        public static int currentXPosition { get; set; } = 1;
+        public static int currentYPosition { get; set; } = 1;
+        // Player constructor
+        public Player(string name, int actionPoints, int money, int endOfTheWorld)
+        {
+            Player.name = name;
+            Player.actionPoints = actionPoints;
+            Player.money = money;
+            Player.endOfTheWorld = endOfTheWorld;
+        }
 
         //Set name 
-        static void  NameThePlayer(string newName) {
+        static void  ChangeName(string newName) {
             name = newName;
         }
 
         //Next day
-        static void NextTurn(int endOfTheWorld){
+        public static void NextTurn(){
             if(turn >= endOfTheWorld) {
                 Console.WriteLine("You lost!");
             }else {
@@ -36,7 +44,7 @@ namespace PlayerClass
             }
         }
         //Used during action
-        static void MakeAction(){
+        public static void MakeAction(){
             if(!(actionPoints == 0)){
                 actionPoints -= 1;
             }else{
@@ -44,36 +52,36 @@ namespace PlayerClass
             }
         }
         //Restores action points to it's maximum amount
-        static void RestoreActionPoints()
+        public static void RestoreActionPoints()
         {
             actionPoints = maxActionPoints;
         }
         //Levles up the player. For each lvel player gains 2 level points.
-        static void LevelUp()
+        public static void LevelUp()
         {
             level += 1;
             levelPoints += 2;
             
         }
-        static void AddMoney(int value)
+        public static void AddMoney(int value)
         {
             money += value;
         }
 
-        static void PayWithMoney(int moneyValue)
+        public static void PayWithMoney(int moneyValue)
         {
-            if (money < value)
+            if (money < moneyValue)
             {
                 Console.WriteLine("You don't have enough money!");
             }
             else
             {
                 Console.WriteLine("Payment succeeded");
-                money -= value;
+                money -= moneyValue;
             }
         }
         //Upgrades action points
-        static void UpgradeActionPoints(int newMaxActionPoints){
+        public static void UpgradeActionPoints(int newMaxActionPoints){
             if(newMaxActionPoints > maxActionPoints){
                 maxActionPoints = newMaxActionPoints;
             } else {
@@ -82,7 +90,7 @@ namespace PlayerClass
             
         }
         //Upgrade Inventory capacity
-        static void UpgradeInventoryCapacity(int newInventoryCapacity){
+        public static void UpgradeInventoryCapacity(int newInventoryCapacity){
            if(maxInventoryCapacity < newInventoryCapacity) {
             maxInventoryCapacity = newInventoryCapacity;
            }
@@ -91,7 +99,7 @@ namespace PlayerClass
            }
         }
         //Upgrades Money multiplier
-        static void UpgradeMoneyMultiplier(int newMoneyMultiplier) {
+        public static void UpgradeMoneyMultiplier(double newMoneyMultiplier) {
             if(moneyMultiplier < newMoneyMultiplier){
                 moneyMultiplier = newMoneyMultiplier;
             }
@@ -100,7 +108,7 @@ namespace PlayerClass
             }
         }
         //Upgrades Xp multiplier
-        static void UpgradeXpMultiplier(int newXpMultiplier) {
+        public static void UpgradeXpMultiplier(double newXpMultiplier) {
             if(xpMultiplier < newXpMultiplier){
                 xpMultiplier = newXpMultiplier;
             }
@@ -109,20 +117,20 @@ namespace PlayerClass
             }
         }
         //Saves Current Position
-        static void SaveCurrentPosition(int xPositon, int yPosition) {
+        public static void SaveCurrentPosition(int xPositon, int yPosition) {
             currentXPosition = xPositon;
             currentYPosition = yPosition;
         }
 
         //Displays main stats
-        static void DisplayBasicStats(){
+        public static void DisplayBasicStats(){
         Console.WriteLine($"> Day: {turn}");
         Console.WriteLine($"> Level: {level} ");
         Console.WriteLine($"> Action points left: {actionPoints} ");
         Console.WriteLine($"> Money: {money}");
         }   
         //Displays upgrade stats.
-        static void DisplayUpgradeStats(){
+        public static void DisplayUpgradeStats(){
             Console.WriteLine($"> Your are curretly level: {level}");
             Console.WriteLine($"> Level points left: {levelPoints}");
             Console.WriteLine($"> Your curret max inventory: {maxInventoryCapacity}");

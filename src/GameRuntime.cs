@@ -1,4 +1,4 @@
-using Map.cs;
+using Map;
 
 namespace GameRuntime
 {
