@@ -3,7 +3,7 @@ namespace GameRuntime
     class GameRuntime
     {
         //local use, actual variables will be sent to STATS file
-        static string name = "";
+        static string nameRun = "";
         static string townName = "NAME LATER PLS";
 
         static void Main(string[] args)
@@ -16,19 +16,18 @@ namespace GameRuntime
             //Disclaimer? If needed
             Intro();
             //SET THE STAMINA, DAY, OTHER STUFF THAT NEEDS TO BE SET
-            //Launch the Map, if that's what we start with. This would probably work but I'm not sure
-            Map mapClass = new Map();
-            mapClass.OpenMap();
+            OpenMap();
         }
 
         static void Naming()
         {
             Console.Write("What is your name?: ");
-            name = Console.ReadLine();
-            //make sure this variable cannot be null, set the name in the stats file
-            if (name != "" && name != " ")
+            nameRun = Console.ReadLine();
+            //LATER maybe make sure this variable cannot be null
+            if (nameRun != "" && nameRun != " ")
             {
-                Console.WriteLine($"Great! {name}, let's start!");
+                Console.WriteLine($"Great! {nameRun}, let's start!");
+                ChangeName(nameRun)
                 Console.WriteLine("=======================================");
             }
             else
@@ -40,7 +39,7 @@ namespace GameRuntime
 
         static void Intro()
         {
-            Console.WriteLine($"You, {name}, believe that the issue of food waste plagues the town {townName} too much for too long. Join them on a journey to various locations, each with their own unique challenge!");
+            Console.WriteLine($"You, {nameRun}, believe that the issue of food waste plagues the town {townName} too much for too long. Join them on a journey to various locations, each with their own unique challenge!");
             Console.WriteLine();
             Console.WriteLine("To save the day, you'll need to solve specific riddles and discover real ways of dealing with many food issues the world faces.");
             Console.WriteLine();
