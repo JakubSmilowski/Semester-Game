@@ -27,12 +27,6 @@
         static string[] abc = { "A" , "B" , "C", "D", "E", "F"};
         static string playerCommand = "";
 
-        static void Main(string[] args)
-        {
-            //Purely for testing, actual code should only initialize coordinates in Main()
-            stamina = 99;
-            OpenMap();
-        }
 
         static void LineSep()
         {
@@ -129,7 +123,7 @@
             }
         }
 
-        static void OpenMap()
+        public static void OpenMap()
         {
             //Player position
             map[yPos - 1][xPos - 1] = "T";
