@@ -4,25 +4,30 @@
     {
         static int[] progress = {0, 0, 0, 0, 0, 0};
         //progress is a primary quest stat. It does +1 to a specific part after you accept a quest.
+        static bool[] quizComp = {false, false, false, false, false, false};
 
-        static void Main(string[] args)
-        {
-            //DEBUG PURPOSES
-            EnterRoom("Grocery Store", 0);
-        }
-
+        
         public static void EnterRoom(string locName, int id)
         {
             Console.WriteLine("You are inside a " + locName);
             Console.WriteLine($"You have {2 - progress[id]} available quests");
-            Console.WriteLine("[A] Accept quest [S] Leave the " + locName);
+            if (quizComp[id])
+            {
+                Console.WriteLine("The quiz of this area has been completed");
+            } else {
+                Console.WriteLine("The quiz of this area has not been completed");
+            }
+            Console.WriteLine("[A] Accept quest [D] Tey your luck with the Quiz [S] Leave the " + locName);
             string answer = Console.ReadLine();
             if (answer == "A")
             {
                 LookAround(locName, id);
-            } else if (answer == "B")
+            } else if (answer == "S")
             {
                 //OpenMap(CURRENT LOCATION)
+            } else if (answer == "D")
+            {
+                //Do the quiz of the respectable location
             }
             else
             {
