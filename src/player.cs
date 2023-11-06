@@ -8,9 +8,10 @@ namespace FOODMAN
         public static int turn { get; set; } = 1;
         public static int actionPoints { get; set; } = 3;
         public static int level { get; set; } = 1;
+        public static double xp {get; set; } = 0;
         public static int levelPoints { get; set; } = 0;
 
-        public static int money { get; private set; } = 100;
+        public static double money { get; private set; } = 100;
         public static int maxActionPoints { get; private set; } = 5;
         public static int maxInventoryCapacity { get; private set; } = 5;
         public static double moneyMultiplier { get; private set; } = 1;
@@ -30,10 +31,17 @@ namespace FOODMAN
         }
 
         //Set name 
-        static void  ChangeName(string newName) {
+        public static void  ChangeName(string newName) {
             name = newName;
         }
-
+        //Checks if player can level up.
+        public static void CheckXp(double xpGained){
+            xp += xpGained;
+            if(xp >= 100) {
+                LevelUp();
+                xp -= 100;
+            }
+        }
         //Next day
         public static void NextTurn(){
             if(turn >= endOfTheWorld) {
@@ -63,7 +71,7 @@ namespace FOODMAN
             levelPoints += 2;
             
         }
-        public static void AddMoney(int value)
+        public static void AddMoney(double value)
         {
             money += value;
         }
@@ -121,6 +129,26 @@ namespace FOODMAN
             currentXPosition = xPositon;
             currentYPosition = yPosition;
         }
+
+        //Calculate xp gained
+        public static double CalculateXp(double xpGained){
+            if(xpGained!=0){
+                return xpMultiplier*xpGained;    
+            }
+            else {
+                return 0;
+            }
+        }
+        //Calculate money gained
+        public static double CalculateMoney(double moneyGained) {
+            if(moneyGained!=0){
+                return moneyMultiplier*moneyGained;    
+            }
+            else {
+                return 0;
+            }
+        }
+
 
         //Displays main stats
         public static void DisplayBasicStats(){
