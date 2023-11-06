@@ -26,25 +26,45 @@ public struct Item
             }
         }
 
-        public bool TryRemove(int removedQuantity)
+        public void Remove(int removedQuantity)
         {
             if(removedQuantity > 0 && Quantity - removedQuantity >= 0)
             {
                 Quantity -= removedQuantity;
+            }
+            else
+            {
+                System.Console.WriteLine(Quantity = 0);
+            }
+        }
+
+        public bool UseItem(int quantityNeeded)
+        {
+            if(quantityNeeded<=Quantity)
+            {
+                //*placeholder for an action from using an item*
+                Remove(quantityNeeded);
                 return true;
             }
-            else if(Quantity - removedQuantity < 0)
+            else
             {
-                System.Console.WriteLine($"Cannot perform action. You currently have {Quantity}x {ItemName}");
+                System.Console.WriteLine($"Cannot perform action. Not enough {ItemName}");
                 return false;
             }
-            else return false;
         }
 
         public void GetInfo()
         {
-            System.Console.WriteLine($"Item name: {ItemName}");
-            System.Console.WriteLine($"{Description}");
-            System.Console.WriteLine($"Number owned: {Quantity}");
+            System.Console.WriteLine($"Item name:\t{ItemName}");
+            System.Console.WriteLine($"Description:\t{Description}");
+            System.Console.WriteLine($"Number owned:\t{Quantity}");
         }
+    }
+    
+    private static void Main(string[] args)
+    {
+        Item sword = new Item("Sword", "Deals damage.", 1);
+        sword.Add(2);
+        sword.GetInfo();
+        sword.Remove(4);
     }
