@@ -26,14 +26,80 @@ namespace foodman
         //Main method
         public static void EnterBase()
         {
-            Console.WriteLine("You entered the base!");
-            Console.WriteLine("[Any Key] Exit");
-            Console.ReadLine();
+           
+            do
+            {
+                Console.Clear();
+                // Greeting message
+                Console.WriteLine("You are entering the base: ");
+                Console.WriteLine("You can spend your level points in here, rest or check game progress.");
+                //Displaying stats: 
+                Player.DisplayBasicStats();
+                // Visual representation of the base 
+                Console.Write("\n=====================");
 
-            //Room should look same as the other rooms except for placement of shop, bed?, quest progress.
+                //Value i indicates how how hight the border of the base is.
+                for (int i = 0; i < 6; i++)
+                {
+                    if (i == 0)
+                    {
+                        Console.Write("\n|{E}\t         {U}|");
+                    }
+                    else if (i == 5)
+                    {
+                        Console.Write("\n|{Q}\t         {R}|");
+                        break;
+                    }
+                    Console.Write("\n|\t\t    |");
+                }
+                Console.Write("\n=====================\n");
 
-            //So there shuld be a drawing method from room class.
-            
+                //Possible options
+                Console.WriteLine("\n> U - Upgrade");
+                Console.WriteLine("> R - Rest");
+                Console.WriteLine("> Q - Quests");
+                Console.WriteLine("> E - Exit");
+                Console.Write("> ");
+
+                //User input
+                string? userInput = Console.ReadLine();
+
+                //Choice of the player logic.
+                if (userInput != null)
+                {
+                    switch (userInput.ToLower())
+                    {
+                        case "u":
+                            EnterUpgradeShop();
+                            break;
+                        case "r":
+                            Rest();
+                            Console.WriteLine("Press enter to continue.");
+                            Console.ReadLine();
+                            break;
+                        case "q":
+                            //ShowQuests();
+                            Console.WriteLine("Press enter to continue.");
+                            Console.ReadLine();
+                            break;
+                        case "e":
+                            Console.Clear();
+                            Console.WriteLine("You left the base");
+                            return;
+                        default:
+                            Console.WriteLine("Input correct value!");
+                            Console.WriteLine("Press enter and try again!");
+                            Console.ReadLine();
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Incorect input!");
+                    Console.WriteLine("Press enter and try again!");
+                    Console.ReadLine();
+                }
+            } while (true);
         }
 
         //Rest method allows player to skip turn to gain extra action points.
@@ -155,22 +221,18 @@ namespace foodman
             }
         }
         //Quest display 
-        // static void ShowQuests(Quest[] questsInProgress)
+        // static void ShowQuests(quest[] questsInProgress, quest[] questCompleted)
         // {
         //     Console.Clear();
         //     Console.WriteLine("Quests in progress: ");
-        //     foreach (Quest quest in questsInProgress){
-        //     Console.writeline(quest.title);
-        //     Console.writeline(quest.description);
-        //     Console.writeline(quest.objective);
-        //     Console.writeline("==============================");
+        //     foreach (quest quest in questsInProgress){
+        //         Console.WriteLine(quest);
+        //         Console.WriteLine("==============================");
         //     }
         //     Console.WriteLine("Completed quests:");
-        //     foreach (Quest quest in questsCompleted){
-        //     Console.writeline(quest.title);
-        //     Console.writeline(quest.description);
-        //     Console.writeline(quest.objective);
-        //     Console.writeline("==============================");
+        //     foreach (quest quest in questCompleted){
+        //         Console.WriteLine(quest);
+        //         Console.WriteLine("==============================");
         //     }
         //     Console.WriteLine("Press enter to continue: ");
         //     Console.ReadLine();

@@ -8,31 +8,24 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\grovs\\.nuget\\packages\\": {},
-    "A:\\uni\\VS\\trash\\NuGetPackages": {}
+    "C:\\Users\\kubun\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "A:\\uni\\VS\\Semester-Game-master\\src\\src.csproj",
+      "projectUniqueName": "C:\\Users\\kubun\\SemesterProjectGame\\src\\src.csproj",
       "projectName": "src",
-      "projectPath": "A:\\uni\\VS\\Semester-Game-master\\src\\src.csproj",
-      "packagesPath": "C:\\Users\\grovs\\.nuget\\packages\\",
-      "outputPath": "A:\\uni\\VS\\Semester-Game-master\\src\\obj\\",
+      "projectPath": "C:\\Users\\kubun\\SemesterProjectGame\\src\\src.csproj",
+      "packagesPath": "C:\\Users\\kubun\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kubun\\SemesterProjectGame\\src\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "A:\\uni\\VS\\trash\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\grovs\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\kubun\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
