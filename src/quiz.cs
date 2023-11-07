@@ -1,6 +1,6 @@
 using System.Formats.Asn1;
 
-namespace FOODMAN
+namespace foodman
 {
     class Program
     {

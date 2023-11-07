@@ -1,4 +1,4 @@
-namespace GameRuntime
+namespace foodman
 {
     class GameRuntime
     {
@@ -8,6 +8,7 @@ namespace GameRuntime
 
         static void Main(string[] args)
         {
+            
             //the game functions through this file. This is the file you need to open to launch the game
             //this file keeps track of the progression and invokes the methods from other files
             Console.WriteLine("Welcome to FOODMAN!");
@@ -16,7 +17,7 @@ namespace GameRuntime
             //Disclaimer? If needed
             Intro();
             //SET THE STAMINA, DAY, OTHER STUFF THAT NEEDS TO BE SET
-            OpenMap();
+            Map.OpenMap();
         }
 
         static void Naming()
@@ -27,12 +28,12 @@ namespace GameRuntime
             if (nameRun != "" && nameRun != " ")
             {
                 Console.WriteLine($"Great! {nameRun}, let's start!");
-                ChangeName(nameRun)
-                Console.WriteLine("=======================================");
+                Player.ChangeName(nameRun);
+                Console.WriteLine("=========================================");
             }
             else
             {
-                Console.WriteLine("Something went wrong... Please try again");
+                WentWrong();
                 Naming();
             }
         }
@@ -44,7 +45,22 @@ namespace GameRuntime
             Console.WriteLine("To save the day, you'll need to solve specific riddles and discover real ways of dealing with many food issues the world faces.");
             Console.WriteLine();
             Console.WriteLine("Are you ready? Let the adventure begin!");
-            Console.WriteLine("=======================================");
+            Console.WriteLine("[W] Begin the game");
+            string beginning = Console.ReadLine().ToLower();
+            if (beginning != "w")
+            {
+                WentWrong();
+                Intro();
+            }
+        }
+        public static void LineSep()
+        {
+            Console.WriteLine("=========================================");
+        }
+
+        public static void WentWrong()
+        {
+            Console.WriteLine("Something went wrong... Please try again");
         }
     }
 }

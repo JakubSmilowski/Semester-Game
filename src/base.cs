@@ -1,6 +1,7 @@
 using System.Collections.Immutable;
 
-namespace FOODMAN {
+namespace foodman
+{
     class Base {
 
         public static int actionPointsUpgrades { get; set; } = 1;
@@ -23,9 +24,11 @@ namespace FOODMAN {
 
 
         //Main method
-        static void EnterBase()
+        public static void EnterBase()
         {
             Console.WriteLine("You entered the base!");
+            Console.WriteLine("[Any Key] Exit");
+            Console.ReadLine();
 
             //Room should look same as the other rooms except for placement of shop, bed?, quest progress.
 

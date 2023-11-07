@@ -1,6 +1,6 @@
 using System.Diagnostics.Tracing;
 
-namespace FOODMAN
+namespace foodman
 {
     class Player
     {

@@ -12,3 +12,17 @@ C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\refint\src.dll
 C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\src.pdb
 C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\src.genruntimeconfig.cache
 C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\ref\src.dll
+A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.GeneratedMSBuildEditorConfig.editorconfig
+A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.AssemblyInfoInputs.cache
+A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.AssemblyInfo.cs
+A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.csproj.CoreCompileInputs.cache
+A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.dll
+A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\refint\src.dll
+A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.pdb
+A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.exe
+A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.deps.json
+A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.runtimeconfig.json
+A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.dll
+A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.pdb
+A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.genruntimeconfig.cache
+A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\ref\src.dll

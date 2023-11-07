@@ -60,7 +60,7 @@ public struct Item
             System.Console.WriteLine($"Number owned:\t{Quantity}");
         }
     }
-    
+    /*
     private static void Main(string[] args)
     {
         Item sword = new Item("Sword", "Deals damage.", 1);
@@ -68,3 +68,4 @@ public struct Item
         sword.GetInfo();
         sword.Remove(4);
     }
+    */
