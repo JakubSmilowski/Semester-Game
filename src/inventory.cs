@@ -1,4 +1,6 @@
-public struct Item
+namespace WorldOfZuul
+{    
+    public struct Item
     {
         public int Quantity=0;
         public string ItemName;
@@ -60,12 +62,4 @@ public struct Item
             System.Console.WriteLine($"Number owned:\t{Quantity}");
         }
     }
-    /*
-    private static void Main(string[] args)
-    {
-        Item sword = new Item("Sword", "Deals damage.", 1);
-        sword.Add(2);
-        sword.GetInfo();
-        sword.Remove(4);
-    }
-    */
+}
