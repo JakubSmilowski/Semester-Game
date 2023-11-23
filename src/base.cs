@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.Diagnostics;
 
 namespace foodman
 {
@@ -21,7 +22,7 @@ namespace foodman
         public static int xQuestPosition{ get; set; } = 1;
         public static int yQuestPosition{ get; set; } = 6;
 
-
+        public static bool thisLocationQuiz{get; set; } = false;
 
         //Main method
         public static void EnterBase()
@@ -29,10 +30,13 @@ namespace foodman
            
             do
             {
-                Console.Clear();
                 // Greeting message
-                Console.WriteLine("You are entering the base: ");
-                Console.WriteLine("You can spend your level points in here, rest or check game progress.");
+                Console.Clear();
+                if(Player.turn <= 1) {
+                    GreetingMessageStart(Player.name);
+                }else {
+                    GreetingMessageDefault(Player.name);
+                }
                 //Displaying stats: 
                 Player.DisplayBasicStats();
                 // Visual representation of the base 
@@ -43,11 +47,11 @@ namespace foodman
                 {
                     if (i == 0)
                     {
-                        Console.Write("\n|{E}\t         {U}|");
+                        Console.Write("\n| E \t          U |");
                     }
                     else if (i == 5)
                     {
-                        Console.Write("\n|{Q}\t         {R}|");
+                        Console.Write("\n| Q \t          R |");
                         break;
                     }
                     Console.Write("\n|\t\t    |");
@@ -55,10 +59,11 @@ namespace foodman
                 Console.Write("\n=====================\n");
 
                 //Possible options
-                Console.WriteLine("\n> U - Upgrade");
-                Console.WriteLine("> R - Rest");
-                Console.WriteLine("> Q - Quests");
-                Console.WriteLine("> E - Exit");
+                Console.WriteLine("\n> [U] - Upgrade");
+                Console.WriteLine("> [R] - Rest");
+                Console.WriteLine("> [Q] - Quests");
+                Console.WriteLine("> [A] - Look around");
+                Console.WriteLine("> [E] - Exit");
                 Console.Write("> ");
 
                 //User input
@@ -86,6 +91,17 @@ namespace foodman
                             Console.Clear();
                             Console.WriteLine("You left the base");
                             return;
+                        case "a":
+                            if(thisLocationQuiz){
+                                Console.WriteLine("You already finished quiz of this location!");
+                            }else{
+                                Player.MakeAction();
+                                thisLocationQuiz = QuizOfTheLocation();
+                            }
+                            
+                            Console.WriteLine("Press enter to continue.");
+                            Console.ReadLine();
+                            return;
                         default:
                             Console.WriteLine("Input correct value!");
                             Console.WriteLine("Press enter and try again!");
@@ -101,6 +117,78 @@ namespace foodman
                 }
             } while (true);
         }
+        //Quiz of the base
+        static bool QuizOfTheLocation() {
+                Console.Clear();
+                Console.WriteLine(@"
+In your quest to combat food waste within FOODMAN, you come across a scenario where you have several overripe fruits in your inventory. To address this, what action would be most effective in minimizing food waste?
+> [a] Selling the overripe fruits at the Junkyard to recoup some losses.
+> [b] Upgrading Money Multiplier to afford better-quality fruits in the future.
+> [c] Creating a weekly meal plan to use the overripe fruits in various recipes.
+> [d] Upgrading Action Points to quickly move between locations and dispose of the fruits responsibly.");
+                string? userInput = Console.ReadLine();
+                
+                if (userInput != null)
+                {
+                    switch (userInput.ToLower())
+                    {
+                        case "a":
+                            Console.WriteLine(@"
+Selling the overripe fruits at the Junkyard to recoup some losses: 
+
+Selling overripe fruits may provide some monetary gain, but it doesn't address the root cause of food waste. 
+The focus should be on finding ways to use or repurpose the fruits.
+
+This is not a correct answer. Try again later!");
+                            return false;
+                        case "b":
+                        Console.WriteLine(@$"
+Upgrading Money Multiplier to afford better-quality fruits in the future:
+
+While having better-quality fruits is desirable, upgrading the Money Multiplier doesn't directly address the issue of existing overripe fruits. 
+It's more about preventing waste in future purchases.
+
+This is not a correct answer. Try again later!");
+                            return false;
+                        case "c":
+                            Console.WriteLine(@$"
+By incorporating the overripe fruits into a meal plan, you optimize their use and reduce the likelihood of them going to waste. 
+This strategy aligns with responsible decision-making within the context of combating food waste in FOODMAN.
+
+Excellent choice, {Player.name}! Your commitment to practical solutions will certainly make a positive impact on reducing food waste in your gameplay.
+Keep up the resourceful decision-making! 
+
+You gained 100xp and 20 in game money.");
+                            Player.AddMoney(20);
+                            Player.AddAndCheckXp(Player.CalculateXp(100));    
+                            return true;
+                        case "d":
+                        Console.WriteLine(@$"
+Upgrading Action Points to quickly move between locations and dispose of the fruits responsibly: 
+
+While disposing of fruits responsibly is essential, upgrading Action Points doesn't directly provide a solution for utilizing the overripe fruits. 
+It's more focused on movement efficiency rather than addressing the food waste issue.
+
+This is not a correct {Player.name} answer try again later!");
+                            return false;
+                        default:
+                            Console.WriteLine("Input correct value!");
+                            Console.WriteLine("Press enter and try again!");
+                            Console.ReadLine();
+                            QuizOfTheLocation();
+                            return false;     
+                    }
+                }
+                else
+                {
+                    
+                    Console.WriteLine("Incorect input!");
+                    Console.WriteLine("Press enter and try again!");
+                    Console.ReadLine();
+                    QuizOfTheLocation();
+                    return false;
+                }
+        }
 
         //Rest method allows player to skip turn to gain extra action points.
         static void Rest(){
@@ -109,7 +197,20 @@ namespace foodman
             Player.NextTurn();
             Player.RestoreActionPoints();
         }
+        static void GreetingMessageStart(string name){
+            Console.WriteLine(@$"
+Welcome to the Base, {name}!
 
+As you step into the central hub of FOODMAN, you feel the calm atmosphere enveloping you. 
+The Base serves as your sanctuary, a place for strategic planning, upgrades, and a moment of respite before 
+venturing back into the challenges that await you. 
+Here, you can upgrade your character, plan your next moves, and reflect on the journey so far. 
+Take a deep breath, recharge your spirit, and let's continue our mission to save the world from the impending global apocalypse.
+");
+        }
+        static void GreetingMessageDefault(string name){
+             Console.WriteLine($"Welcome to the Base, {name}!");
+        }
         //Upgrade shop logic.
         static void EnterUpgradeShop()
         {

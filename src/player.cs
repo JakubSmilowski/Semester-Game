@@ -35,7 +35,7 @@ namespace foodman
             name = newName;
         }
         //Checks if player can level up.
-        public static void CheckXp(double xpGained){
+        public static void AddAndCheckXp(double xpGained){
             xp += xpGained;
             if(xp >= 100) {
                 LevelUp();
