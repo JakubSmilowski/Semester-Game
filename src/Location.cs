@@ -1,4 +1,6 @@
-﻿namespace foodman
+﻿using System.Runtime;
+
+namespace foodman
 {
     class Location
     {
@@ -102,6 +104,30 @@
                     //restaraunt questline
                     break;
                     //other locations will have the same thing. Such individuality allows us to make every quest unique
+                case 2:
+                 Console.WriteLine("Welcome to the House!");
+                 Console.WriteLine("└|∵|┘ - 'Hi! My name's Robert the Robot and I arrive from future, when I am your typical Eco-Friendly Robot assisting with everyday tasks.'");
+                 Console.WriteLine("└|∵|┘ - 'People of future are rarely needing my help as years of education throughout the FOODMAN have resulted in eco-aware society, that just knows how to waste less food.'");
+                 Console.WriteLine("└|∵|┘ - 'Even though I love humans of my times, I'd lie saying that I don't miss when they were less educated and needed my assistance more. That's why after consulting with them they've decided to try sending me back in time, so I could educate people of the past.'");
+                 Console.WriteLine("└|∵|┘ - 'Oh wow I think they did succeed right? Could you please tell me what year are we in?'");
+                 string currentYear = Console.ReadLine();
+                 Console.WriteLine("└|∵|┘ - '",currentYear,"?!?'");
+                 Console.WriteLine("└|∵|┘ - 'That is crazy!'");
+                 Console.WriteLine("└|∵|┘ - 'So it did work after all... Amazing! By the way excuse my poor manners, your name is ",Player.name+" right?'");
+                 Console.WriteLine("└|∵|┘ - 'You look like a ",Player.name+".'");
+                 Console.WriteLine("└|∵|┘ - 'OK, now that we know each other would you be interested in participating in a quizz that would evaluate your knowledge regarding ways of lessening food waste? Type YES if you would like to try, or NO if you would rather go on exploring other rooms.'");
+                 string decisionQuizz = Console.ReadLine().ToLower();
+                 
+                 if(decisionQuizz == "yes")
+                 {
+                   Console.WriteLine("└|∵|┘ - 'I AM SO EXCITED!!!!! Let's begin then.'");
+                    Quizz();
+                 } else if(decisionQuizz == "no")
+                 {
+                    Console.WriteLine("└|∵|┘ - 'Fine, no worries. In case you would change your mind, please do not hesitate to come back, I'll be waiting.'");
+                 }
+                break;
+
             }
         }
 
