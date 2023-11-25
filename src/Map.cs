@@ -43,7 +43,7 @@
         };
         
         static string[] abc = { "A" , "B" , "C", "D", "E", "F"};
-        static string playerCommand = "";
+        static string? playerCommand = "";
 
         static void DrawText(string dmy, string ap)
         {
@@ -53,7 +53,7 @@
             GameRuntime.LineSep();
             Console.WriteLine("[W]Up [A]Left [S]Down [D]Right");
             Console.Write("Enter your command... ");
-            playerCommand = Console.ReadLine().ToLower();
+            playerCommand = Console.ReadLine()?.ToLower();
             ReadPlayerInput();
         }
 
@@ -121,6 +121,7 @@
                         }
                         break;
                 }
+                Console.Clear();
                 IfOnLocation();
                 OpenMap();
             //}
@@ -151,6 +152,22 @@
             }
             else if (xPos == fxPos && yPos == fyPos)//here too
             {
+                    Console.Write("\n=====================");
+                    for (int i = 0; i < 8; i++)
+                    {
+                        if (i == 2)
+                        {
+                         Console.Write("\n|   \t {M}         __");
+                        }
+                        else if (i == 5)
+                        {
+                            Console.Write("\n|   \t        {A} |");
+                        }
+                        Console.Write("\n|\t\t    |");
+                    }
+                    Console.Write("\n=====================\n");
+
+
                 yPos += 1;
                 Location.EnterRoom("Factory", 3);
             }
