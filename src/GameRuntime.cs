@@ -3,7 +3,7 @@ namespace foodman
     class GameRuntime
     {
         //local use, actual variables will be sent to STATS file
-        static string nameRun = "";
+        static string? nameRun = "";
         static string townName = "NAME LATER PLS";
 
         static void Main(string[] args)
@@ -28,7 +28,7 @@ namespace foodman
             if (nameRun != "" && nameRun != " ")
             {
                 Console.WriteLine($"Great! {nameRun}, let's start!");
-                Player.ChangeName(nameRun);
+                if(nameRun != null) Player.ChangeName(nameRun);
                 Console.WriteLine("=========================================");
             }
             else
@@ -46,7 +46,7 @@ namespace foodman
             Console.WriteLine();
             Console.WriteLine("Are you ready? Let the adventure begin!");
             Console.WriteLine("[W] Begin the game");
-            string beginning = Console.ReadLine().ToLower();
+            string? beginning = Console.ReadLine()?.ToLower();
             if (beginning != "w")
             {
                 WentWrong();
