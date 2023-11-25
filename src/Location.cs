@@ -22,22 +22,35 @@ namespace foodman
                 Console.WriteLine("The quiz of this area has not been completed");
             }
             if (progress[id] < 2) {
-                Console.Write("[A] Accept quest ");
+                Console.Write("[A] Accept quest   ");
             }
             if (!quizComp[id])
             {
-                Console.Write("[D] Try your luck with the Quiz ");
+                Console.Write("[D] Try your luck with the Quiz  ");
             }
-            Console.WriteLine("[S] Leave the " + locName);
+            Console.Write("[T] Talk to someone at the " + locName + "   ");
+            Console.WriteLine("[S] Leave the " + locName + "    ");
             string? answer = Console.ReadLine()?.ToLower();
             if (answer == "a")
             {
                 LookAround(locName, id);
-            } else if (answer == "s")
+            } 
+            else if(answer == "t")
+            {
+                switch(id)//place for npc
+                {
+                   case 3:
+                    NPC.FacroyManager();
+                    break; 
+                }
+                EnterRoom(locName, id);
+            }
+            else if (answer == "s")
             {
                 //do nothing
                 //exits back to map class
-            } else if (answer == "d")
+            } 
+            else if (answer == "d")
             {
                 //Do the quiz of the respectable location
                 switch(id)
@@ -122,11 +135,13 @@ namespace foodman
                     if(progress[id] == 0)
                     {
                         Quest.Factory2();
+                        EnterRoom(locName, id);
                         break;                    
                     }
                     if(progress[id] == 1)
                     {
                         Quest.Factory3();
+                        EnterRoom(locName, id);
                         break;
                     }
                     break;
