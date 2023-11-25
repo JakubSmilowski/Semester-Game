@@ -3,7 +3,7 @@ namespace foodman
     class GameRuntime
     {
         //local use, actual variables will be sent to STATS file
-        static string nameRun = "";
+        static string? nameRun = "";
         static string townName = "NAME LATER PLS";
 
         static void Main(string[] args)
@@ -11,6 +11,7 @@ namespace foodman
             
             //the game functions through this file. This is the file you need to open to launch the game
             //this file keeps track of the progression and invokes the methods from other files
+            Console.Clear(); // just to make it look nicer
             Console.WriteLine("Welcome to FOODMAN!");
             Console.WriteLine("In this whimsical text-based game, you step into the shoes of a clever and compassionate citizen on a quest to tackle the issues of food waste in his town!");
             Naming();
@@ -46,7 +47,8 @@ namespace foodman
             Console.WriteLine();
             Console.WriteLine("Are you ready? Let the adventure begin!");
             Console.WriteLine("[W] Begin the game");
-            string beginning = Console.ReadLine().ToLower();
+            string? beginning = Console.ReadLine()?.ToLower();
+            Console.Clear(); // just to make it look nicer
             if (beginning != "w")
             {
                 WentWrong();

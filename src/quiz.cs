@@ -5,6 +5,7 @@ namespace foodman
     class Program
     {
         public int Point = 0;
+        public static int score = 0;
         // int he main just reference the  void quizz
         public static void Quizz()
         {
@@ -23,7 +24,7 @@ namespace foodman
             string[] CorrectAnswers = {"A", "B", "C"};  //the only correct answer is the options in front of the answer so A or B or C
 
             
-            int score = 0;
+             int score = 0;
 
             Console.WriteLine("Quizz Game");
 
@@ -37,7 +38,7 @@ namespace foodman
                 
 
                 Console.WriteLine("Guess: ");            // takes user input f
-                string? Guess = Console.ReadLine().ToUpper();  // checks if its a string and puts it into uppercase
+                string? Guess = Console.ReadLine()?.ToUpper();  // checks if its a string and puts it into uppercase
                 
 
                 if(Guess == CorrectAnswers[i])        // if the answer is correct it gives a point if not it doesnt
@@ -56,6 +57,49 @@ namespace foodman
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
             Console.WriteLine("******************");
+            
+        }
+
+        public static void FactoryQuiz()
+        {
+            string[] CorrectAnswers = {"A", "A", "B"};
+            score = 0;
+
+            string[] Questions = {"1. How much food is wasted globally?: ", 
+                                  "2. How much food is wasted in Denmark?: ", 
+                                  "3. Which country wastes the most food?: "
+                                  };
+            
+            string[] Answers = { 
+                "A: 1.3 billion tons\tB: 10.5 billion tons\tC: 5.7 billion tons",
+                "A: 700.000 tons\tB: 9.000.000 tons\tC: 50.000 tons",
+                "A:India\tB: China\tC: USA"
+            };
+
+            for(int i = 0; i < Questions.Length ; i++)
+            {
+                 Console.WriteLine("******************");
+                Console.WriteLine(Questions[i]);          
+                Console.WriteLine(Answers[i]); 
+
+             Console.WriteLine("Guess: ");            
+                string? Guess = Console.ReadLine()?.ToUpper();  
+                
+
+                if(Guess == CorrectAnswers[i])
+                {
+                    Console.WriteLine("Correct");
+                    score++;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect");
+                }
+                Console.WriteLine("******************");
+            }  
+                Console.WriteLine("******************");
+                Console.WriteLine($"Final score: {score}/{Questions.Length}");
+                Console.WriteLine("******************");
             
         }
     }

@@ -31,8 +31,9 @@ namespace foodman
         }
 
         //Set name 
-        public static void  ChangeName(string newName) {
+        public static void ChangeName(string newName) {
             name = newName;
+            
         }
         //Checks if player can level up.
         public static void CheckXp(double xpGained){

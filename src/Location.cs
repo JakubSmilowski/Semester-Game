@@ -1,8 +1,12 @@
-﻿namespace foodman
+﻿using System.Data.SqlTypes;
+
+namespace foodman
 {
     class Location
     {
-        static int[] progress = {0, 0, 0, 0, 0, 0};
+
+        
+        public static int[] progress = {0, 0, 0, 0, 0, 0};
         //progress is a primary quest stat. It does +1 to a specific part after you accept a quest.
         static bool[] quizComp = {false, false, false, false, false, false};
         //quizComp becomes true for each quiz you complete
@@ -11,7 +15,7 @@
         {
             Console.WriteLine("You are inside a " + locName);
             Console.WriteLine($"You have {2 - progress[id]} available quests");
-            if (quizComp[id])
+            if (quizComp[id] == true)
             {
                 Console.WriteLine("The quiz of this area has been completed");
             } else {
@@ -25,7 +29,7 @@
                 Console.Write("[D] Try your luck with the Quiz ");
             }
             Console.WriteLine("[S] Leave the " + locName);
-            string answer = Console.ReadLine().ToLower();
+            string? answer = Console.ReadLine()?.ToLower();
             if (answer == "a")
             {
                 LookAround(locName, id);
@@ -36,6 +40,17 @@
             } else if (answer == "d")
             {
                 //Do the quiz of the respectable location
+                switch(id)
+                {
+                    // add quizes (id - the number of your room)
+                    case 3:
+                        
+                        Program.FactoryQuiz();
+                        if(Program.score == 3)
+                        quizComp[3] = true;
+
+                        break;
+                }
                 Console.WriteLine("PLACEHOLDER FOR QUIZZES");
                 EnterRoom(locName, id);
             }
@@ -63,7 +78,7 @@
                     {
                         Console.WriteLine("You can smell expired food. Strange... Maybe you can ask someone about it?");
                         Console.WriteLine("[A] Ask the owner [Any Key] Ignore the smell");
-                        string read = Console.ReadLine().ToLower();
+                        string? read = Console.ReadLine()?.ToLower();
                         if (read == "a")
                         {
                             Console.WriteLine("Manager: 'The food is expired and ready to be thrown out. Yes, we will throw it to the trash. We don't recycle.'");
@@ -80,7 +95,7 @@
                     {
                         Console.WriteLine("It is dark outside. The store will close soon. You take a look at the shelves. Some of them still have food. It is almost expired, so the store will throw it out. Do you want to take care of it?");
                         Console.WriteLine("[A] Take the leftovers [Any Key] Leave them there");
-                        string read = Console.ReadLine().ToLower();
+                        string? read = Console.ReadLine()?.ToLower();
                         if (read == "a")
                         {
                             Console.WriteLine("You take the food. Now you can either eat it or sell it for 1/4 of its original price");
@@ -102,6 +117,19 @@
                     //restaraunt questline
                     break;
                     //other locations will have the same thing. Such individuality allows us to make every quest unique
+                case 3:
+
+                    if(progress[id] == 0)
+                    {
+                        Quest.Factory2();
+                        break;                    
+                    }
+                    if(progress[id] == 1)
+                    {
+                        Quest.Factory3();
+                        break;
+                    }
+                    break;
             }
         }
 
