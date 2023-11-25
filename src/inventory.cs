@@ -91,7 +91,7 @@ namespace foodman
             }
         }
 
-        public void Display()
+        public readonly void Display()
         {
             System.Console.WriteLine($"Item name:\t{ItemName}");
             System.Console.WriteLine($"Description:\t{Description}");
