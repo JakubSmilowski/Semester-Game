@@ -1,4 +1,30 @@
-namespace WorldOfZuul
+//###GUIDE###
+
+//Declare a new item:
+//Item <name> = new(<displayed name>, <item description>, <max amount in inventory>);
+
+//Get info:
+//<name>.Display();
+//displays all of the information about an item
+//can be used as a showcase or to test if everything was declared correctly
+
+//Add items:
+//<name>.Add(<amount>) 
+//if added more than player can carry, adds as much as it can, the rest is discarded
+
+//Add items randomly:
+//<name>.AddRandomAmount(<minimum>, <maximum>);
+//adjustable random drop of an item, adds as much as required to the maximum
+
+//Remove items:
+//<name>.Remove(<amount>);
+//if removed more than there was, count goes to 0
+
+//Using an item:
+//<name>.TryUse(<amount needed to use>)
+//a bool that checks if an action can be performed (i. e. if you have enough of an item to do so)
+
+namespace foodman
 {    
     public struct Item
     {
@@ -26,6 +52,17 @@ namespace WorldOfZuul
                 Quantity = MaxCapacity;
                 System.Console.WriteLine($"{ItemName} limit ({MaxCapacity}) reached.");
             }
+            System.Console.WriteLine($"{addedQuantity}x {ItemName} has been added to your inventory.");
+        }
+
+        public void AddRandomAmount(int randMin, int randMax)
+        {
+            if(Quantity!=MaxCapacity)
+            {
+                Random random = new();
+                int addedQuantity = random.Next(randMin, randMax);
+                Add(addedQuantity);
+            }
         }
 
         public void Remove(int removedQuantity)
@@ -36,15 +73,14 @@ namespace WorldOfZuul
             }
             else
             {
-                System.Console.WriteLine(Quantity = 0);
+                Quantity = 0;
             }
         }
 
-        public bool UseItem(int quantityNeeded)
+        public bool TryUse(int quantityNeeded)
         {
             if(quantityNeeded<=Quantity)
             {
-                //*placeholder for an action from using an item*
                 Remove(quantityNeeded);
                 return true;
             }
@@ -55,7 +91,7 @@ namespace WorldOfZuul
             }
         }
 
-        public void GetInfo()
+        public void Display()
         {
             System.Console.WriteLine($"Item name:\t{ItemName}");
             System.Console.WriteLine($"Description:\t{Description}");
