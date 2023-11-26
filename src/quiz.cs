@@ -37,7 +37,7 @@ namespace foodman
                 
 
                 Console.WriteLine("Guess: ");            // takes user input f
-                string? Guess = Console.ReadLine().ToUpper();  // checks if its a string and puts it into uppercase
+                string? Guess = Console.ReadLine()?.ToUpper();  // checks if its a string and puts it into uppercase
                 
 
                 if(Guess == CorrectAnswers[i])        // if the answer is correct it gives a point if not it doesnt
