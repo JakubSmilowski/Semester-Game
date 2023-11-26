@@ -22,7 +22,7 @@ namespace foodman
         public static int xQuestPosition{ get; set; } = 1;
         public static int yQuestPosition{ get; set; } = 6;
 
-        public static bool thisLocationQuiz{get; set; } = false;
+        public static bool QuizProgress{get; set; } = false;
 
         //Main method
         public static void EnterBase()
@@ -62,7 +62,7 @@ namespace foodman
                 Console.WriteLine("\n> [U] - Upgrade");
                 Console.WriteLine("> [R] - Rest");
                 Console.WriteLine("> [Q] - Quests");
-                Console.WriteLine("> [A] - Look around");
+                Console.WriteLine("> [A] - Start quest");
                 Console.WriteLine("> [E] - Exit");
                 Console.Write("> ");
 
@@ -92,11 +92,11 @@ namespace foodman
                             Console.WriteLine("You left the base");
                             return;
                         case "a":
-                            if(thisLocationQuiz){
+                            if(QuizProgress){
                                 Console.WriteLine("You already finished quiz of this location!");
                             }else{
                                 Player.MakeAction();
-                                thisLocationQuiz = QuizOfTheLocation();
+                                QuizProgress = QuizOfTheLocation();
                             }
                             
                             Console.WriteLine("Press enter to continue.");
