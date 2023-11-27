@@ -27,11 +27,6 @@
         static int rcxPos = 1;
         static int rcyPos = 6;
 
-
-        //Stats, taken from... well, stats class. Rn it's a placeholder
-        static string date = "IMPORT FROM STATS";
-        static int stamina;
-
         static string[][] map =
         {
             new string[] { " ", " ", " ", " ", " ", "H", " ", " ", " " },
@@ -41,15 +36,15 @@
             new string[] { " ", " ", "R", " ", " ", " ", " ", " ", " " },
             new string[] { "C", " ", " ", " ", " ", " ", " ", " ", "J" },
         };
-        
-        static string[] abc = { "A" , "B" , "C", "D", "E", "F"};
+
+        static string[] abc = { "A", "B", "C", "D", "E", "F" };
         static string? playerCommand = "";
 
-        static void DrawText(string dmy, string ap)
+        static void DrawText()
         {
             GameRuntime.LineSep();
-            Console.WriteLine("Today is " + dmy);
-            Console.WriteLine("You have " + ap + " moves left");
+            Console.WriteLine($"Today is  {Player.currentlyDate.ToShortDateString()}");
+            Console.WriteLine($"You have {Player.actionPoints} moves left");
             GameRuntime.LineSep();
             Console.WriteLine("[W]Up [A]Left [S]Down [D]Right");
             Console.Write("Enter your command... ");
@@ -82,48 +77,48 @@
         {
             //if (stamina > 0)
             //{
-                map[yPos - 1][xPos - 1] = " ";
-                switch (playerCommand)
-                {
-                    case "w":
-                    case "u":
-                    case "up":
-                        if (yPos > 1)
-                        {
-                            yPos -= 1;
-                            //stamina -= 1;
-                        }
-                        break;
-                    case "a":
-                    case "l":
-                    case "left":
-                        if (xPos > 1)
-                        {
-                            xPos -= 1;
-                            //stamina -= 1;
-                        }
-                        break;
-                    case "s":
-                    case "b":
-                    case "back":
-                        if (yPos < 6)
-                        {
-                            yPos += 1;
-                            //stamina -= 1;
-                        }
-                        break;
-                    case "d":
-                    case "r":
-                    case "right":
-                        if (xPos < 9)
-                        {
-                            xPos += 1;
-                            //stamina -= 1;
-                        }
-                        break;
-                }
-                IfOnLocation();
-                OpenMap();
+            map[yPos - 1][xPos - 1] = " ";
+            switch (playerCommand)
+            {
+                case "w":
+                case "u":
+                case "up":
+                    if (yPos > 1)
+                    {
+                        yPos -= 1;
+                        //stamina -= 1;
+                    }
+                    break;
+                case "a":
+                case "l":
+                case "left":
+                    if (xPos > 1)
+                    {
+                        xPos -= 1;
+                        //stamina -= 1;
+                    }
+                    break;
+                case "s":
+                case "b":
+                case "back":
+                    if (yPos < 6)
+                    {
+                        yPos += 1;
+                        //stamina -= 1;
+                    }
+                    break;
+                case "d":
+                case "r":
+                case "right":
+                    if (xPos < 9)
+                    {
+                        xPos += 1;
+                        //stamina -= 1;
+                    }
+                    break;
+            }
+            IfOnLocation();
+            OpenMap();
             //}
 
         }
@@ -135,12 +130,14 @@
                 //enter base
                 yPos += 1;
                 Base.EnterBase();
-            } else if (xPos == gxPos && yPos == gyPos)//don't forget to add a level check
+            }
+            else if (xPos == gxPos && yPos == gyPos)//don't forget to add a level check
             {
                 //enter grocery store
                 yPos += 1;
                 Location.EnterRoom("Grocery Store", 0);
-            } else if (xPos == rxPos && yPos == ryPos)//here too
+            }
+            else if (xPos == rxPos && yPos == ryPos)//here too
             {
                 yPos -= 1;
                 Location.EnterRoom("Restaraunt", 1);
@@ -153,19 +150,19 @@
             else if (xPos == fxPos && yPos == fyPos)//here too
             {
                 Console.Write("\n=====================");
-                    for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 8; i++)
+                {
+                    if (i == 2)
                     {
-                        if (i == 2)
-                        {
-                         Console.Write("\n|   \t {M}         __");
-                        }
-                        else if (i == 5)
-                        {
-                            Console.Write("\n|   \t        {A} |");
-                        }
-                        Console.Write("\n|\t\t    |");
+                        Console.Write("\n|   \t {M}         __");
                     }
-                    Console.Write("\n=====================\n");
+                    else if (i == 5)
+                    {
+                        Console.Write("\n|   \t        {A} |");
+                    }
+                    Console.Write("\n|\t\t    |");
+                }
+                Console.Write("\n=====================\n");
 
                 yPos += 1;
                 Location.EnterRoom("Factory", 3);
@@ -203,7 +200,7 @@
 
             GameRuntime.LineSep();
             DrawMap();
-            DrawText(date, stamina.ToString());
+            DrawText();
         }
 
     }

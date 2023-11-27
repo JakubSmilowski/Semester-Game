@@ -3,7 +3,8 @@ using System.Diagnostics;
 
 namespace foodman
 {
-    class Base {
+    class Base
+    {
 
         public static int actionPointsUpgrades { get; set; } = 1;
         public static int inventoryUpgrades { get; set; } = 1;
@@ -11,30 +12,33 @@ namespace foodman
         public static int xpMultiplierUpgrades { get; set; } = 1;
 
         public static double moneyMultiplierValue { get; set; } = 1;
-        public static double xpMultiplierValue{ get; set; } = 1;
+        public static double xpMultiplierValue { get; set; } = 1;
 
-        public static int xShopPosition{ get; set; } = 6;
-        public static int yShopPosition{ get; set; } = 6;
+        public static int xShopPosition { get; set; } = 6;
+        public static int yShopPosition { get; set; } = 6;
 
-        public static int xBedPosition{ get; set; } = 6;
-        public static int yBedPosition{ get; set; } = 1;
+        public static int xBedPosition { get; set; } = 6;
+        public static int yBedPosition { get; set; } = 1;
 
-        public static int xQuestPosition{ get; set; } = 1;
-        public static int yQuestPosition{ get; set; } = 6;
+        public static int xQuestPosition { get; set; } = 1;
+        public static int yQuestPosition { get; set; } = 6;
 
-        public static bool QuizProgress{get; set; } = false;
+        public static bool QuizProgress { get; set; } = false;
 
         //Main method
         public static void EnterBase()
         {
-           
+
             do
             {
                 // Greeting message
                 Console.Clear();
-                if(Player.turn <= 1) {
+                if (Player.turn <= 1)
+                {
                     GreetingMessageStart(Player.name);
-                }else {
+                }
+                else
+                {
                     GreetingMessageDefault(Player.name);
                 }
                 //Displaying stats: 
@@ -92,13 +96,21 @@ namespace foodman
                             Console.WriteLine("You left the base");
                             return;
                         case "a":
-                            if(QuizProgress){
+                            if (QuizProgress)
+                            {
                                 Console.WriteLine("You already finished quiz of this location!");
-                            }else{
+                            }
+                            else if (Player.IsActionPossible())
+
+                            {
                                 Player.MakeAction();
                                 QuizProgress = QuizOfTheLocation();
                             }
-                            
+                            else
+                            {
+                                Console.WriteLine("There is not enough action points. You can rest in base to restore them");
+                            }
+
                             Console.WriteLine("Press enter to continue.");
                             Console.ReadLine();
                             return;
@@ -118,30 +130,31 @@ namespace foodman
             } while (true);
         }
         //Quiz of the base
-        static bool QuizOfTheLocation() {
-                Console.Clear();
-                Console.WriteLine(@"
+        static bool QuizOfTheLocation()
+        {
+            Console.Clear();
+            Console.WriteLine(@"
 In your quest to combat food waste within FOODMAN, you come across a scenario where you have several overripe fruits in your inventory. To address this, what action would be most effective in minimizing food waste?
 > [a] Selling the overripe fruits at the Junkyard to recoup some losses.
 > [b] Upgrading Money Multiplier to afford better-quality fruits in the future.
 > [c] Creating a weekly meal plan to use the overripe fruits in various recipes.
 > [d] Upgrading Action Points to quickly move between locations and dispose of the fruits responsibly.");
-                string? userInput = Console.ReadLine();
-                
-                if (userInput != null)
+            string? userInput = Console.ReadLine();
+
+            if (userInput != null)
+            {
+                switch (userInput.ToLower())
                 {
-                    switch (userInput.ToLower())
-                    {
-                        case "a":
-                            Console.WriteLine(@"
+                    case "a":
+                        Console.WriteLine(@"
 Selling the overripe fruits at the Junkyard to recoup some losses: 
 
 Selling overripe fruits may provide some monetary gain, but it doesn't address the root cause of food waste. 
 The focus should be on finding ways to use or repurpose the fruits.
 
 This is not a correct answer. Try again later!");
-                            return false;
-                        case "b":
+                        return false;
+                    case "b":
                         Console.WriteLine(@$"
 Upgrading Money Multiplier to afford better-quality fruits in the future:
 
@@ -149,9 +162,9 @@ While having better-quality fruits is desirable, upgrading the Money Multiplier 
 It's more about preventing waste in future purchases.
 
 This is not a correct answer. Try again later!");
-                            return false;
-                        case "c":
-                            Console.WriteLine(@$"
+                        return false;
+                    case "c":
+                        Console.WriteLine(@$"
 By incorporating the overripe fruits into a meal plan, you optimize their use and reduce the likelihood of them going to waste. 
 This strategy aligns with responsible decision-making within the context of combating food waste in FOODMAN.
 
@@ -159,10 +172,10 @@ Excellent choice, {Player.name}! Your commitment to practical solutions will cer
 Keep up the resourceful decision-making! 
 
 You gained 100xp and 20 in game money.");
-                            Player.AddMoney(20);
-                            Player.AddAndCheckXp(Player.CalculateXp(100));    
-                            return true;
-                        case "d":
+                        Player.AddMoney(20);
+                        Player.AddAndCheckXp(Player.CalculateXp(100));
+                        return true;
+                    case "d":
                         Console.WriteLine(@$"
 Upgrading Action Points to quickly move between locations and dispose of the fruits responsibly: 
 
@@ -170,34 +183,36 @@ While disposing of fruits responsibly is essential, upgrading Action Points does
 It's more focused on movement efficiency rather than addressing the food waste issue.
 
 This is not a correct {Player.name} answer try again later!");
-                            return false;
-                        default:
-                            Console.WriteLine("Input correct value!");
-                            Console.WriteLine("Press enter and try again!");
-                            Console.ReadLine();
-                            QuizOfTheLocation();
-                            return false;     
-                    }
+                        return false;
+                    default:
+                        Console.WriteLine("Input correct value!");
+                        Console.WriteLine("Press enter and try again!");
+                        Console.ReadLine();
+                        QuizOfTheLocation();
+                        return false;
                 }
-                else
-                {
-                    
-                    Console.WriteLine("Incorect input!");
-                    Console.WriteLine("Press enter and try again!");
-                    Console.ReadLine();
-                    QuizOfTheLocation();
-                    return false;
-                }
+            }
+            else
+            {
+
+                Console.WriteLine("Incorect input!");
+                Console.WriteLine("Press enter and try again!");
+                Console.ReadLine();
+                QuizOfTheLocation();
+                return false;
+            }
         }
 
         //Rest method allows player to skip turn to gain extra action points.
-        static void Rest(){
-            Console.WriteLine("You are resting");  
+        static void Rest()
+        {
+            Console.WriteLine("You are resting");
             Console.WriteLine($"skiping to day {(Player.turn + 1)}");
             Player.NextTurn();
             Player.RestoreActionPoints();
         }
-        static void GreetingMessageStart(string name){
+        static void GreetingMessageStart(string name)
+        {
             Console.WriteLine(@$"
 Welcome to the Base, {name}!
 
@@ -208,116 +223,124 @@ Here, you can upgrade your character, plan your next moves, and reflect on the j
 Take a deep breath, recharge your spirit, and let's continue our mission to save the world from the impending global apocalypse.
 ");
         }
-        static void GreetingMessageDefault(string name){
-             Console.WriteLine($"Welcome to the Base, {name}!");
+        static void GreetingMessageDefault(string name)
+        {
+            Console.WriteLine($"Welcome to the Base, {name}!");
         }
         //Upgrade shop logic.
         static void EnterUpgradeShop()
         {
-                do
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("You entered upgrade shop.\n");
+                Console.WriteLine($"You currently have: {Player.levelPoints} points. \nWhat do you want to upgrade:\n");
+                Console.WriteLine($"> 1. Action Points - Currently tier {actionPointsUpgrades} costs {actionPointsUpgrades + 1} level point");
+                Console.WriteLine($"> 2. Inventory Capacity - Currently tier {inventoryUpgrades} costs {inventoryUpgrades + 1} level point");
+                Console.WriteLine($"> 3. Money Multiplier - Currently tier {moneyMultiplierUpgrades} costs {moneyMultiplierUpgrades + 1} level point");
+                Console.WriteLine($"> 4. Xp Multiplier - Currently tier {xpMultiplierUpgrades} costs {xpMultiplierUpgrades + 1} level point");
+                Console.WriteLine($"> E - Exit");
+                Console.Write("> ");
+
+                //User input
+                string? userInput = Console.ReadLine();
+
+                //Choice of the player logic.
+                if (userInput != null)
                 {
-                    Console.Clear();
-                    Console.WriteLine("You entered upgrade shop.\n");
-                    Console.WriteLine($"You currently have: {Player.levelPoints} points. \nWhat do you want to upgrade:\n");
-                    Console.WriteLine($"> 1. Action Points - Currently tier {actionPointsUpgrades} costs {actionPointsUpgrades+1} level point");
-                    Console.WriteLine($"> 2. Inventory Capacity - Currently tier {inventoryUpgrades } costs {inventoryUpgrades+1} level point");
-                    Console.WriteLine($"> 3. Money Multiplier - Currently tier {moneyMultiplierUpgrades} costs {moneyMultiplierUpgrades+1} level point");
-                    Console.WriteLine($"> 4. Xp Multiplier - Currently tier {xpMultiplierUpgrades} costs {xpMultiplierUpgrades+1} level point");
-                    Console.WriteLine($"> E - Exit");
-                    Console.Write("> ");
-
-                    //User input
-                    string? userInput = Console.ReadLine();
-
-                    //Choice of the player logic.
-                    if (userInput != null)
+                    switch (userInput.ToLower())
                     {
-                        switch (userInput.ToLower())
-                        {
-                            case "1":
-                                if(IsEnughLevelPoints(actionPointsUpgrades)){
-                                    actionPointsUpgrades ++;
-                                    Player.UpgradeActionPoints(actionPointsUpgrades);
-                                    Console.WriteLine("> You upgraded action Points. ");
-                                    Console.WriteLine($"> Current maximum amount {Player.maxActionPoints}. ");
-                                }
-                                else 
-                                {
-                                    Console.WriteLine("> You dont have enough points to upgrade this sat! Level up and try again later!");
-                                }
-                                Console.WriteLine("> Press enter to continue: ");
-                                Console.ReadLine();
-                                break;
-                            case "2":
-                                if(IsEnughLevelPoints(inventoryUpgrades)){
-                                    inventoryUpgrades ++;
-                                    Player.UpgradeInventoryCapacity(inventoryUpgrades);
-                                    Console.WriteLine("> You upgraded max inventory. ");
-                                    Console.WriteLine($"> Current maximum inventory capacity {Player.maxInventoryCapacity}. ");
-                                }
-                                else 
-                                {
-                                    Console.WriteLine("> You dont have enough points to upgrade this sat! Level up and try again later!");
-                                }
-                                Console.WriteLine("> Press enter to continue: ");
-                                Console.ReadLine();
-                                break;
-                            case "3":
-                                if(IsEnughLevelPoints(moneyMultiplierUpgrades)){
-                                    moneyMultiplierUpgrades ++;
-                                    moneyMultiplierValue += 0.2;
-                                    Player.UpgradeMoneyMultiplier(moneyMultiplierValue);
-                                    Console.WriteLine("> You upgraded money multiplier. ");
-                                    Console.WriteLine($"> Current money multiplier {Player.moneyMultiplier}. ");
-                                }
-                                else 
-                                {
-                                    Console.WriteLine("> You dont have enough points to upgrade this sat! Level up and try again later!");
-                                }
-                                Console.WriteLine("> Press enter to continue: ");
-                                Console.ReadLine();
-                                break;
-                            case "4":
-                                if(IsEnughLevelPoints(xpMultiplierUpgrades)){
-                                    xpMultiplierUpgrades ++;
-                                    xpMultiplierValue += 0.2;
-                                    Player.UpgradeXpMultiplier(xpMultiplierValue);
-                                    Console.WriteLine("> You upgraded xp Multiplier. ");
-                                    Console.WriteLine($"> Current xp multiplier {Player.xpMultiplier}. ");
-                                }
-                                else 
-                                {
-                                    Console.WriteLine("> You dont have enough points to upgrade this sat! Level up and try again later!");
-                                }
-                                Console.WriteLine("> Press enter to continue: ");
-                                Console.ReadLine();
-                                break;
-                            case "e":
-                                Console.Clear();
-                                Console.WriteLine("> You left the upgrade shop");
-                                return;
-                            default:
-                                Console.WriteLine("> Input correct value!");
-                                Console.WriteLine("> Press enter to continue: ");
-                                Console.ReadLine();
-                                break;
-                        }
+                        case "1":
+                            if (IsEnughLevelPoints(actionPointsUpgrades))
+                            {
+                                actionPointsUpgrades++;
+                                Player.UpgradeActionPoints(actionPointsUpgrades);
+                                Console.WriteLine("> You upgraded action Points. ");
+                                Console.WriteLine($"> Current maximum amount {Player.maxActionPoints}. ");
+                            }
+                            else
+                            {
+                                Console.WriteLine("> You dont have enough points to upgrade this sat! Level up and try again later!");
+                            }
+                            Console.WriteLine("> Press enter to continue: ");
+                            Console.ReadLine();
+                            break;
+                        case "2":
+                            if (IsEnughLevelPoints(inventoryUpgrades))
+                            {
+                                inventoryUpgrades++;
+                                Player.UpgradeInventoryCapacity(inventoryUpgrades);
+                                Console.WriteLine("> You upgraded max inventory. ");
+                                Console.WriteLine($"> Current maximum inventory capacity {Player.maxInventoryCapacity}. ");
+                            }
+                            else
+                            {
+                                Console.WriteLine("> You dont have enough points to upgrade this sat! Level up and try again later!");
+                            }
+                            Console.WriteLine("> Press enter to continue: ");
+                            Console.ReadLine();
+                            break;
+                        case "3":
+                            if (IsEnughLevelPoints(moneyMultiplierUpgrades))
+                            {
+                                moneyMultiplierUpgrades++;
+                                moneyMultiplierValue += 0.2;
+                                Player.UpgradeMoneyMultiplier(moneyMultiplierValue);
+                                Console.WriteLine("> You upgraded money multiplier. ");
+                                Console.WriteLine($"> Current money multiplier {Player.moneyMultiplier}. ");
+                            }
+                            else
+                            {
+                                Console.WriteLine("> You dont have enough points to upgrade this sat! Level up and try again later!");
+                            }
+                            Console.WriteLine("> Press enter to continue: ");
+                            Console.ReadLine();
+                            break;
+                        case "4":
+                            if (IsEnughLevelPoints(xpMultiplierUpgrades))
+                            {
+                                xpMultiplierUpgrades++;
+                                xpMultiplierValue += 0.2;
+                                Player.UpgradeXpMultiplier(xpMultiplierValue);
+                                Console.WriteLine("> You upgraded xp Multiplier. ");
+                                Console.WriteLine($"> Current xp multiplier {Player.xpMultiplier}. ");
+                            }
+                            else
+                            {
+                                Console.WriteLine("> You dont have enough points to upgrade this sat! Level up and try again later!");
+                            }
+                            Console.WriteLine("> Press enter to continue: ");
+                            Console.ReadLine();
+                            break;
+                        case "e":
+                            Console.Clear();
+                            Console.WriteLine("> You left the upgrade shop");
+                            return;
+                        default:
+                            Console.WriteLine("> Input correct value!");
+                            Console.WriteLine("> Press enter to continue: ");
+                            Console.ReadLine();
+                            break;
                     }
-                    else
-                    {
-                        Console.WriteLine("Incorect input!");
-                        Console.WriteLine("Press enter and try again!");
-                        Console.ReadLine();
-                    }
+                }
+                else
+                {
+                    Console.WriteLine("Incorect input!");
+                    Console.WriteLine("Press enter and try again!");
+                    Console.ReadLine();
+                }
 
-                } while (true); 
+            } while (true);
         }
         // Checks if there is enough points to upgrade, if so substract levelPoints and adds 1 to levelOfUprgrade of stat.
-        static bool IsEnughLevelPoints(int statUpgradeLevel){
-            if (Player.levelPoints >= (statUpgradeLevel+1)){
+        static bool IsEnughLevelPoints(int statUpgradeLevel)
+        {
+            if (Player.levelPoints >= (statUpgradeLevel + 1))
+            {
                 return true;
             }
-            else {
+            else
+            {
                 return false;
             }
         }
@@ -340,4 +363,4 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
         // }
     }
 }
-        
+

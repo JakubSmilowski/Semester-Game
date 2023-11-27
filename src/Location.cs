@@ -6,11 +6,11 @@ namespace foodman
 {
     class Location
     {
-        public static int[] progress = {0, 0, 0, 0, 0, 0};
+        public static int[] progress = { 0, 0, 0, 0, 0, 0 };
         //progress is a primary quest stat. It does +1 to a specific part after you accept a quest.
-        static bool[] quizComp = {false, false, false, false, false, false};
+        static bool[] quizComp = { false, false, false, false, false, false };
         //quizComp becomes true for each quiz you complete
-        
+
         public static void EnterRoom(string locName, int id)
         {
             Console.WriteLine("You are inside a " + locName);
@@ -18,10 +18,13 @@ namespace foodman
             if (quizComp[id])
             {
                 Console.WriteLine("The quiz of this area has been completed");
-            } else {
+            }
+            else
+            {
                 Console.WriteLine("The quiz of this area has not been completed");
             }
-            if (progress[id] < 2) {
+            if (progress[id] < 2)
+            {
                 Console.Write("[A] Accept quest ");
             }
             if (!quizComp[id])
@@ -34,35 +37,37 @@ namespace foodman
             if (answer == "a")
             {
                 LookAround(locName, id);
-            } else if (answer == "s")
+            }
+            else if (answer == "s")
             {
                 //do nothing
                 //exits back to map class
-            } else if (answer == "d")
+            }
+            else if (answer == "d")
             {
                 //Do the quiz of the respectable location
-                
-                switch(id)
+
+                switch (id)
                 {
                     // add quizes (id - the number of your room)
                     case 3:
-                        
+
                         Program.FactoryQuiz();
-                        if(Program.score == 3)
-                        quizComp[3] = true;
+                        if (Program.score == 3)
+                            quizComp[3] = true;
 
                         break;
                 }
                 Console.WriteLine("PLACEHOLDER FOR QUIZZES");
                 EnterRoom(locName, id);
             }
-            else if(answer == "t")
+            else if (answer == "t")
             {
-                switch(id)//place for npc
+                switch (id)//place for npc
                 {
-                   case 3:
-                    NPC.FacroyManager();
-                    break; 
+                    case 3:
+                        NPC.FacroyManager();
+                        break;
                 }
                 EnterRoom(locName, id);
             }
@@ -98,12 +103,12 @@ namespace foodman
                             Items.FoodExpired.AddRandomAmount(1, 10);
                             Items.FoodExpired.Display();
                             progress[0]++;
-                        } 
+                        }
                         else
                         {
                             Console.WriteLine("You ignore the smell and decide to leave this disgusting place after getting yourself a few snacks");
                             Items.Snacks.Add(1);
-                            //REMOVE THE MONEY
+                            Player.SubstractMoney(10);
                         }
                     }
                     else if (progress[id] == 1)
@@ -120,7 +125,7 @@ namespace foodman
                         {
                             Console.WriteLine("You ignore the food. It is best to throw things that have no use, right?");
                         }
-                    } 
+                    }
                     else
                     {
                         Console.WriteLine("There is nothing left for you to do here...");
@@ -131,56 +136,57 @@ namespace foodman
                 case 1:
                     //restaraunt questline
                     break;
-                    //other locations will have the same thing. Such individuality allows us to make every quest unique
+                //other locations will have the same thing. Such individuality allows us to make every quest unique
                 case 2:
-                string? currentYear = "";
-                Console.WriteLine("Welcome to the House!");
-                Console.ReadLine();
-                Console.WriteLine("└|*-*|┘ - 'Hi! My name's Robert the Robot and I arrive from future, when I am your typical Eco-Friendly Robot assisting with everyday tasks.'");
-                Console.ReadLine();
-                Console.WriteLine("└|*-*|┘ - 'People of future are rarely needing my help as years of education throughout the FOODMAN have resulted in eco-aware society, that just knows how to waste less food.'");
-                Console.ReadLine();
-                Console.WriteLine("└|*-*|┘ - 'Even though I love humans of my times, I'd lie saying that I don't miss when they were less educated and needed my assistance more. That's why after consulting with them they've decided to try sending me back in time, so I could educate people of the past.'");
-                Console.ReadLine();
-                Console.WriteLine("└|*-*|┘ - 'Oh wow I think they did succeed right? Could you please tell me what year are we in?'");
-                currentYear = Console.ReadLine();
-                Console.WriteLine($"└|*-*|┘ - '{currentYear}?!?'");
-                Console.ReadLine();
-                Console.WriteLine("└|*-*|┘ - 'That is crazy!'");
-                Console.ReadLine();
-                Console.WriteLine("└|*-*|┘ - 'So it did work after all... Amazing! By the way excuse my poor manners, your name is ",Player.name+" right?'");
-                Console.ReadLine();
-                Console.WriteLine($"└|*-*|┘ - 'You look like a {Player.name}.'");
-                Console.ReadLine();
-                Console.WriteLine("└|*-*|┘ - 'OK, now that we know each other would you be interested in participating in a quizz that would evaluate your knowledge regarding ways of lessening food waste? Type YES if you would like to try, or NO if you would rather go on exploring other rooms.'");
-                string? decisionQuizz = Console.ReadLine()?.ToLower();
-                
-                if(decisionQuizz == "yes")
-                {
-                  Console.WriteLine("└|*-*|┘ - 'I AM SO EXCITED!!!!! Let's begin then.'");
-                  //Quizz();
-                } else if(decisionQuizz == "no")
-                {
-                   Console.WriteLine("└|*-*|┘ - 'Fine, no worries. In case you would change your mind, please do not hesitate to come back, I'll be waiting.'");
-                }
-                break;
+                    string? currentYear = "";
+                    Console.WriteLine("Welcome to the House!");
+                    Console.ReadLine();
+                    Console.WriteLine("└|*-*|┘ - 'Hi! My name's Robert the Robot and I arrive from future, when I am your typical Eco-Friendly Robot assisting with everyday tasks.'");
+                    Console.ReadLine();
+                    Console.WriteLine("└|*-*|┘ - 'People of future are rarely needing my help as years of education throughout the FOODMAN have resulted in eco-aware society, that just knows how to waste less food.'");
+                    Console.ReadLine();
+                    Console.WriteLine("└|*-*|┘ - 'Even though I love humans of my times, I'd lie saying that I don't miss when they were less educated and needed my assistance more. That's why after consulting with them they've decided to try sending me back in time, so I could educate people of the past.'");
+                    Console.ReadLine();
+                    Console.WriteLine("└|*-*|┘ - 'Oh wow I think they did succeed right? Could you please tell me what year are we in?'");
+                    currentYear = Console.ReadLine();
+                    Console.WriteLine($"└|*-*|┘ - '{currentYear}?!?'");
+                    Console.ReadLine();
+                    Console.WriteLine("└|*-*|┘ - 'That is crazy!'");
+                    Console.ReadLine();
+                    Console.WriteLine("└|*-*|┘ - 'So it did work after all... Amazing! By the way excuse my poor manners, your name is ", Player.name + " right?'");
+                    Console.ReadLine();
+                    Console.WriteLine($"└|*-*|┘ - 'You look like a {Player.name}.'");
+                    Console.ReadLine();
+                    Console.WriteLine("└|*-*|┘ - 'OK, now that we know each other would you be interested in participating in a quizz that would evaluate your knowledge regarding ways of lessening food waste? Type YES if you would like to try, or NO if you would rather go on exploring other rooms.'");
+                    string? decisionQuizz = Console.ReadLine()?.ToLower();
+
+                    if (decisionQuizz == "yes")
+                    {
+                        Console.WriteLine("└|*-*|┘ - 'I AM SO EXCITED!!!!! Let's begin then.'");
+                        //Quizz();
+                    }
+                    else if (decisionQuizz == "no")
+                    {
+                        Console.WriteLine("└|*-*|┘ - 'Fine, no worries. In case you would change your mind, please do not hesitate to come back, I'll be waiting.'");
+                    }
+                    break;
 
                 case 3:
 
-                     if(progress[id] == 0)
+                    if (progress[id] == 0)
                     {
                         Quest.Factory2();
                         EnterRoom(locName, id);
-                        break;                    
+                        break;
                     }
-                    if(progress[id] == 1)
+                    if (progress[id] == 1)
                     {
                         Quest.Factory3();
                         EnterRoom(locName, id);
                         break;
                     }
                     break;
-            
+
 
             }
         }
