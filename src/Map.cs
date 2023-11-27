@@ -59,6 +59,7 @@
 
         static void DrawMap()
         {
+            Console.Clear();// To not douplicate the map in console while moving
             //Map's top frame
             for (int j = 0; j <= 9; j++)
             {
@@ -151,6 +152,21 @@
             }
             else if (xPos == fxPos && yPos == fyPos)//here too
             {
+                Console.Write("\n=====================");
+                    for (int i = 0; i < 8; i++)
+                    {
+                        if (i == 2)
+                        {
+                         Console.Write("\n|   \t {M}         __");
+                        }
+                        else if (i == 5)
+                        {
+                            Console.Write("\n|   \t        {A} |");
+                        }
+                        Console.Write("\n|\t\t    |");
+                    }
+                    Console.Write("\n=====================\n");
+
                 yPos += 1;
                 Location.EnterRoom("Factory", 3);
             }

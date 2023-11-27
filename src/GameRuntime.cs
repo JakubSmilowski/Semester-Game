@@ -8,9 +8,9 @@ namespace foodman
 
         static void Main(string[] args)
         {
-            
             //the game functions through this file. This is the file you need to open to launch the game
             //this file keeps track of the progression and invokes the methods from other files
+            Console.Clear();//to delete the console messages in the begining
             Console.WriteLine("Welcome to FOODMAN!");
             Console.WriteLine("In this whimsical text-based game, you step into the shoes of a clever and compassionate citizen on a quest to tackle the issues of food waste in his town!");
             Naming();
@@ -47,6 +47,7 @@ namespace foodman
             Console.WriteLine("Are you ready? Let the adventure begin!");
             Console.WriteLine("[W] Begin the game");
             string? beginning = Console.ReadLine()?.ToLower();
+            Console.Clear();
             if (beginning != "w")
             {
                 WentWrong();

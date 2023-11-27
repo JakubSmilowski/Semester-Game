@@ -6,7 +6,7 @@ namespace foodman
 {
     class Location
     {
-        static int[] progress = {0, 0, 0, 0, 0, 0};
+        public static int[] progress = {0, 0, 0, 0, 0, 0};
         //progress is a primary quest stat. It does +1 to a specific part after you accept a quest.
         static bool[] quizComp = {false, false, false, false, false, false};
         //quizComp becomes true for each quiz you complete
@@ -28,6 +28,7 @@ namespace foodman
             {
                 Console.Write("[D] Try your luck with the Quiz ");
             }
+            Console.WriteLine("[T] Talk to someone at the" + locName + "  ");
             Console.WriteLine("[S] Leave the " + locName);
             string? answer = Console.ReadLine()?.ToLower();
             if (answer == "a")
@@ -40,7 +41,29 @@ namespace foodman
             } else if (answer == "d")
             {
                 //Do the quiz of the respectable location
+                
+                switch(id)
+                {
+                    // add quizes (id - the number of your room)
+                    case 3:
+                        
+                        Program.FactoryQuiz();
+                        if(Program.score == 3)
+                        quizComp[3] = true;
+
+                        break;
+                }
                 Console.WriteLine("PLACEHOLDER FOR QUIZZES");
+                EnterRoom(locName, id);
+            }
+            else if(answer == "t")
+            {
+                switch(id)//place for npc
+                {
+                   case 3:
+                    NPC.FacroyManager();
+                    break; 
+                }
                 EnterRoom(locName, id);
             }
             else
@@ -141,6 +164,23 @@ namespace foodman
                    Console.WriteLine("└|*-*|┘ - 'Fine, no worries. In case you would change your mind, please do not hesitate to come back, I'll be waiting.'");
                 }
                 break;
+
+                case 3:
+
+                     if(progress[id] == 0)
+                    {
+                        Quest.Factory2();
+                        EnterRoom(locName, id);
+                        break;                    
+                    }
+                    if(progress[id] == 1)
+                    {
+                        Quest.Factory3();
+                        EnterRoom(locName, id);
+                        break;
+                    }
+                    break;
+            
 
             }
         }
