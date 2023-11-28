@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.Data.Common;
 using System.Diagnostics;
 
 namespace foodman
@@ -23,7 +24,8 @@ namespace foodman
         public static int xQuestPosition { get; set; } = 1;
         public static int yQuestPosition { get; set; } = 6;
 
-        public static bool QuizProgress { get; set; } = false;
+        public static bool QuizzesProgress { get; set; } = false;
+        public static int id = 0;
 
         //Main method
         public static void EnterBase()
@@ -88,6 +90,7 @@ namespace foodman
                             break;
                         case "q":
                             //ShowQuests();
+                            Console.WriteLine("Work in progress!");
                             Console.WriteLine("Press enter to continue.");
                             Console.ReadLine();
                             break;
@@ -95,22 +98,30 @@ namespace foodman
                             Console.Clear();
                             Console.WriteLine("You left the base");
                             return;
-                        case "a":
-                            if (QuizProgress)
-                            {
-                                Console.WriteLine("You already finished quiz of this location!");
-                            }
-                            else if (Player.IsActionPossible())
-
+                        case "a":    
+                            if (Player.IsActionPossible())
                             {
                                 Player.MakeAction();
-                                QuizProgress = QuizOfTheLocation();
+                                //Choses wich quiz to display depending on already completed ones.
+                                switch(id) {
+                                    case 0:
+                                        //Assigns if quest has been completed or not.
+                                        QuizzesProgress = QuizOfTheLocation1();
+                                        break;
+                                    case 1:
+                                        QuizzesProgress = QuizOfTheLocation2();
+                                        break;
+                                    // case 2:
+                                    //     //QuizProgress[0] = QuizOfTheLocation1();
+                                    //     //id += 1;
+                                    // break;
+                                    default:
+                                        // if id is equal to 3 and  quizzesProgress is true then quizzes are completed, becouse id
+                                        // is incremented only when quiz is completed.
+                                         Console.WriteLine("You already finished quizzes of this location!");
+                                         break;
+                                }                                
                             }
-                            else
-                            {
-                                Console.WriteLine("There is not enough action points. You can rest in base to restore them");
-                            }
-
                             Console.WriteLine("Press enter to continue.");
                             Console.ReadLine();
                             return;
@@ -129,16 +140,19 @@ namespace foodman
                 }
             } while (true);
         }
-        //Quiz of the base
-        static bool QuizOfTheLocation()
+
+        //Quizzes of the base 
+        //In the future it can be implemented more optimal
+        static bool QuizOfTheLocation1()
         {
             Console.Clear();
             Console.WriteLine(@"
-In your quest to combat food waste within FOODMAN, you come across a scenario where you have several overripe fruits in your inventory. To address this, what action would be most effective in minimizing food waste?
-> [a] Selling the overripe fruits at the Junkyard to recoup some losses.
-> [b] Upgrading Money Multiplier to afford better-quality fruits in the future.
-> [c] Creating a weekly meal plan to use the overripe fruits in various recipes.
-> [d] Upgrading Action Points to quickly move between locations and dispose of the fruits responsibly.");
+> In your quest to combat food waste within FOODMAN, you come across a scenario where you have several overripe fruits in your inventory. To address this, what action would be most effective in minimizing food waste?
+
+> [A] Selling the overripe fruits at the Junkyard to recoup some losses.
+> [B] Upgrading Money Multiplier to afford better-quality fruits in the future.
+> [C] Creating a weekly meal plan to use the overripe fruits in various recipes.
+> [D] Upgrading Action Points to quickly move between locations and dispose of the fruits responsibly.");
             string? userInput = Console.ReadLine();
 
             if (userInput != null)
@@ -147,48 +161,48 @@ In your quest to combat food waste within FOODMAN, you come across a scenario wh
                 {
                     case "a":
                         Console.WriteLine(@"
-Selling the overripe fruits at the Junkyard to recoup some losses: 
 
-Selling overripe fruits may provide some monetary gain, but it doesn't address the root cause of food waste. 
-The focus should be on finding ways to use or repurpose the fruits.
+> Your answer: [A] 
+> This is not a correct answer. Try again later!
 
-This is not a correct answer. Try again later!");
+> Selling overripe fruits may provide some monetary gain, but it doesn't address the root cause of food waste. 
+> The focus should be on finding ways to use or repurpose the fruits.");
                         return false;
                     case "b":
                         Console.WriteLine(@$"
-Upgrading Money Multiplier to afford better-quality fruits in the future:
 
-While having better-quality fruits is desirable, upgrading the Money Multiplier doesn't directly address the issue of existing overripe fruits. 
-It's more about preventing waste in future purchases.
+> Your answer: [B] 
+> This is not a correct answer. Try again later!
 
-This is not a correct answer. Try again later!");
+> While having better-quality fruits is desirable, upgrading the Money Multiplier doesn't directly address the issue of existing overripe fruits. 
+> It's more about preventing waste in future purchases.");
                         return false;
                     case "c":
                         Console.WriteLine(@$"
-By incorporating the overripe fruits into a meal plan, you optimize their use and reduce the likelihood of them going to waste. 
-This strategy aligns with responsible decision-making within the context of combating food waste in FOODMAN.
 
-Excellent choice, {Player.name}! Your commitment to practical solutions will certainly make a positive impact on reducing food waste in your gameplay.
-Keep up the resourceful decision-making! 
+> Your answer: [C]                       
+> By incorporating the overripe fruits into a meal plan, you optimize their use and reduce the likelihood of them going to waste. 
+> This strategy aligns with responsible decision-making within the context of combating food waste in FOODMAN.
 
-You gained 100xp and 20 in game money.");
-                        Player.AddMoney(20);
-                        Player.AddAndCheckXp(Player.CalculateXp(100));
+> Excellent choice, {Player.name}! Your commitment to practical solutions will certainly make a positive impact on reducing food waste in your gameplay.
+> Keep up the resourceful decision-making! 
+
+> You gained 100xp and 20$. ");
+                        QuizzCorrect(100, 20);
                         return true;
                     case "d":
                         Console.WriteLine(@$"
-Upgrading Action Points to quickly move between locations and dispose of the fruits responsibly: 
+> Your answer [D]
+> This is not a correct answer try again later!
 
-While disposing of fruits responsibly is essential, upgrading Action Points doesn't directly provide a solution for utilizing the overripe fruits. 
-It's more focused on movement efficiency rather than addressing the food waste issue.
-
-This is not a correct {Player.name} answer try again later!");
+> While disposing of fruits responsibly is essential, upgrading Action Points doesn't directly provide a solution for utilizing the overripe fruits. 
+> It's more focused on movement efficiency rather than addressing the food waste issue.");
                         return false;
                     default:
                         Console.WriteLine("Input correct value!");
                         Console.WriteLine("Press enter and try again!");
                         Console.ReadLine();
-                        QuizOfTheLocation();
+                        QuizOfTheLocation1();
                         return false;
                 }
             }
@@ -198,9 +212,95 @@ This is not a correct {Player.name} answer try again later!");
                 Console.WriteLine("Incorect input!");
                 Console.WriteLine("Press enter and try again!");
                 Console.ReadLine();
-                QuizOfTheLocation();
+                QuizOfTheLocation1();
                 return false;
             }
+        }
+        //second quiz
+        static bool QuizOfTheLocation2()
+        {
+            Console.Clear();
+            Console.WriteLine(@"
+> In your exploration of food waste within FOODMAN, consider the following scenario: In which stage of the food supply chain does the most significant amount of food waste occur?
+
+> [A] Production/Farming
+> [B] Distribution
+> [C] Retail
+> [D] Consumer");
+            string? userInput = Console.ReadLine();
+
+            if (userInput != null)
+            {
+                switch (userInput.ToLower())
+                {
+                    case "a":
+                        Console.WriteLine(@"
+
+> Your answer: [A] 
+> This is not a correct answer. Try again later!
+
+> While food waste does occur in the production/farming stage, it is often attributed to issues such as imperfect produce,
+> overproduction, and inefficient harvesting methods.
+> However, the percentage of waste during distribution tends to be higher.");
+                        return false;
+                    case "b":
+                        Console.WriteLine(@$"
+
+> Your answer: [B] 
+> This is not a correct answer. Try again later!
+
+> Distribution involves the transportation, handling, and storage of food from the farm to various retail outlets. 
+> Factors such as inadequate infrastructure, improper storage conditions,
+> and inefficient transportation contribute significantly to food waste in this stage. 
+> According to data from the Food and Agriculture Organization (FAO), 
+> around 21% of global food waste occurs during distribution.
+");
+                        return false;
+                    case "c":
+                        Console.WriteLine(@$"
+
+> Your answer: [C] 
+> This is not a correct answer try again later!
+
+> Retail waste is primarily associated with unsold goods, expired products, and aesthetic standards imposed by retailers.
+> While this is a significant concern, the overall percentage of waste in the distribution stage tends to be higher.");
+                        return true;
+                    case "d":
+                        Console.WriteLine(@$"
+> Your answer [D]
+> Correct!
+
+> Consumer food waste occurs at the end of the supply chain when individuals discard food at home.
+> While this stage is crucial for awareness and behavior change, 
+> the proportion of waste at the distribution stage is generally more substantial.
+
+> You get 100xp and 20$.");
+                        QuizzCorrect(100, 20);
+                        return true;
+                    default:
+                        Console.WriteLine("Input correct value!");
+                        Console.WriteLine("Press enter and try again!");
+                        Console.ReadLine();
+                        QuizOfTheLocation2();
+                        return false;
+                }
+            }
+            else
+            {
+
+                Console.WriteLine("Incorect input!");
+                Console.WriteLine("Press enter and try again!");
+                Console.ReadLine();
+                QuizOfTheLocation2();
+                return false;
+            }
+        }
+
+        //Method caled after correctly answering the question.
+        private static void QuizzCorrect(double money, double xp) {
+            Base.id += 1;
+            Player.AddMoney(money);
+            Player.AddAndCheckXp(Player.CalculateXp(xp));
         }
 
         //Rest method allows player to skip turn to gain extra action points.

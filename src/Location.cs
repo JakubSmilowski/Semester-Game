@@ -34,16 +34,17 @@ namespace foodman
             Console.WriteLine("[T] Talk to someone at the" + locName + "  ");
             Console.WriteLine("[S] Leave the " + locName);
             string? answer = Console.ReadLine()?.ToLower();
-            if (answer == "a")
+            if (answer == "a" && Player.IsActionPossible())
             {
                 LookAround(locName, id);
+                
             }
             else if (answer == "s")
             {
                 //do nothing
                 //exits back to map class
             }
-            else if (answer == "d")
+            else if (answer == "d" && Player.IsActionPossible())
             {
                 //Do the quiz of the respectable location
 

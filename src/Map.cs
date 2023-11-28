@@ -44,7 +44,7 @@
         {
             GameRuntime.LineSep();
             Console.WriteLine($"Today is  {Player.currentlyDate.ToShortDateString()}");
-            Console.WriteLine($"You have {Player.actionPoints} moves left");
+            Console.WriteLine($"You have {Player.actionPoints} action points left");
             GameRuntime.LineSep();
             Console.WriteLine("[W]Up [A]Left [S]Down [D]Right");
             Console.Write("Enter your command... ");
@@ -56,6 +56,7 @@
         {
             Console.Clear();// To not douplicate the map in console while moving
             //Map's top frame
+            GameRuntime.LineSep();
             for (int j = 0; j <= 9; j++)
             {
                 Console.Write($"| {j} ");
@@ -198,7 +199,7 @@
             //RC
             map[rcyPos - 1][rcxPos - 1] = "C";
 
-            GameRuntime.LineSep();
+            
             DrawMap();
             DrawText();
         }

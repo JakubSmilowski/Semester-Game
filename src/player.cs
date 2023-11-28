@@ -79,7 +79,11 @@ namespace foodman
         //Checks if action possible!
         public static bool IsActionPossible()
         {
-            return actionPoints == 0 ? false : true;
+            if(actionPoints == 0 ){
+                Console.WriteLine("Action is not possible! Not enough action points.");
+                return false;
+            }
+            return true;
         }
         //Used during action
         public static void MakeAction()

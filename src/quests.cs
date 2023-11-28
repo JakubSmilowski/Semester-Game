@@ -87,7 +87,7 @@ class Quest
             Console.WriteLine("[A] Buy the machenes (HERE WRITE THE AMOUNT THEY WILL COST) [Any Key] On other thoughts its not worth it");
             read = Console.ReadLine()?.ToLower();
             Player.MakeAction();
-            if (read == "a")
+            if (read == "a" && Player.IsActionPossible())
             {
                 Location.progress[3] += 1;
                 //subtract money
