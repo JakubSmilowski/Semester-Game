@@ -37,7 +37,7 @@ namespace foodman
                 Naming();
             }
         }
-
+        
         static void Intro()
         {
             Console.WriteLine($"You, {nameRun}, believe that the issue of food waste plagues the town {townName} too much for too long. Join them on a journey to various locations, each with their own unique challenge!");

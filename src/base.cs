@@ -2,6 +2,15 @@ using System.Collections.Immutable;
 using System.Data.Common;
 using System.Diagnostics;
 
+//To do:
+//Open inventory
+//Increasing cost of upgrading in U - upgrades
+//ShowProgress function, that shows all completed quizzes and quests. 
+//Change that after one leave the quest end up in map, not in the base.
+//Add Npc?
+//Add some kind of quest?
+
+
 namespace foodman
 {
     class Base
@@ -65,11 +74,11 @@ namespace foodman
                 Console.Write("\n=====================\n");
 
                 //Possible options
-                Console.WriteLine("\n> [U] - Upgrade");
-                Console.WriteLine("> [R] - Rest");
-                Console.WriteLine("> [Q] - Quests");
-                Console.WriteLine("> [A] - Start quest");
-                Console.WriteLine("> [E] - Exit");
+                Console.WriteLine("\n> [U] Upgrade");
+                Console.WriteLine("> [R] Rest");
+                Console.WriteLine("> [A] Start quiz ");
+                Console.WriteLine("> [P] Progress");
+                Console.WriteLine("> [S] Leave");
                 Console.Write("> ");
 
                 //User input
@@ -88,13 +97,13 @@ namespace foodman
                             Console.WriteLine("Press enter to continue.");
                             Console.ReadLine();
                             break;
-                        case "q":
+                        case "p":
                             //ShowQuests();
                             Console.WriteLine("Work in progress!");
                             Console.WriteLine("Press enter to continue.");
                             Console.ReadLine();
                             break;
-                        case "e":
+                        case "s":
                             Console.Clear();
                             Console.WriteLine("You left the base");
                             return;
@@ -430,7 +439,7 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                         case "1":
                             if (IsEnughLevelPoints(actionPointsUpgrades))
                             {
-                                actionPointsUpgrades++;
+                                actionPointsUpgrades += 1;
                                 Player.UpgradeActionPoints(actionPointsUpgrades);
                                 Console.WriteLine("> You upgraded action Points. ");
                                 Console.WriteLine($"> Current maximum amount {Player.maxActionPoints}. ");
@@ -464,7 +473,7 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                                 moneyMultiplierValue += 0.2;
                                 Player.UpgradeMoneyMultiplier(moneyMultiplierValue);
                                 Console.WriteLine("> You upgraded money multiplier. ");
-                                Console.WriteLine($"> Current money multiplier {Player.moneyMultiplier}. ");
+                                Console.WriteLine($"> Current money multiplier {Player.moneyMultiplier*100}%. ");
                             }
                             else
                             {
@@ -480,7 +489,7 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                                 xpMultiplierValue += 0.2;
                                 Player.UpgradeXpMultiplier(xpMultiplierValue);
                                 Console.WriteLine("> You upgraded xp Multiplier. ");
-                                Console.WriteLine($"> Current xp multiplier {Player.xpMultiplier}. ");
+                                Console.WriteLine($"> Current xp multiplier {Player.xpMultiplier*100}%. ");
                             }
                             else
                             {

@@ -1,4 +1,5 @@
 using System.Diagnostics.Tracing;
+using System.Text.RegularExpressions;
 
 namespace foodman
 {
@@ -12,7 +13,7 @@ namespace foodman
         public static int actionPoints { get; set; } = 5;
         public static int level { get; set; } = 1;
         public static double xp { get; set; } = 0;
-        private static double xpRequired {get; set; } = 100;  
+        private static double xpRequired { get; set; } = 100;
         public static int levelPoints { get; set; } = 0;
 
         public static double money { get; private set; } = 100;
@@ -70,8 +71,11 @@ namespace foodman
         //Checks if action possible!
         public static bool IsActionPossible()
         {
-            if(actionPoints == 0 ){
+            if (actionPoints == 0)
+            {
+                Console.WriteLine($"================================================");
                 Console.WriteLine("Action is not possible! Not enough action points.");
+                Console.WriteLine($"================================================");
                 return false;
             }
             return true;
@@ -79,13 +83,9 @@ namespace foodman
         //Used during action
         public static void MakeAction()
         {
-            if (!(actionPoints == 0))
+            if (IsActionPossible())
             {
                 actionPoints -= 1;
-            }
-            else
-            {
-                Console.WriteLine("You run out of action points! You can restore them in base.");
             }
         }
         //Restores action points to it's maximum amount
@@ -98,6 +98,12 @@ namespace foodman
         {
             level += 1;
             levelPoints += 2;
+            xp -= xpRequired;
+            xpRequired *= 1.2;
+            xpRequired = Math.Round(xpRequired);
+            Console.WriteLine($"======================================================");
+            Console.WriteLine($"You level up to {level}lv! Next level up in {xpRequired - xp} xp");
+            Console.WriteLine($"======================================================");
 
         }
         //Checks if player can level up.
@@ -105,14 +111,12 @@ namespace foodman
         {
             xpGained = CalculateXp(xpGained);
             xp += xpGained;
-            if (xp >= xpRequired)
+            while (xp >= xpRequired)
             {
                 LevelUp();
-                xp = 0;
-                xpRequired *= 1.1;
-                Console.WriteLine($"You level up! Xp required to next level up {xpRequired}");
             }
         }
+        //Adds money and calls method calculatemoney
         public static void AddMoney(double value)
         {
             value = CalculateMoney(value);
@@ -134,6 +138,7 @@ namespace foodman
         //Upgrades action points
         public static void UpgradeActionPoints(int newMaxActionPoints)
         {
+            newMaxActionPoints += maxActionPoints;
             if (newMaxActionPoints > maxActionPoints)
             {
                 maxActionPoints = newMaxActionPoints;
@@ -230,5 +235,29 @@ namespace foodman
             currentYPosition = yPosition;
         }
 
+        static string Truncate(double value, int precision)
+        {
+            string result = value.ToString();
+
+            int dot = result.IndexOf(',');
+            if (dot < 0)
+            {
+                return result;
+            }
+
+            int newLength = dot + precision + 1;
+
+            if (newLength == dot + 1)
+            {
+                newLength--;
+            }
+
+            if (newLength > result.Length)
+            {
+                newLength = result.Length;
+            }
+
+            return result.Substring(0, newLength);
+        }
     }
 }

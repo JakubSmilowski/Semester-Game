@@ -1,6 +1,9 @@
 using System.Formats.Asn1;
 using System.Security.Cryptography.X509Certificates;
 
+// Ther is validation of the input needed, becouse now when i type wrong letter it counts as a wrong answer.
+
+
 namespace foodman
 {
     class Program
