@@ -12,6 +12,7 @@ namespace foodman
         public static int actionPoints { get; set; } = 5;
         public static int level { get; set; } = 1;
         public static double xp { get; set; } = 0;
+        private static double xpRequired {get; set; } = 100;  
         public static int levelPoints { get; set; } = 0;
 
         public static double money { get; private set; } = 100;
@@ -32,23 +33,12 @@ namespace foodman
             Player.money = money;
             Player.endOfTheWorld = endOfTheWorld;
         }
-
         //Set name 
         public static void ChangeName(string newName)
         {
             name = newName;
         }
-        //Checks if player can level up.
-        public static void AddAndCheckXp(double xpGained)
-        {
-            xpGained = CalculateXp(xpGained);
-            xp += xpGained;
-            if (xp >= 100)
-            {
-                LevelUp();
-                xp -= 100;
-            }
-        }
+
         //Next day
         public static void NextTurn()
         {
@@ -109,6 +99,19 @@ namespace foodman
             level += 1;
             levelPoints += 2;
 
+        }
+        //Checks if player can level up.
+        public static void AddAndCheckXp(double xpGained)
+        {
+            xpGained = CalculateXp(xpGained);
+            xp += xpGained;
+            if (xp >= xpRequired)
+            {
+                LevelUp();
+                xp = 0;
+                xpRequired *= 1.1;
+                Console.WriteLine($"You level up! Xp required to next level up {xpRequired}");
+            }
         }
         public static void AddMoney(double value)
         {
@@ -177,12 +180,6 @@ namespace foodman
                 Console.WriteLine("This is not a correct Xp multiplier value!");
             }
         }
-        //Saves Current Position
-        public static void SaveCurrentPosition(int xPositon, int yPosition)
-        {
-            currentXPosition = xPositon;
-            currentYPosition = yPosition;
-        }
 
         //Calculate xp gained
         private static double CalculateXp(double xpGained)
@@ -213,7 +210,7 @@ namespace foodman
         public static void DisplayBasicStats()
         {
             Console.WriteLine($"> Day: {turn}");
-            Console.WriteLine($"> Level: {level} ");
+            Console.WriteLine($"> Level: {level}, xp points: {xp}/{xpRequired} ");
             Console.WriteLine($"> Action points left: {actionPoints} ");
             Console.WriteLine($"> Money: {money}");
         }
@@ -225,6 +222,12 @@ namespace foodman
             Console.WriteLine($"> Your curret max inventory: {maxInventoryCapacity}");
             Console.WriteLine($"> Your curret money multiplier {moneyMultiplier}");
             Console.WriteLine($"> Your curret xp multiplier {xpMultiplier}");
+        }
+        //Saves Current Position
+        public static void SaveCurrentPosition(int xPositon, int yPosition)
+        {
+            currentXPosition = xPositon;
+            currentYPosition = yPosition;
         }
 
     }
