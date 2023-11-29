@@ -111,10 +111,11 @@ namespace foodman
                                     case 1:
                                         QuizzesProgress = QuizOfTheLocation2();
                                         break;
-                                    // case 2:
-                                    //     //QuizProgress[0] = QuizOfTheLocation1();
-                                    //     //id += 1;
-                                    // break;
+                                    case 2:
+                                        QuizzesProgress = QuizOfTheLocation3();
+                                        id += 1;
+                                        Location.quizComp[6] = QuizzesProgress;
+                                    break;
                                     default:
                                         // if id is equal to 3 and  quizzesProgress is true then quizzes are completed, becouse id
                                         // is incremented only when quiz is completed.
@@ -264,7 +265,7 @@ namespace foodman
 
 > Retail waste is primarily associated with unsold goods, expired products, and aesthetic standards imposed by retailers.
 > While this is a significant concern, the overall percentage of waste in the distribution stage tends to be higher.");
-                        return true;
+                        return false;
                     case "d":
                         Console.WriteLine(@$"
 > Your answer [D]
@@ -295,12 +296,88 @@ namespace foodman
                 return false;
             }
         }
+        //Third quiz of the base.
+        static bool QuizOfTheLocation3()
+        {
+            Console.Clear();
+            Console.WriteLine(@"
+> What is the estimated economic cost of global food waste, including both consumer and supply chain losses?
+
+> [A] $100 billion
+> [B] $1 trillion
+> [C] $2.5 trillion
+> [D] $500 million");
+            string? userInput = Console.ReadLine();
+
+            if (userInput != null)
+            {
+                switch (userInput.ToLower())
+                {
+                    case "a":
+                        Console.WriteLine(@"
+
+> Your answer: [A] 
+> This is not a correct answer. Try again later :)
+
+> This figure underestimates the economic impact of food waste. 
+> The actual cost is significantly higher due to the scale and widespread nature of the issue.");
+                        return false;
+                    case "b":
+                        Console.WriteLine(@$"
+
+> Your answer: [B] 
+> This is not a correct answer. Try again later!
+
+> While closer to the actual cost, $1 trillion is still below the estimated economic impact of global food waste. 
+> The $2.5 trillion figure better captures the extensive financial consequences.
+");
+                        return false;
+                    case "c":
+                        Console.WriteLine(@$"
+
+> Your answer: [C] 
+> This is a correct answer!
+
+> This staggering economic cost of $2.5 trillion represents the combined impact 
+> of both consumer and supply chain losses associated with global food waste.
+
+> You completed all the quizzes in the base!!! You get 500xp and 100$");
+                        QuizzCorrect(500, 100);
+                        return true;
+                    case "d":
+                        Console.WriteLine(@$"
+> Your answer [D]
+> This is not a correct answer. Good luck next time!
+
+> This option significantly underestimates the economic impact of food waste.
+> The actual cost is orders of magnitude greater, emphasizing the need for comprehensive solutions 
+> to mitigate financial losses associated with wasted food.");
+                        return false;
+                    default:
+                        Console.WriteLine("Input correct value!");
+                        Console.WriteLine("Press enter and try again!");
+                        Console.ReadLine();
+                        QuizOfTheLocation2();
+                        return false;
+                }
+            }
+            else
+            {
+
+                Console.WriteLine("Incorect input!");
+                Console.WriteLine("Press enter and try again!");
+                Console.ReadLine();
+                QuizOfTheLocation2();
+                return false;
+            }
+        }
+
 
         //Method caled after correctly answering the question.
-        private static void QuizzCorrect(double money, double xp) {
+        private static void QuizzCorrect(double xp, double money) {
             Base.id += 1;
             Player.AddMoney(money);
-            Player.AddAndCheckXp(Player.CalculateXp(xp));
+            Player.AddAndCheckXp(xp);
         }
 
         //Rest method allows player to skip turn to gain extra action points.

@@ -8,7 +8,7 @@ namespace foodman
     {
         public static int[] progress = { 0, 0, 0, 0, 0, 0 };
         //progress is a primary quest stat. It does +1 to a specific part after you accept a quest.
-        static bool[] quizComp = { false, false, false, false, false, false };
+        public static bool[] quizComp = { false, false, false, false, false, false, false };
         //quizComp becomes true for each quiz you complete
 
         public static void EnterRoom(string locName, int id)

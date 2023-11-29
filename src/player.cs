@@ -7,9 +7,9 @@ namespace foodman
         public static string name { get; set; } = "";
         public static int turn { get; set; } = 1;
 
-        public static DateTime currentlyDate = new DateTime(2009, 1, 9);
+        public static DateTime currentlyDate = new DateTime(2009, 9, 1);
 
-        public static int actionPoints { get; set; } = 3;
+        public static int actionPoints { get; set; } = 5;
         public static int level { get; set; } = 1;
         public static double xp { get; set; } = 0;
         public static int levelPoints { get; set; } = 0;
@@ -41,6 +41,7 @@ namespace foodman
         //Checks if player can level up.
         public static void AddAndCheckXp(double xpGained)
         {
+            xpGained = CalculateXp(xpGained);
             xp += xpGained;
             if (xp >= 100)
             {
@@ -111,6 +112,7 @@ namespace foodman
         }
         public static void AddMoney(double value)
         {
+            value = CalculateMoney(value);
             money += value;
         }
 
@@ -183,7 +185,7 @@ namespace foodman
         }
 
         //Calculate xp gained
-        public static double CalculateXp(double xpGained)
+        private static double CalculateXp(double xpGained)
         {
             if (xpGained != 0)
             {
@@ -195,7 +197,7 @@ namespace foodman
             }
         }
         //Calculate money gained
-        public static double CalculateMoney(double moneyGained)
+        private static double CalculateMoney(double moneyGained)
         {
             if (moneyGained != 0)
             {
