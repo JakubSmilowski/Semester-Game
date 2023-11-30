@@ -6,7 +6,7 @@ namespace foodman
 {
     class Location
     {
-        public static int[] progress = { 0, 0, 0, 0, 0, 0 };
+        public static int[] progress = { 0, 0, 0, 0, 0, 0, 0 };
         //progress is a primary quest stat. It does +1 to a specific part after you accept a quest.
         public static bool[] quizComp = { false, false, false, false, false, false, false };
         //quizComp becomes true for each quiz you complete
@@ -86,6 +86,7 @@ namespace foodman
              *  3 - Factory
              *  4 - Junkyard
              *  5 - Recycling centre
+             *  6 - Base - just for quizComp and progress
              */
             //switch case for each area with checks for the progressin of said area's quests
             //A to agree, Any key to ignore. Bc that's easier to code and to account for human stupidity (typing C when the game tells you to choose from A and B)

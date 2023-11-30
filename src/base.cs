@@ -1,14 +1,18 @@
+using System.Collections;
 using System.Collections.Immutable;
 using System.Data.Common;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 //To do:
+
 //Open inventory
 //Increasing cost of upgrading in U - upgrades
-//ShowProgress function, that shows all completed quizzes and quests. 
-//Change that after one leave the quest end up in map, not in the base.
+// Display quest functionality to a ShowProgress method. 
 //Add Npc?
 //Add some kind of quest?
+//make so that value of points to level up iinto next level does not go into nevgative, when more xp than level require
+//
 
 
 namespace foodman
@@ -66,7 +70,7 @@ namespace foodman
                     }
                     else if (i == 5)
                     {
-                        Console.Write("\n| Q \t          R |");
+                        Console.Write("\n| A \t          R |");
                         break;
                     }
                     Console.Write("\n|\t\t    |");
@@ -75,6 +79,7 @@ namespace foodman
 
                 //Possible options
                 Console.WriteLine("\n> [U] Upgrade");
+                Console.WriteLine("> [I] Open Inventory");
                 Console.WriteLine("> [R] Rest");
                 Console.WriteLine("> [A] Start quiz ");
                 Console.WriteLine("> [P] Progress");
@@ -92,52 +97,62 @@ namespace foodman
                         case "u":
                             EnterUpgradeShop();
                             break;
+                        case "i":
+                            //OpenInvenotry();
+                            Console.WriteLine("Work in progress");
+                            break;
                         case "r":
                             Rest();
-                            Console.WriteLine("Press enter to continue.");
+                            Console.WriteLine("Press [Any key] to leave.");
                             Console.ReadLine();
                             break;
                         case "p":
-                            //ShowQuests();
-                            Console.WriteLine("Work in progress!");
-                            Console.WriteLine("Press enter to continue.");
+                            ShowProgress();
+                            Console.WriteLine("Press [Any key] to leave.");
                             Console.ReadLine();
                             break;
                         case "s":
                             Console.Clear();
                             Console.WriteLine("You left the base");
                             return;
-                        case "a":    
-                            if (Player.IsActionPossible())
-                            {
-                                Player.MakeAction();
-                                //Choses wich quiz to display depending on already completed ones.
-                                switch(id) {
-                                    case 0:
-                                        //Assigns if quest has been completed or not.
-                                        QuizzesProgress = QuizOfTheLocation1();
-                                        break;
-                                    case 1:
-                                        QuizzesProgress = QuizOfTheLocation2();
-                                        break;
-                                    case 2:
-                                        QuizzesProgress = QuizOfTheLocation3();
-                                        id += 1;
-                                        Location.quizComp[6] = QuizzesProgress;
-                                    break;
-                                    default:
-                                        // if id is equal to 3 and  quizzesProgress is true then quizzes are completed, becouse id
-                                        // is incremented only when quiz is completed.
-                                         Console.WriteLine("You already finished quizzes of this location!");
-                                         break;
-                                }                                
-                            }
-                            Console.WriteLine("Press enter to continue.");
-                            Console.ReadLine();
-                            return;
-                        default:
+                        case "a":
+                                if (Player.IsActionPossible())
+                                {
+                                    Player.MakeAction();
+                                    //Choses wich quiz to display depending on already completed ones.
+                                    switch (id)
+                                    {
+                                        case 0:
+                                            //Assigns if quest has been completed or not.
+                                            QuizzesProgress = QuizOfTheLocation1();
+                                            Console.WriteLine("Press [Any key] to leave.");
+                                            Console.ReadLine();
+                                            break;
+                                        case 1:
+                                            QuizzesProgress = QuizOfTheLocation2();
+                                            Console.WriteLine("Press [Any key] to leave.");
+                                            Console.ReadLine();
+                                            break;
+                                        case 2:
+                                            QuizzesProgress = QuizOfTheLocation3();
+                                            id += 1;
+                                            Location.quizComp[6] = QuizzesProgress;
+                                            Console.WriteLine("Press [Any key] to leave.");
+                                            Console.ReadLine();
+                                            break;
+                                        default:
+                                            // if id is equal to 3 and  quizzesProgress is true then quizzes are completed, becouse id
+                                            // is incremented only when quiz is completed.
+                                            Console.WriteLine("You already finished quizzes of this location!");
+                                            Console.WriteLine("Press [Any key] to leave.");
+                                            Console.ReadLine();
+                                            break;
+                                    }
+                                }
+                                break;
+                            default:
                             Console.WriteLine("Input correct value!");
-                            Console.WriteLine("Press enter and try again!");
+                            Console.WriteLine("Press [Any key], and try again!");
                             Console.ReadLine();
                             break;
                     }
@@ -145,7 +160,7 @@ namespace foodman
                 else
                 {
                     Console.WriteLine("Incorect input!");
-                    Console.WriteLine("Press enter and try again!");
+                    Console.WriteLine("Press [Any key], and try again!");
                     Console.ReadLine();
                 }
             } while (true);
@@ -383,7 +398,9 @@ namespace foodman
 
 
         //Method caled after correctly answering the question.
-        private static void QuizzCorrect(double xp, double money) {
+        private static void QuizzCorrect(double xp, double money)
+        {
+            Location.progress[6] += 1;
             Base.id += 1;
             Player.AddMoney(money);
             Player.AddAndCheckXp(xp);
@@ -473,7 +490,7 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                                 moneyMultiplierValue += 0.2;
                                 Player.UpgradeMoneyMultiplier(moneyMultiplierValue);
                                 Console.WriteLine("> You upgraded money multiplier. ");
-                                Console.WriteLine($"> Current money multiplier {Player.moneyMultiplier*100}%. ");
+                                Console.WriteLine($"> Current money multiplier {Player.moneyMultiplier * 100}%. ");
                             }
                             else
                             {
@@ -489,7 +506,7 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                                 xpMultiplierValue += 0.2;
                                 Player.UpgradeXpMultiplier(xpMultiplierValue);
                                 Console.WriteLine("> You upgraded xp Multiplier. ");
-                                Console.WriteLine($"> Current xp multiplier {Player.xpMultiplier*100}%. ");
+                                Console.WriteLine($"> Current xp multiplier {Player.xpMultiplier * 100}%. ");
                             }
                             else
                             {
@@ -530,23 +547,122 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                 return false;
             }
         }
+
         //Quest display 
-        // static void ShowQuests(quest[] questsInProgress, quest[] questCompleted)
+        static void ShowProgress()
+        {
+            /*  0 - Grocery Store
+             *  1 - Restaraunt
+             *  2 - House
+             *  3 - Factory
+             *  4 - Junkyard
+             *  5 - Recycling centre
+             *  6 - Base - just for quizComp and progress
+
+             */
+            Console.Clear();
+
+            Console.WriteLine("Progress of quizzes:");
+
+            for (int i = 0; i <= 6; i++)
+            {
+                if (i != 0)
+                {
+                    Console.WriteLine("--------------------------------");
+                }
+                else
+                {
+
+                    Console.WriteLine("\n==================================");
+                }
+
+                switch (i)
+                {
+                    case 0:
+                        Console.Write("Grocery Store - ");
+                        break;
+                    case 1:
+                        Console.Write("Restaurant - ");
+                        break;
+                    case 2:
+                        Console.Write("House - ");
+                        break;
+                    case 3:
+                        Console.Write("Factory - ");
+                        break;
+                    case 4:
+                        Console.Write("Junkyard - ");
+                        break;
+                    case 5:
+                        Console.Write("Recycling centere - ");
+                        break;
+                    case 6:
+                        Console.Write("Base - ");
+                        break;
+                    default:
+                        Console.Write("Out of range!");
+                        break;
+                }
+                ProgressMessage(i,Location.progress[i]);
+                if (i == 6)
+                {
+                    Console.WriteLine("==================================");
+                }
+            }
+        }
+
+        static void ProgressMessage(int locationId, int progress)
+        {
+            if (progress == 2)
+            {
+                Console.WriteLine("All quizzes completed");
+            }
+            else if (locationId == 6)
+            {
+                Console.WriteLine($"Available quests - {3 - progress}  "); // in future this 3 could be a variable
+            }
+            else
+            {
+                Console.WriteLine($"Available quests - {2 - progress}  ");
+            }
+        }
+
+        //Open Inventry method
+        // public static void OpenInventory()
         // {
-        //     Console.Clear();
-        //     Console.WriteLine("Quests in progress: ");
-        //     foreach (quest quest in questsInProgress){
-        //         Console.WriteLine(quest);
-        //         Console.WriteLine("==============================");
-        //     }
-        //     Console.WriteLine("Completed quests:");
-        //     foreach (quest quest in questCompleted){
-        //         Console.WriteLine(quest);
-        //         Console.WriteLine("==============================");
-        //     }
-        //     Console.WriteLine("Press enter to continue: ");
-        //     Console.ReadLine();
+        //     // if(Items.<item>.Quantity) Console.Write(Items.<item>.Name){
+
+        //     //}
+        //     do
+        //     {
+        //         //Displays all thee items in inventory
+        //         string? userInput = Console.ReadLine();
+
+        //         if (userInput != null) {
+        //             switch (userInput) 
+        //             {
+        //                 case "u":
+        //                     //Use item
+        //                     return;
+        //                 case "e":
+        //                     Console.Clear();
+        //                     Console.WriteLine("> Closing invenory.");
+        //                     return;
+        //             }
+        //         }
+        //     } while (true);
         // }
+
+
+
+
+
+
+
+
+
+
+        //Namespace and class
     }
 }
 
