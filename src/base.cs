@@ -7,12 +7,9 @@ using System.Security.Cryptography.X509Certificates;
 //To do:
 
 //Open inventory
-//Increasing cost of upgrading in U - upgrades
 // Display quest functionality to a ShowProgress method. 
 //Add Npc?
 //Add some kind of quest?
-//make so that value of points to level up iinto next level does not go into nevgative, when more xp than level require
-//
 
 
 namespace foodman

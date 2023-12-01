@@ -102,9 +102,13 @@ namespace foodman
             xp -= xpRequired;
             xpRequired *= 1.2;
             xpRequired = Math.Round(xpRequired);
-            Console.WriteLine($"======================================================");
-            Console.WriteLine($"You level up to {level}lv! Next level up in {xpRequired - xp} xp");
-            Console.WriteLine($"======================================================");
+            double neededXp = xpRequired-xp;
+            if( neededXp > 0){
+                Console.WriteLine($"======================================================");
+                Console.WriteLine($"You level up to {level}lv! Next level up in {neededXp} xp");
+                Console.WriteLine($"======================================================");
+            }
+            
 
         }
         //Checks if player can level up.
