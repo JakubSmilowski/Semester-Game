@@ -55,3 +55,17 @@ C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\refint\src.
 C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.pdb
 C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.genruntimeconfig.cache
 C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\ref\src.dll
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\bin\Debug\net7.0\src.exe
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\bin\Debug\net7.0\src.deps.json
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\bin\Debug\net7.0\src.runtimeconfig.json
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\bin\Debug\net7.0\src.dll
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\bin\Debug\net7.0\src.pdb
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\obj\Debug\net7.0\src.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\obj\Debug\net7.0\src.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\obj\Debug\net7.0\src.AssemblyInfo.cs
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\obj\Debug\net7.0\src.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\obj\Debug\net7.0\src.dll
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\obj\Debug\net7.0\refint\src.dll
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\obj\Debug\net7.0\src.pdb
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\obj\Debug\net7.0\src.genruntimeconfig.cache
+C:\Users\Dell\Desktop\Foodman\Semester-Game\src\obj\Debug\net7.0\ref\src.dll
