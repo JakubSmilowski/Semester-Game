@@ -7,33 +7,34 @@ namespace foodman
     class Player
     {
         public static string name { get; set; } = "";
-        public static int turn { get; set; } = 1;
+        public static int turn { get; private set; } = 1;
 
         public static DateTime currentlyDate = new DateTime(2009, 9, 1);
 
-        public static int actionPoints { get; set; } = 5;
-        public static int level { get; set; } = 1;
-        public static double xp { get; set; } = 0;
+        public static int actionPoints { get; private set; } = 5;
+        private static int level { get; set; } = 1;
+        private static double xp { get; set; } = 0;
         private static double xpRequired { get; set; } = 100;
-        public static int levelPoints { get; set; } = 0;
+        public static int levelPoints { get; private set; } = 0;
 
-        public static double money { get; private set; } = 100;
+        private static double money { get; set; } = 100;
         public static int maxActionPoints { get; private set; } = 5;
         public static int maxInventoryCapacity { get; private set; } = 5;
         public static double moneyMultiplier { get; private set; } = 1;
         public static double xpMultiplier { get; private set; } = 1;
-        public static int endOfTheWorld { get; private set; } = 7;
 
+        private static int endOfTheGame { get; set; } = 7;
+        private static int greenPointsNeededToWin { get; set; } = 22;
+        public static int greenPoints { get; private set; } = 0;
 
-        public static int currentXPosition { get; set; } = 1;
-        public static int currentYPosition { get; set; } = 1;
         // Player constructor
-        public Player(string name, int actionPoints, int money, int endOfTheWorld)
+        public Player(string name, int actionPoints, int money, int endOfTheGame, int greenPointsNeededToWin)
         {
             Player.name = name;
             Player.actionPoints = actionPoints;
             Player.money = money;
-            Player.endOfTheWorld = endOfTheWorld;
+            Player.endOfTheGame = endOfTheGame;
+            Player.greenPointsNeededToWin = greenPointsNeededToWin;
         }
         //Set name 
         public static void ChangeName(string newName)
@@ -44,9 +45,21 @@ namespace foodman
         //Next day
         public static void NextTurn()
         {
-            if (turn >= endOfTheWorld)
+            if (turn >= endOfTheGame)
             {
-                Console.WriteLine("You lost!");
+                if (greenPoints >= greenPointsNeededToWin)
+                {
+                    Console.WriteLine("You won! NEW HIGH SCORE!");
+                    Console.WriteLine("All player stats in this game:");
+                    DisplayBasicStats();
+                    DisplayUpgradeStats();
+                    EndOfTheGameMessage();
+                }
+                else
+                {
+                    Console.WriteLine("You run out of time to colect required green points. Good luck next time!");
+                    return;
+                }
             }
             else
             {
@@ -102,13 +115,14 @@ namespace foodman
             xp -= xpRequired;
             xpRequired *= 1.2;
             xpRequired = Math.Round(xpRequired);
-            double neededXp = xpRequired-xp;
-            if( neededXp > 0){
+            double neededXp = xpRequired - xp;
+            if (neededXp > 0)
+            {
                 Console.WriteLine($"======================================================");
                 Console.WriteLine($"You level up to {level}lv! Next level up in {neededXp} xp");
                 Console.WriteLine($"======================================================");
             }
-            
+
 
         }
         //Checks if player can level up.
@@ -120,6 +134,11 @@ namespace foodman
             {
                 LevelUp();
             }
+        }
+        //Adds greenPoints
+        public static void AddGreenPoints(int value)
+        {
+            greenPoints += value;
         }
         //Adds money and calls method calculatemoney
         public static void AddMoney(double value)
@@ -136,12 +155,12 @@ namespace foodman
             }
             else
             {
-                Console.WriteLine($"Succesfully substracted {moneyValue}$");
+                Console.WriteLine($"Succesfully payed {moneyValue}$");
                 money -= moneyValue;
             }
         }
         //Upgrades action points
-        public static void UpgradeActionPoints(int newMaxActionPoints,int upgradedStatLevel)
+        public static void UpgradeActionPoints(int newMaxActionPoints, int upgradedStatLevel)
         {
             newMaxActionPoints += maxActionPoints;
             if (newMaxActionPoints > maxActionPoints)
@@ -156,7 +175,7 @@ namespace foodman
 
         }
         //Upgrade Inventory capacity
-        public static void UpgradeInventoryCapacity(int newInventoryCapacity,int upgradedStatLevel)
+        public static void UpgradeInventoryCapacity(int newInventoryCapacity, int upgradedStatLevel)
         {
             if (maxInventoryCapacity < newInventoryCapacity)
             {
@@ -195,7 +214,8 @@ namespace foodman
             }
         }
         //Substracts level points if spend
-        private static void SubstractLevelPoints(int value){
+        private static void SubstractLevelPoints(int value)
+        {
             levelPoints -= value;
         }
 
@@ -241,12 +261,12 @@ namespace foodman
             Console.WriteLine($"> Your curret money multiplier {moneyMultiplier}");
             Console.WriteLine($"> Your curret xp multiplier {xpMultiplier}");
         }
-        //Saves Current Position
-        public static void SaveCurrentPosition(int xPositon, int yPosition)
-        {
-            currentXPosition = xPositon;
-            currentYPosition = yPosition;
-        }
+        // //Saves Current Position
+        // public static void SaveCurrentPosition(int xPositon, int yPosition)
+        // {
+        //     currentXPosition = xPositon;
+        //     currentYPosition = yPosition;
+        // }
 
         static string Truncate(double value, int precision)
         {
@@ -272,5 +292,16 @@ namespace foodman
 
             return result.Substring(0, newLength);
         }
+
+        //Messege displayed when limited time for playing comes to an end
+        private static void EndOfTheGameMessage(){
+            Console.WriteLine("Thank you for playing FOODMAN!");
+        }
+
+
+
+
+
+
     }
 }
