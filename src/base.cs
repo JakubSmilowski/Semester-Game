@@ -438,10 +438,10 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                 Console.Clear();
                 Console.WriteLine("You entered upgrade shop.\n");
                 Console.WriteLine($"You currently have: {Player.levelPoints} points. \nWhat do you want to upgrade:\n");
-                Console.WriteLine($"> 1. Action Points - Currently tier {actionPointsUpgrades} costs {actionPointsUpgrades + 1} level point");
-                Console.WriteLine($"> 2. Inventory Capacity - Currently tier {inventoryUpgrades} costs {inventoryUpgrades + 1} level point");
-                Console.WriteLine($"> 3. Money Multiplier - Currently tier {moneyMultiplierUpgrades} costs {moneyMultiplierUpgrades + 1} level point");
-                Console.WriteLine($"> 4. Xp Multiplier - Currently tier {xpMultiplierUpgrades} costs {xpMultiplierUpgrades + 1} level point");
+                Console.WriteLine($"> 1. Action Points - Currently tier {actionPointsUpgrades} costs {actionPointsUpgrades + 2} level point");
+                Console.WriteLine($"> 2. Inventory Capacity - Currently tier {inventoryUpgrades} costs {inventoryUpgrades + 2} level point");
+                Console.WriteLine($"> 3. Money Multiplier - Currently tier {moneyMultiplierUpgrades} costs {moneyMultiplierUpgrades + 2} level point");
+                Console.WriteLine($"> 4. Xp Multiplier - Currently tier {xpMultiplierUpgrades} costs {xpMultiplierUpgrades + 2} level point");
                 Console.WriteLine($"> E - Exit");
                 Console.Write("> ");
 
@@ -454,10 +454,10 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                     switch (userInput.ToLower())
                     {
                         case "1":
-                            if (IsEnughLevelPoints(actionPointsUpgrades))
+                            if (IsEnughLevelPoints(actionPointsUpgrades+2))
                             {
+                                Player.UpgradeActionPoints(actionPointsUpgrades, actionPointsUpgrades+2);
                                 actionPointsUpgrades += 1;
-                                Player.UpgradeActionPoints(actionPointsUpgrades);
                                 Console.WriteLine("> You upgraded action Points. ");
                                 Console.WriteLine($"> Current maximum amount {Player.maxActionPoints}. ");
                             }
@@ -469,10 +469,10 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                             Console.ReadLine();
                             break;
                         case "2":
-                            if (IsEnughLevelPoints(inventoryUpgrades))
+                            if (IsEnughLevelPoints(inventoryUpgrades+2))
                             {
+                                Player.UpgradeInventoryCapacity(inventoryUpgrades, inventoryUpgrades+2);
                                 inventoryUpgrades++;
-                                Player.UpgradeInventoryCapacity(inventoryUpgrades);
                                 Console.WriteLine("> You upgraded max inventory. ");
                                 Console.WriteLine($"> Current maximum inventory capacity {Player.maxInventoryCapacity}. ");
                             }
@@ -484,11 +484,11 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                             Console.ReadLine();
                             break;
                         case "3":
-                            if (IsEnughLevelPoints(moneyMultiplierUpgrades))
+                            if (IsEnughLevelPoints(moneyMultiplierUpgrades+2))
                             {
-                                moneyMultiplierUpgrades++;
                                 moneyMultiplierValue += 0.2;
-                                Player.UpgradeMoneyMultiplier(moneyMultiplierValue);
+                                Player.UpgradeMoneyMultiplier(moneyMultiplierValue, moneyMultiplierUpgrades+2);
+                                moneyMultiplierUpgrades++;
                                 Console.WriteLine("> You upgraded money multiplier. ");
                                 Console.WriteLine($"> Current money multiplier {Player.moneyMultiplier * 100}%. ");
                             }
@@ -500,11 +500,11 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                             Console.ReadLine();
                             break;
                         case "4":
-                            if (IsEnughLevelPoints(xpMultiplierUpgrades))
+                            if (IsEnughLevelPoints(xpMultiplierUpgrades+2))
                             {
-                                xpMultiplierUpgrades++;
                                 xpMultiplierValue += 0.2;
-                                Player.UpgradeXpMultiplier(xpMultiplierValue);
+                                Player.UpgradeXpMultiplier(xpMultiplierValue, xpMultiplierUpgrades+2);
+                                xpMultiplierUpgrades++;
                                 Console.WriteLine("> You upgraded xp Multiplier. ");
                                 Console.WriteLine($"> Current xp multiplier {Player.xpMultiplier * 100}%. ");
                             }

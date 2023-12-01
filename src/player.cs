@@ -1,4 +1,5 @@
 using System.Diagnostics.Tracing;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
 
 namespace foodman
@@ -136,11 +137,12 @@ namespace foodman
             }
         }
         //Upgrades action points
-        public static void UpgradeActionPoints(int newMaxActionPoints)
+        public static void UpgradeActionPoints(int newMaxActionPoints,int upgradedStatLevel)
         {
             newMaxActionPoints += maxActionPoints;
             if (newMaxActionPoints > maxActionPoints)
             {
+                SubstractLevelPoints(upgradedStatLevel);
                 maxActionPoints = newMaxActionPoints;
             }
             else
@@ -150,10 +152,11 @@ namespace foodman
 
         }
         //Upgrade Inventory capacity
-        public static void UpgradeInventoryCapacity(int newInventoryCapacity)
+        public static void UpgradeInventoryCapacity(int newInventoryCapacity,int upgradedStatLevel)
         {
             if (maxInventoryCapacity < newInventoryCapacity)
             {
+                SubstractLevelPoints(upgradedStatLevel);
                 maxInventoryCapacity = newInventoryCapacity;
             }
             else
@@ -162,10 +165,11 @@ namespace foodman
             }
         }
         //Upgrades Money multiplier
-        public static void UpgradeMoneyMultiplier(double newMoneyMultiplier)
+        public static void UpgradeMoneyMultiplier(double newMoneyMultiplier, int upgradedStatLevel)
         {
             if (moneyMultiplier < newMoneyMultiplier)
             {
+                SubstractLevelPoints(upgradedStatLevel);
                 moneyMultiplier = newMoneyMultiplier;
             }
             else
@@ -174,16 +178,21 @@ namespace foodman
             }
         }
         //Upgrades Xp multiplier
-        public static void UpgradeXpMultiplier(double newXpMultiplier)
+        public static void UpgradeXpMultiplier(double newXpMultiplier, int upgradedStatLevel)
         {
             if (xpMultiplier < newXpMultiplier)
             {
+                SubstractLevelPoints(upgradedStatLevel);
                 xpMultiplier = newXpMultiplier;
             }
             else
             {
                 Console.WriteLine("This is not a correct Xp multiplier value!");
             }
+        }
+        //Substracts level points if spend
+        private static void SubstractLevelPoints(int value){
+            levelPoints -= value;
         }
 
         //Calculate xp gained
