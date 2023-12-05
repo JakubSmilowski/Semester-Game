@@ -17,7 +17,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace foodman
 {
-    class Base
+    public class Base
     {
 
         public static int actionPointsUpgrades { get; set; } = 1;
@@ -98,8 +98,8 @@ namespace foodman
                             EnterUpgradeShop();
                             break;
                         case "i":
-                            //OpenInvenotry();
-                            Console.WriteLine("Work in progress");
+                            Items.OpenInventory();
+                            Console.ReadLine();
                             break;
                         case "r":
                             Rest();
@@ -627,6 +627,7 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
             }
         }
 
+        //*Probably won't be used, inventory was done a little different now.*
         //Open Inventry method
         // public static void OpenInventory()
         // {

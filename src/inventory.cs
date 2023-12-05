@@ -26,12 +26,12 @@
 
 namespace foodman
 {    
-    public struct Item
+    public class Item
     {
-        public int Quantity=0;
+        public int Quantity = 0;
         public string ItemName;
-        public string Description="";
-        public int MaxCapacity=0;
+        public string Description = "";
+        public int MaxCapacity = 0;
 
 
         public Item(string itemName, string description, int maxCapacity)
@@ -91,7 +91,7 @@ namespace foodman
             }
         }
 
-        public readonly void Display()
+        public void Display()
         {
             System.Console.WriteLine($"Item name:\t{ItemName}");
             System.Console.WriteLine($"Description:\t{Description}");
