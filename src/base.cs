@@ -6,13 +6,9 @@ using System.Security.Cryptography.X509Certificates;
 
 //To do:
 
-//Open inventory
-//Increasing cost of upgrading in U - upgrades
 // Display quest functionality to a ShowProgress method. 
 //Add Npc?
 //Add some kind of quest?
-//make so that value of points to level up iinto next level does not go into nevgative, when more xp than level require
-//
 
 
 namespace foodman
@@ -46,45 +42,10 @@ namespace foodman
 
             do
             {
-                // Greeting message
-                Console.Clear();
-                if (Player.turn <= 1)
-                {
-                    GreetingMessageStart(Player.name);
-                }
-                else
-                {
-                    GreetingMessageDefault(Player.name);
-                }
-                //Displaying stats: 
-                Player.DisplayBasicStats();
-                // Visual representation of the base 
-                Console.Write("\n=====================");
-
-                //Value i indicates how how hight the border of the base is.
-                for (int i = 0; i < 6; i++)
-                {
-                    if (i == 0)
-                    {
-                        Console.Write("\n| E \t          U |");
-                    }
-                    else if (i == 5)
-                    {
-                        Console.Write("\n| A \t          R |");
-                        break;
-                    }
-                    Console.Write("\n|\t\t    |");
-                }
-                Console.Write("\n=====================\n");
-
-                //Possible options
-                Console.WriteLine("\n> [U] Upgrade");
-                Console.WriteLine("> [I] Open Inventory");
-                Console.WriteLine("> [R] Rest");
-                Console.WriteLine("> [A] Start quiz ");
-                Console.WriteLine("> [P] Progress");
-                Console.WriteLine("> [S] Leave");
-                Console.Write("> ");
+                //Displayes greeting message:
+                GreetPlayer();
+                //Displaying stats and drawing the base: 
+                DrawBase();
 
                 //User input
                 string? userInput = Console.ReadLine();
@@ -116,41 +77,38 @@ namespace foodman
                             Console.WriteLine("You left the base");
                             return;
                         case "a":
-                                if (Player.IsActionPossible())
+                            if (Player.IsActionPossible())
+                            {
+                                Player.MakeAction();
+                                //Choses wich quiz to display depending on already completed ones.
+                                switch (id)
                                 {
-                                    Player.MakeAction();
-                                    //Choses wich quiz to display depending on already completed ones.
-                                    switch (id)
-                                    {
-                                        case 0:
-                                            //Assigns if quest has been completed or not.
-                                            QuizzesProgress = QuizOfTheLocation1();
-                                            Console.WriteLine("Press [Any key] to leave.");
-                                            Console.ReadLine();
-                                            break;
-                                        case 1:
-                                            QuizzesProgress = QuizOfTheLocation2();
-                                            Console.WriteLine("Press [Any key] to leave.");
-                                            Console.ReadLine();
-                                            break;
-                                        case 2:
-                                            QuizzesProgress = QuizOfTheLocation3();
-                                            id += 1;
-                                            Location.quizComp[6] = QuizzesProgress;
-                                            Console.WriteLine("Press [Any key] to leave.");
-                                            Console.ReadLine();
-                                            break;
-                                        default:
-                                            // if id is equal to 3 and  quizzesProgress is true then quizzes are completed, becouse id
-                                            // is incremented only when quiz is completed.
-                                            Console.WriteLine("You already finished quizzes of this location!");
-                                            Console.WriteLine("Press [Any key] to leave.");
-                                            Console.ReadLine();
-                                            break;
-                                    }
+                                    case 0:
+                                        //Assigns if quest has been completed or not.
+                                        QuizzesProgress = QuizOfTheLocation1();
+
+                                        break;
+                                    case 1:
+                                        QuizzesProgress = QuizOfTheLocation2();
+
+                                        break;
+                                    case 2:
+                                        QuizzesProgress = QuizOfTheLocation3();
+                                        id += 1;
+                                        Location.quizComp[6] = QuizzesProgress;
+
+                                        break;
+                                    default:
+                                        // if id is equal to 3 and  quizzesProgress is true then quizzes are completed, becouse id
+                                        // is incremented only when quiz is completed.
+                                        Console.WriteLine("You already finished quizzes of this location!");
+                                        break;
                                 }
-                                break;
-                            default:
+                            }
+                            Console.WriteLine("Press [Any key] to continue.");
+                            Console.ReadLine();
+                            break;
+                        default:
                             Console.WriteLine("Input correct value!");
                             Console.WriteLine("Press [Any key], and try again!");
                             Console.ReadLine();
@@ -166,8 +124,51 @@ namespace foodman
             } while (true);
         }
 
+        private static void DrawBase(){
+            Player.DisplayBasicStats();
+                // Visual representation of the base 
+                Console.Write("\n=====================");
+
+                //Value i indicates how how hight the border of the base is.
+                for (int i = 0; i < 6; i++)
+                {
+                    if (i == 0)
+                    {
+                        Console.Write("\n| E \t          U |");
+                    }
+                    else if (i == 5)
+                    {
+                        Console.Write("\n| A \t          R |");
+                        break;
+                    }
+                    Console.Write("\n|\t\t    |");
+                }
+                Console.Write("\n=====================\n");
+
+                //Possible options
+                Console.WriteLine("\n> [U] Upgrade");
+                Console.WriteLine("> [I] Open Inventory");
+                Console.WriteLine("> [R] Rest");
+                Console.WriteLine("> [A] Start quiz ");
+                Console.WriteLine("> [P] Progress");
+                Console.WriteLine("> [S] Leave");
+                Console.Write("> ");
+        }
+
+        static void GreetPlayer() {
+            // Greeting message
+                Console.Clear();
+                if (Player.turn <= 1)
+                {
+                    GreetingMessageStart(Player.name);
+                }
+                else
+                {
+                    GreetingMessageDefault(Player.name);
+                }
+        }
+
         //Quizzes of the base 
-        //In the future it can be implemented more optimal
         static bool QuizOfTheLocation1()
         {
             Console.Clear();
@@ -438,10 +439,10 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                 Console.Clear();
                 Console.WriteLine("You entered upgrade shop.\n");
                 Console.WriteLine($"You currently have: {Player.levelPoints} points. \nWhat do you want to upgrade:\n");
-                Console.WriteLine($"> 1. Action Points - Currently tier {actionPointsUpgrades} costs {actionPointsUpgrades + 1} level point");
-                Console.WriteLine($"> 2. Inventory Capacity - Currently tier {inventoryUpgrades} costs {inventoryUpgrades + 1} level point");
-                Console.WriteLine($"> 3. Money Multiplier - Currently tier {moneyMultiplierUpgrades} costs {moneyMultiplierUpgrades + 1} level point");
-                Console.WriteLine($"> 4. Xp Multiplier - Currently tier {xpMultiplierUpgrades} costs {xpMultiplierUpgrades + 1} level point");
+                Console.WriteLine($"> 1. Action Points - Currently tier {actionPointsUpgrades} costs {actionPointsUpgrades + 2} level point");
+                Console.WriteLine($"> 2. Inventory Capacity - Currently tier {inventoryUpgrades} costs {inventoryUpgrades + 2} level point");
+                Console.WriteLine($"> 3. Money Multiplier - Currently tier {moneyMultiplierUpgrades} costs {moneyMultiplierUpgrades + 2} level point");
+                Console.WriteLine($"> 4. Xp Multiplier - Currently tier {xpMultiplierUpgrades} costs {xpMultiplierUpgrades + 2} level point");
                 Console.WriteLine($"> E - Exit");
                 Console.Write("> ");
 
@@ -454,10 +455,10 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                     switch (userInput.ToLower())
                     {
                         case "1":
-                            if (IsEnughLevelPoints(actionPointsUpgrades))
+                            if (IsEnughLevelPoints(actionPointsUpgrades + 2))
                             {
+                                Player.UpgradeActionPoints(actionPointsUpgrades, actionPointsUpgrades + 2);
                                 actionPointsUpgrades += 1;
-                                Player.UpgradeActionPoints(actionPointsUpgrades);
                                 Console.WriteLine("> You upgraded action Points. ");
                                 Console.WriteLine($"> Current maximum amount {Player.maxActionPoints}. ");
                             }
@@ -469,10 +470,10 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                             Console.ReadLine();
                             break;
                         case "2":
-                            if (IsEnughLevelPoints(inventoryUpgrades))
+                            if (IsEnughLevelPoints(inventoryUpgrades + 2))
                             {
+                                Player.UpgradeInventoryCapacity(inventoryUpgrades, inventoryUpgrades + 2);
                                 inventoryUpgrades++;
-                                Player.UpgradeInventoryCapacity(inventoryUpgrades);
                                 Console.WriteLine("> You upgraded max inventory. ");
                                 Console.WriteLine($"> Current maximum inventory capacity {Player.maxInventoryCapacity}. ");
                             }
@@ -484,11 +485,11 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                             Console.ReadLine();
                             break;
                         case "3":
-                            if (IsEnughLevelPoints(moneyMultiplierUpgrades))
+                            if (IsEnughLevelPoints(moneyMultiplierUpgrades + 2))
                             {
-                                moneyMultiplierUpgrades++;
                                 moneyMultiplierValue += 0.2;
-                                Player.UpgradeMoneyMultiplier(moneyMultiplierValue);
+                                Player.UpgradeMoneyMultiplier(moneyMultiplierValue, moneyMultiplierUpgrades + 2);
+                                moneyMultiplierUpgrades++;
                                 Console.WriteLine("> You upgraded money multiplier. ");
                                 Console.WriteLine($"> Current money multiplier {Player.moneyMultiplier * 100}%. ");
                             }
@@ -500,11 +501,11 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                             Console.ReadLine();
                             break;
                         case "4":
-                            if (IsEnughLevelPoints(xpMultiplierUpgrades))
+                            if (IsEnughLevelPoints(xpMultiplierUpgrades + 2))
                             {
-                                xpMultiplierUpgrades++;
                                 xpMultiplierValue += 0.2;
-                                Player.UpgradeXpMultiplier(xpMultiplierValue);
+                                Player.UpgradeXpMultiplier(xpMultiplierValue, xpMultiplierUpgrades + 2);
+                                xpMultiplierUpgrades++;
                                 Console.WriteLine("> You upgraded xp Multiplier. ");
                                 Console.WriteLine($"> Current xp multiplier {Player.xpMultiplier * 100}%. ");
                             }
@@ -603,7 +604,7 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
                         Console.Write("Out of range!");
                         break;
                 }
-                ProgressMessage(i,Location.progress[i]);
+                ProgressMessage(i, Location.progress[i]);
                 if (i == 6)
                 {
                     Console.WriteLine("==================================");

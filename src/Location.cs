@@ -51,6 +51,20 @@ namespace foodman
                 switch (id)
                 {
                     // add quizes (id - the number of your room)
+                    case 0:
+                        Program.GroceryStoreQuiz();
+                        if(Program.score == 3)
+                            quizComp[0] = true;
+
+                        break;
+
+                    case 2:
+
+                        Program.House();
+                        if (Program.score == 5)
+                            quizComp[2] = true;
+
+                        break;
                     case 3:
 
                         Program.FactoryQuiz();
