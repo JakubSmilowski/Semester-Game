@@ -151,5 +151,49 @@ namespace foodman
                 Console.WriteLine($"Final score: {score}/{Questions.Length}");
                 Console.WriteLine("******************");
             }
+
+
+             public static void GroceryStoreQuiz()
+            {
+            string[] CorrectAnswers = {"C", "A", "B"};
+            score = 0;
+
+            string[] Questions = {"1. Does good food get discarded in supermarkets?: ", 
+                                  "2. What is the most wasted food in the world?: ", 
+                                  "3. What is the future of food waste?: "
+                                  };
+            
+            string[] Answers = { 
+                "A: I don't know\tB: No\tC: Yes",
+                "A: Bread\tB: Cheese\tC: Apples",
+                "A: It will decrease\tB: It will increase\tC: It will stagnate"
+            };
+            
+
+            for(int i = 0; i < Questions.Length ; i++)
+            {
+                 Console.WriteLine("******************");
+                Console.WriteLine(Questions[i]);          
+                Console.WriteLine(Answers[i]); 
+
+             Console.WriteLine("Guess: ");            
+                string? Guess = Console.ReadLine()?.ToUpper();  
+                
+
+                if(Guess == CorrectAnswers[i])
+                {
+                    Console.WriteLine("Correct");
+                    score++;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect");
+                }
+                Console.WriteLine("******************");
+            }  
+                Console.WriteLine("******************");
+                Console.WriteLine($"Final score: {score}/{Questions.Length}");
+                Console.WriteLine("******************");
+            }
     }
 }
