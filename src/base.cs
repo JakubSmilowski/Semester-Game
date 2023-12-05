@@ -5,8 +5,7 @@ using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
 //To do:
-
-// Display quest functionality to a ShowProgress method. 
+//Display quest functionality to a ShowProgress method. 
 //Add Npc?
 //Add some kind of quest?
 

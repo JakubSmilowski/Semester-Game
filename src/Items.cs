@@ -13,11 +13,12 @@ namespace foodman
         ("Snacks", "The tasty treats you bought at the store", 10);
 
 
-        private static List<Item>? itemList = new List<Item>()
+        private static List<Item> itemList = new List<Item>()
         {
             FoodExpired,
             Snacks
         };
+        
         public static void OpenInventory()
         {
             bool isInventoryEmpty = true;

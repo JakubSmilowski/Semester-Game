@@ -109,38 +109,11 @@ namespace foodman
                 case 0:
                     if (progress[id] == 0)
                     {
-                        Console.WriteLine("You can smell expired food. Strange... Maybe you can ask someone about it?");
-                        Console.WriteLine("[A] Ask the owner [Any Key] Ignore the smell");
-                        string? read = Console.ReadLine()?.ToLower();
-                        if (read == "a")
-                        {
-                            Console.WriteLine("Manager: 'The food is expired and ready to be thrown out. Yes, we will throw it to the trash. We don't recycle.'");
-                            Console.WriteLine($"{Player.name}: 'Recycling is actually very easy! Here, let me show you, so you will start doing so too!'");
-                            Items.FoodExpired.AddRandomAmount(1, 10);
-                            Items.FoodExpired.Display();
-                            progress[0]++;
-                        }
-                        else
-                        {
-                            Console.WriteLine("You ignore the smell and decide to leave this disgusting place after getting yourself a few snacks");
-                            Items.Snacks.Add(1);
-                            Player.SubstractMoney(10);
-                        }
+                        Quest.Grocery1();
                     }
                     else if (progress[id] == 1)
                     {
-                        Console.WriteLine("It is dark outside. The store will close soon. You take a look at the shelves. Some of them still have food. It is almost expired, so the store will throw it out. Do you want to take care of it?");
-                        Console.WriteLine("[A] Take the leftovers [Any Key] Leave them there");
-                        string? read = Console.ReadLine()?.ToLower();
-                        if (read == "a")
-                        {
-                            Console.WriteLine("You take the food. Now you can either eat it or sell it for 1/4 of its original price");
-                            progress[0] += 1;
-                        }
-                        else
-                        {
-                            Console.WriteLine("You ignore the food. It is best to throw things that have no use, right?");
-                        }
+                        Quest.Grocery2();
                     }
                     else
                     {
@@ -188,7 +161,6 @@ namespace foodman
                     break;
 
                 case 3:
-
                     if (progress[id] == 0)
                     {
                         Quest.Factory2();
