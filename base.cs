@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
 //To do:
+
 //Display quest functionality to a ShowProgress method. 
 //Add Npc?
 //Add some kind of quest?
@@ -12,7 +13,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace foodman
 {
-    public class Base
+    class Base
     {
 
         public static int actionPointsUpgrades { get; set; } = 1;
@@ -58,8 +59,8 @@ namespace foodman
                             EnterUpgradeShop();
                             break;
                         case "i":
-                            Items.OpenInventory();
-                            Console.ReadLine();
+                            //OpenInvenotry();
+                            Console.WriteLine("Work in progress");
                             break;
                         case "r":
                             Rest();
@@ -76,18 +77,19 @@ namespace foodman
                             Console.WriteLine("You left the base");
                             return;
                         case "a":
-                            if (Player.IsActionPossible())
+                            if (!Player.quiztoday)
                             {
-                                Player.MakeAction();
                                 //Choses wich quiz to display depending on already completed ones.
                                 switch (id)
                                 {
                                     case 0:
                                         //Assigns if quest has been completed or not.
+                                        Player.quiztoday = true;
                                         QuizzesProgress = QuizOfTheLocation1();
 
                                         break;
                                     case 1:
+                                        Player.quiztoday = true;
                                         QuizzesProgress = QuizOfTheLocation2();
 
                                         break;
@@ -103,6 +105,9 @@ namespace foodman
                                         Console.WriteLine("You already finished quizzes of this location!");
                                         break;
                                 }
+                            } else
+                            {
+                                Console.WriteLine("You have attempted a quiz today already! Try tomorrow.");
                             }
                             Console.WriteLine("Press [Any key] to continue.");
                             Console.ReadLine();
@@ -413,6 +418,8 @@ namespace foodman
             Console.WriteLine($"skiping to day {(Player.turn + 1)}");
             Player.NextTurn();
             Player.RestoreActionPoints();
+            Player.quiztoday = false;
+            Player.questtoday = false;
         }
         static void GreetingMessageStart(string name)
         {
@@ -627,7 +634,6 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
             }
         }
 
-        //*Probably won't be used, inventory was done a little different now.*
         //Open Inventry method
         // public static void OpenInventory()
         // {

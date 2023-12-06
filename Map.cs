@@ -47,7 +47,6 @@
             Console.WriteLine($"You have {Player.actionPoints} action points left");
             GameRuntime.LineSep();
             Console.WriteLine("[W]Up [A]Left [S]Down [D]Right");
-            Console.WriteLine("Type 'help' for more information.");
             Console.Write("Enter your command... ");
             playerCommand = Console.ReadLine()?.ToLower();
             ReadPlayerInput();
@@ -77,13 +76,6 @@
 
         static void ReadPlayerInput()
         {
-            //If the player asks for help with commands and meaning of symbols
-            if ( playerCommand == "help" || playerCommand == "h")
-            {
-                HelpPlayer();
-            }
-
-            //player movement
             if (Player.IsActionPossible())
             {
             map[yPos - 1][xPos - 1] = " ";
@@ -92,8 +84,6 @@
                 case "w":
                 case "u":
                 case "up":
-                case "north":
-                case "n":
                     if (yPos > 1)
                     {
                         yPos -= 1;
@@ -103,8 +93,6 @@
                 case "a":
                 case "l":
                 case "left":
-                case "west":
-                //case "w":
                     if (xPos > 1)
                     {
                         xPos -= 1;
@@ -114,18 +102,15 @@
                 case "s":
                 case "b":
                 case "back":
-                case "south":
                     if (yPos < 6)
                     {
                         yPos += 1;
                         Player.MakeAction();
-                    }
+                        }
                     break;
                 case "d":
                 case "r":
                 case "right":
-                case "east":
-                case "e":
                     if (xPos < 9)
                     {
                         xPos += 1;
@@ -148,7 +133,7 @@
                 Console.Clear();
                 Base.EnterBase();
             }
-            else if (xPos == gxPos && yPos == gyPos)//don't forget to add a level check. //No need, Grocery store is available at lvl 1
+            else if (xPos == gxPos && yPos == gyPos)//don't forget to add a level check
             {
                 //enter grocery store
                 yPos += 1;
@@ -220,6 +205,7 @@
             map[jyPos - 1][jxPos - 1] = "J";
             //RC
             map[rcyPos - 1][rcxPos - 1] = "C";
+
             
             DrawMap();
             DrawText();
@@ -235,7 +221,7 @@
             {
                 case "8":
                 case "player":
-                    Console.WriteLine("You can move in the four cardinal directions to explore different parts of the map by typing w/a/s/d or north/west/south/east. Each move costs 1 action point (AP), including talking and accepting quests/quizes. When you rest in the warehouse, you regain all your AP. When you rest outside, you regain half of AP.");
+                    Console.WriteLine("You can move in the four cardinal directions to explore different parts of the map by typing w/a/s/d or north/west/south/east. Each move costs 1 action point (AP). You can only complete one quest and quiz per day. When you rest in the warehouse, you regain all your AP. When you rest outside, you regain half of AP.");
                     Console.WriteLine("[Any Key] to go back");
                     Console.ReadLine();
                     HelpPlayer();
@@ -251,56 +237,37 @@
                 case "g":
                 case "grocery store":
                 case "grocery":
-                    Console.Write($"A grocery store. One of millions. Would your actions even matter on a larger scale? {(2 - Location.progress[0])} available quests, A quiz has");
+                    Console.WriteLine($"A grocery store. One of millions. Would your actions even matter on a larger scale? {(2 - Location.progress[0])} available quests, A quiz has");
                     if (Location.quizComp[0])
                         Console.Write("n't");
-                    Console.WriteLine(" been completed.");
-                    Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
-                    HelpPlayer();
+                    Console.Write(" been completed");
                     break;
                 case "r":
                 case "restaraunt":
-                    Console.Write($"A restaraunt. The food is good, but what really happens in their kitchen? I wonder what happens with their leftovers. {(2 - Location.progress[1])} available quests, A quiz has");
-                    if (Location.quizComp[1])
+                    Console.WriteLine($"A restaraunt. The food is good, but what really happens in their kitchen? I wonder what happens with their leftovers. {(2 - Location.progress[1])} available quests, A quiz has");
+                    if (Location.quizComp[0])
                         Console.Write("n't");
-                    Console.WriteLine(" been completed.");
-                    Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
-                    HelpPlayer();
+                    Console.Write(" been completed");
                     break;
                 case "h":
                 case "house":
                 case "home":
-                    Console.Write($"A home that has an unusual guest. Maybe there's something interesting you can learm there? {(2 - Location.progress[2])} available quests, A quiz has");
-                    if (Location.quizComp[2])
+                    Console.WriteLine($"A home that has an unusual guest. Maybe there's something interesting you can learm there? {(2 - Location.progress[2])} available quests, A quiz has");
+                    if (Location.quizComp[0])
                         Console.Write("n't");
-                    Console.WriteLine(" been completed.");
-                    Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
-                    HelpPlayer();
+                    Console.Write(" been completed");
                     break;
                 case "f":
                 case "factory":
                 case "fact":
-                    Console.Write($"A small factory with a friendly and gullible manager. Something doesn't feel right about it. Maybe you can figure out what's the issue by talking to him. {(2 - Location.progress[3])} available quests, A quiz has");
-                    if (Location.quizComp[3])
+                    Console.WriteLine($"A small factory with a friendly and gullible manager. Something doesn't feel right about it. Maybe you can figure out what's the issue by talking to him. {(2 - Location.progress[3])} available quests, A quiz has");
+                    if (Location.quizComp[0])
                         Console.Write("n't");
-                    Console.WriteLine(" been completed.");
-                    Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
-                    HelpPlayer();
+                    Console.Write(" been completed");
                     break;
                 case "j":
                 case "junkyard":
                 case "junk":
-                    Console.Write($"A large, disgusting junkyard. It smells like rotting food. THere are definitely issues with it. {(2 - Location.progress[4])} available quests, A quiz has");
-                    if (Location.quizComp[4])
-                        Console.Write("n't");
-                    Console.WriteLine(" been completed.");
-                    Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
-                    HelpPlayer();
                     break;
                     /*
                 case "c":

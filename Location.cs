@@ -31,34 +31,25 @@ namespace foodman
             {
                 Console.Write("[D] Try your luck with the Quiz ");
             }
-            Console.WriteLine("[T] Talk to someone at the" + locName + "  ");
+            Console.WriteLine("[T] Talk to someone at the " + locName + "  ");
             Console.WriteLine("[S] Leave the " + locName);
             string? answer = Console.ReadLine()?.ToLower();
-            if (answer == "a" && Player.IsActionPossible())
+            if (answer == "a" && !Player.questtoday)
             {
                 LookAround(locName, id);
-                
             }
             else if (answer == "s")
             {
                 //do nothing
                 //exits back to map class
             }
-            else if (answer == "d" && Player.IsActionPossible())
+            else if (answer == "d" && !Player.quiztoday)
             {
                 //Do the quiz of the respectable location
-
                 switch (id)
                 {
                     // add quizes (id - the number of your room)
-                    case 0:
-                        Program.GroceryStoreQuiz();
-                        if(Program.score == 3)
-                            quizComp[0] = true;
-
-                        break;
-
-                    case 2:
+                   case 2:
 
                         Program.House();
                         if (Program.score == 5)
@@ -109,11 +100,46 @@ namespace foodman
                 case 0:
                     if (progress[id] == 0)
                     {
-                        Quest.Grocery1();
+                        Console.Clear();
+                        Console.WriteLine("You can smell expired food. Strange... Maybe you can ask someone about it?");
+                        Console.WriteLine("[A] Ask the owner [Any Key] Ignore the smell");
+                        string? read = Console.ReadLine()?.ToLower();
+                        if (read == "a")
+                        {
+                            Console.WriteLine("Manager: 'The food is expired and ready to be thrown out. Yes, we will throw it to the trash. We don't recycle.'");
+                            Console.WriteLine($"{Player.name}: 'Recycling is actually very easy! Here, let me show you, so you will start doing so too!'");
+                            Items.FoodExpired.AddRandomAmount(1, 10);
+                            Items.FoodExpired.Display();
+                            progress[0]++;
+                            PressToExit();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You ignore the smell and decide to leave this disgusting place after getting yourself a few snacks");
+                            Items.Snacks.Add(1);
+                            Player.SubstractMoney(10);
+                            PressToExit();
+                        }
                     }
                     else if (progress[id] == 1)
                     {
-                        Quest.Grocery2();
+                        Console.Clear();
+                        Console.WriteLine("It is dark outside. The store will close soon. You take a look at the shelves. Some of them still have food. It is almost expired, so the store will throw it out. Do you want to take care of it?");
+                        Console.WriteLine("[A] Take the leftovers [Any Key] Leave them there");
+                        string? read = Console.ReadLine()?.ToLower();
+                        if (read == "a")
+                        {
+                            Console.WriteLine("You take the food. Now you can either eat it or sell it for 1/4 of its original price");
+                            progress[0] += 1;
+                            PressToExit();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You ignore the food. It is best to throw out the things that have no use, right?");
+                            PressToExit();
+                        }
                     }
                     else
                     {
@@ -129,6 +155,7 @@ namespace foodman
                 case 2:
                     string? currentYear = "";
                     Console.WriteLine("Welcome to the House!");
+                    Console.WriteLine("Press Enter to continue...");
                     Console.ReadLine();
                     Console.WriteLine("└|*-*|┘ - 'Hi! My name's Robert the Robot and I arrive from future, when I am your typical Eco-Friendly Robot assisting with everyday tasks.'");
                     Console.ReadLine();
@@ -142,7 +169,7 @@ namespace foodman
                     Console.ReadLine();
                     Console.WriteLine("└|*-*|┘ - 'That is crazy!'");
                     Console.ReadLine();
-                    Console.WriteLine("└|*-*|┘ - 'So it did work after all... Amazing! By the way excuse my poor manners, your name is ", Player.name + " right?'");
+                    Console.WriteLine("└|*-*|┘ - 'So it did work after all... Amazing! By the way excuse my poor manners, your name is " + Player.name + " right?'");
                     Console.ReadLine();
                     Console.WriteLine($"└|*-*|┘ - 'You look like a {Player.name}.'");
                     Console.ReadLine();
@@ -156,11 +183,12 @@ namespace foodman
                     }
                     else if (decisionQuizz == "no")
                     {
-                        Console.WriteLine("└|*-*|┘ - 'Fine, no worries. In case you would change your mind, please do not hesitate to come back, I'll be waiting.'");
+                        Console.WriteLine("└|*-*|┘ - 'F-Fine, no worries. In case you would change your mind, please do not hesitate to come back, I'll be waiting.'");
                     }
                     break;
 
                 case 3:
+
                     if (progress[id] == 0)
                     {
                         Quest.Factory2();
@@ -177,6 +205,18 @@ namespace foodman
 
 
             }
+        }
+
+        //After the code from the location is executed, the code from Map continues automatically. Its first action is to clear the console,
+        //So this method "pauses" the game and makes it possible for the player to read the last text from quests, quizzes etc.
+        public static void PressToExit()
+        {
+            Console.WriteLine("=========================================");
+            Console.WriteLine("Press S to Exit");
+            Console.WriteLine("-----------------------------------------");
+            string a = Console.ReadLine().ToLower();
+            if (a != "s")
+                PressToExit();
         }
 
     }

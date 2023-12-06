@@ -52,7 +52,7 @@ namespace foodman
                 Quantity = MaxCapacity;
                 System.Console.WriteLine($"{ItemName} limit ({MaxCapacity}) reached.");
             }
-            System.Console.WriteLine($"{addedQuantity}x {ItemName} has been added to your inventory.");
+            System.Console.WriteLine($"*{addedQuantity} of {ItemName} has been added to your inventory.");
         }
 
         public void AddRandomAmount(int randMin, int randMax)
