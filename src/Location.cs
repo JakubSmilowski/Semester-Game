@@ -107,22 +107,10 @@ namespace foodman
             switch (id)
             {
                 case 0:
-                    if (progress[id] == 0)
-                    {
-                        Player.MakeAction();
-                        Quest.Grocery1();
-                    }
-                    else if (progress[id] == 1)
-                    {
-                        Player.MakeAction();
-                        Quest.Grocery2();
-                    }
-                    else
-                    {
-                        Console.WriteLine("There is nothing left for you to do here...");
-                        Console.WriteLine("[Any Key] Exit");
-                        //Leaving
-                    }
+                    Player.MakeAction();
+                    Quest.Grocery(progress[id]);
+                    Console.WriteLine("Press any key to continue.");
+                    Console.ReadKey();
                     break;
                 case 1:
                     //restaraunt questline
