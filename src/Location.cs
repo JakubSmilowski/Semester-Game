@@ -37,7 +37,6 @@ namespace foodman
             if (answer == "a" && Player.IsActionPossible())
             {
                 LookAround(locName, id);
-                
             }
             else if (answer == "s")
             {
@@ -52,6 +51,7 @@ namespace foodman
                 {
                     // add quizes (id - the number of your room)
                     case 0:
+                        Player.MakeAction();
                         Program.GroceryStoreQuiz();
                         if(Program.score == 3)
                             quizComp[0] = true;
@@ -59,14 +59,14 @@ namespace foodman
                         break;
 
                     case 2:
-
+                        Player.MakeAction();
                         Program.House();
                         if (Program.score == 5)
                             quizComp[2] = true;
 
                         break;
                     case 3:
-
+                        Player.MakeAction();
                         Program.FactoryQuiz();
                         if (Program.score == 3)
                             quizComp[3] = true;
@@ -109,10 +109,12 @@ namespace foodman
                 case 0:
                     if (progress[id] == 0)
                     {
+                        Player.MakeAction();
                         Quest.Grocery1();
                     }
                     else if (progress[id] == 1)
                     {
+                        Player.MakeAction();
                         Quest.Grocery2();
                     }
                     else
@@ -128,7 +130,7 @@ namespace foodman
                 //other locations will have the same thing. Such individuality allows us to make every quest unique
                 case 2:
                     string? currentYear = "";
-                    Console.WriteLine("Welcome to the House!");
+                    Console.WriteLine("Welcome to the House! Press Enter to continue...");
                     Console.ReadLine();
                     Console.WriteLine("└|*-*|┘ - 'Hi! My name's Robert the Robot and I arrive from future, when I am your typical Eco-Friendly Robot assisting with everyday tasks.'");
                     Console.ReadLine();
@@ -151,13 +153,23 @@ namespace foodman
 
                     if (decisionQuizz == "yes")
                     {
-                        Console.WriteLine("└|*-*|┘ - 'I AM SO EXCITED!!!!! Let's begin then.'");
-                        //Quizz();
-                    }
-                    else if (decisionQuizz == "no")
-                    {
+                        if (Player.IsActionPossible())
+                        {
+                            Console.WriteLine("└|*-*|┘ - 'I AM SO EXCITED!!!!! Let's begin then.'");
+                            //Add "Player.MakeAction();" before executing the quiz.
+                            //Quizz();
+                            Quest.PressToExit("House", 2);
+                        } else
+                        {
+                            Console.WriteLine("└|*-*|┘ - 'Oh... You look eager, but it appears that you are too tired. Let's try again tomorrow, okay?'");
+                            Quest.PressToExit("House", 2);
+                        }
+                    } else
+                        {
                         Console.WriteLine("└|*-*|┘ - 'Fine, no worries. In case you would change your mind, please do not hesitate to come back, I'll be waiting.'");
+                        Quest.PressToExit("House", 2);
                     }
+
                     break;
 
                 case 3:
