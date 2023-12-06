@@ -117,14 +117,14 @@ class Quest
             Items.FoodExpired.AddRandomAmount(1, 10);
             Items.FoodExpired.Display();
             Location.progress[0]++;
-            PressToExit();
+            PressToExit("Grocery Store", 0);
         }
         else
         {
             Console.WriteLine("You ignore the smell and decide to leave this disgusting place after getting yourself a few snacks");
             Items.Snacks.Add(1);
             Player.SubstractMoney(10);
-            PressToExit();
+            PressToExit("Grocery Store", 0);
         }
     }
 
@@ -137,22 +137,24 @@ class Quest
         {
             Console.WriteLine("You take the food. Now you can either eat it or sell it for 1/4 of its original price");
             Location.progress[0]++;
-            PressToExit();
+            PressToExit("Grocery Store", 0);
         }
         else
         {
             Console.WriteLine("You ignore the food. It is best to throw things that have no use, right?");
-            PressToExit();
+            PressToExit("Grocery Store", 0);
         }
     }
 
-    public static void PressToExit()
+    public static void PressToExit(string location, int locId)
     {
         Console.WriteLine("=========================================");
         Console.WriteLine("Press S to Exit");
         Console.WriteLine("-----------------------------------------");
         string a = Console.ReadLine().ToLower();
         if (a != "s")
-            PressToExit();
+            PressToExit(location, locId);
+        Console.Clear();
+        Location.EnterRoom(location, locId);
     }
 }
