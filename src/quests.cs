@@ -155,7 +155,7 @@ class Quest
         Console.WriteLine("=========================================");
         Console.WriteLine("Press S to Exit");
         Console.WriteLine("-----------------------------------------");
-        string a = Console.ReadLine().ToLower();
+        string? a = Console.ReadLine()?.ToLower();
         if (a != "s")
             PressToExit(location, locId);
         Console.Clear();
