@@ -77,13 +77,19 @@ namespace foodman
             }
         }
 
-        public static void SellItem(){
-
+        public void SellItem(int sellQuantity, int sellPrice)
+        {
+            if(sellQuantity >= Quantity)
+            {
+                int value = sellPrice * sellQuantity;
+                Remove(sellQuantity);
+                Player.AddMoney(value);
+            }
         }
 
         public bool TryUse(int quantityNeeded)
         {
-            if(quantityNeeded<=Quantity)
+            if(quantityNeeded <= Quantity)
             {
                 Remove(quantityNeeded);
                 return true;
