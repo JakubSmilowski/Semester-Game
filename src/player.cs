@@ -11,14 +11,14 @@ namespace foodman
 
         public static DateTime currentlyDate = new DateTime(2009, 9, 1);
 
-        public static int actionPoints { get; private set; } = 5;
+        public static int actionPoints { get; private set; } = 12;
         private static int level { get; set; } = 1;
         private static double xp { get; set; } = 0;
         private static double xpRequired { get; set; } = 100;
         public static int levelPoints { get; private set; } = 0;
 
         private static double money { get; set; } = 100;
-        public static int maxActionPoints { get; private set; } = 5;
+        public static int maxActionPoints { get; private set; } = 12;
         public static int maxInventoryCapacity { get; private set; } = 5;
         public static double moneyMultiplier { get; private set; } = 1;
         public static double xpMultiplier { get; private set; } = 1;
