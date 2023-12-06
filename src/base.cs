@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
 //To do:
-//Display quest functionality to a ShowProgress method. 
 //Add Npc?
 //Add some kind of quest?
 
@@ -124,7 +123,7 @@ namespace foodman
         }
 
         private static void DrawBase(){
-            Player.DisplayBasicStats();
+                Player.DisplayBasicStats();
                 // Visual representation of the base 
                 Console.Write("\n=====================");
 
@@ -619,11 +618,11 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
             }
             else if (locationId == 6)
             {
-                Console.WriteLine($"Available quests - {3 - progress}  "); // in future this 3 could be a variable
+                Console.WriteLine($"Available quizzes - {3 - progress}  "); // in future this 3 could be a variable
             }
             else
             {
-                Console.WriteLine($"Available quests - {2 - progress}  ");
+                Console.WriteLine($"Available quizzes - {2 - progress}  ");
             }
         }
 

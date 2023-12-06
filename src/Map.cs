@@ -192,7 +192,7 @@
             {
                 yPos -= 1;
                 Console.Clear();
-                Location.EnterRoom("Junkyard", 4);
+                Junkyard.EnterJunkyard();
             }
             else if (xPos == rcxPos && yPos == rcyPos)//here too
             {

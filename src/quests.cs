@@ -146,6 +146,10 @@ class Quest
         }
     }
 
+    public static void JunkyardQest(){
+        
+    }
+
     public static void PressToExit(string location, int locId)
     {
         Console.WriteLine("=========================================");

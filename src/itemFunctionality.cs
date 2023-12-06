@@ -77,6 +77,10 @@ namespace foodman
             }
         }
 
+        public static void SellItem(){
+
+        }
+
         public bool TryUse(int quantityNeeded)
         {
             if(quantityNeeded<=Quantity)

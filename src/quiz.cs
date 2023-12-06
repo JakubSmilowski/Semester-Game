@@ -195,5 +195,63 @@ namespace foodman
                 Console.WriteLine($"Final score: {score}/{Questions.Length}");
                 Console.WriteLine("******************");
             }
+
+            public static void JunkyardQuizz()
+            {
+                string[] CorrectAnswers = { "C", "A", "B" };
+                int score = 0;
+
+                string[] Questions = {
+                    "1. In real life, what is the major environmental consequence of improper food waste disposal?: ",
+                    "2. How does reducing food waste contribute to addressing global hunger?: ",
+                    "3. What is a significant health risk associated with the decomposition of food waste in landfills?: "
+                };
+
+                string[] Answers = {
+                    "A: Soil pollution\tB: Increased greenhouse gas emissions\tC: Contamination of water sources",
+                    "A: More land available for agriculture\tB: Reducing the demand for new food production\tC: Supporting local farmers",
+                    "A: Increased risk of allergies\tB: Formation of harmful bacteria and pathogens\tC: None of the above"
+                };
+
+                for (int i = 0; i < Questions.Length; i++)
+                {
+                    Console.WriteLine("******************");
+                    Console.WriteLine(Questions[i]);
+                    Console.WriteLine(Answers[i]);
+
+                    string Guess;
+                    do
+                    {
+                        Console.Write("Guess: ");
+                        Guess = Console.ReadLine()?.Trim()?.ToUpper();
+
+                        if (string.IsNullOrEmpty(Guess) || Guess != "A" && Guess != "B" && Guess != "C")
+                        {
+                            Console.WriteLine("This is not a correct input. Please enter 'A', 'B', or 'C'.");
+                        }
+                    } while (string.IsNullOrEmpty(Guess) || Guess != "A" && Guess != "B" && Guess != "C");
+
+                    if (Guess == CorrectAnswers[i])
+                    {
+                        Console.WriteLine("Correct");
+                        score++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Incorrect");
+                    }
+                    Console.WriteLine("******************");
+                }
+
+                Console.WriteLine("******************");
+                Console.WriteLine($"Final score: {score}/{Questions.Length}");
+                Console.WriteLine("******************");
+
+                // Provide additional educational content about the consequences of food waste
+                Console.WriteLine("\nEducational Content:");
+                Console.WriteLine("Improper food waste disposal can contaminate water sources (Answer to Question 1).");
+                Console.WriteLine("Reducing food waste helps address global hunger by decreasing the demand for new food production (Answer to Question 2).");
+                Console.WriteLine("The decomposition of food waste in landfills can lead to the formation of harmful bacteria and pathogens, posing health risks (Answer to Question 3).");
+        }
     }
 }
