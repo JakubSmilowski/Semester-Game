@@ -52,7 +52,6 @@ namespace foodman
                         //Program.Groceery();
                         //...
                         //Temporary code that makes the AP work
-                        Player.
                         
                     // add quizes (id - the number of your room)
                     case 2:
