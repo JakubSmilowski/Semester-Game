@@ -34,7 +34,7 @@ namespace foodman
             Console.WriteLine("[T] Talk to someone at the " + locName + "  ");
             Console.WriteLine("[S] Leave the " + locName);
             string? answer = Console.ReadLine()?.ToLower();
-            if (answer == "a" && !Player.questtoday)
+            if (answer == "a" && Player.MakeAction())
             {
                 LookAround(locName, id);
             }
@@ -43,13 +43,19 @@ namespace foodman
                 //do nothing
                 //exits back to map class
             }
-            else if (answer == "d" && !Player.quiztoday)
+            else if (answer == "d" && Player.MakeAction())
             {
                 //Do the quiz of the respectable location
                 switch (id)
                 {
+                    case 0:
+                        //Program.Groceery();
+                        //...
+                        //Temporary code that makes the AP work
+                        Player.
+                        
                     // add quizes (id - the number of your room)
-                   case 2:
+                    case 2:
 
                         Program.House();
                         if (Program.score == 5)
@@ -67,7 +73,7 @@ namespace foodman
                 Console.WriteLine("PLACEHOLDER FOR QUIZZES");
                 EnterRoom(locName, id);
             }
-            else if (answer == "t")
+            else if (answer == "t" && Player.MakeAction())
             {
                 switch (id)//place for npc
                 {
@@ -111,7 +117,7 @@ namespace foodman
                             Items.FoodExpired.AddRandomAmount(1, 10);
                             Items.FoodExpired.Display();
                             progress[0]++;
-                            PressToExit();
+                            PressToExit(locName, id);
                         }
                         else
                         {
@@ -119,7 +125,7 @@ namespace foodman
                             Console.WriteLine("You ignore the smell and decide to leave this disgusting place after getting yourself a few snacks");
                             Items.Snacks.Add(1);
                             Player.SubstractMoney(10);
-                            PressToExit();
+                            PressToExit(locName, id);
                         }
                     }
                     else if (progress[id] == 1)
@@ -132,13 +138,13 @@ namespace foodman
                         {
                             Console.WriteLine("You take the food. Now you can either eat it or sell it for 1/4 of its original price");
                             progress[0] += 1;
-                            PressToExit();
+                            PressToExit(locName, id);
                         }
                         else
                         {
                             Console.Clear();
                             Console.WriteLine("You ignore the food. It is best to throw out the things that have no use, right?");
-                            PressToExit();
+                            PressToExit(locName, id);
                         }
                     }
                     else
@@ -209,14 +215,16 @@ namespace foodman
 
         //After the code from the location is executed, the code from Map continues automatically. Its first action is to clear the console,
         //So this method "pauses" the game and makes it possible for the player to read the last text from quests, quizzes etc.
-        public static void PressToExit()
+        public static void PressToExit(string location, int locId)
         {
             Console.WriteLine("=========================================");
             Console.WriteLine("Press S to Exit");
             Console.WriteLine("-----------------------------------------");
             string a = Console.ReadLine().ToLower();
             if (a != "s")
-                PressToExit();
+                PressToExit(location, locId);
+            Console.Clear();
+            EnterRoom(location, locId);
         }
 
     }
