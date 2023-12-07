@@ -60,7 +60,7 @@ namespace foodman
 
                 string? userInput = Console.ReadLine();
 
-                switch (userInput.ToLower())
+                switch (userInput?.ToLower())
                 {
                     case "o":
                         //Here player will be able to sell food waste for money

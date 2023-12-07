@@ -240,7 +240,7 @@
             Console.WriteLine($"8 - {Player.name}, W - Warehouse, G - Grocery Store, R - Restaraunt, H - House, F - Factory, J - Junkyard, C - Recycling Centre");
             Console.WriteLine("Type the name of object for more specific help");
             Console.WriteLine("[Any Key] To exit");
-            string a = Console.ReadLine().ToLower();
+            string? a = Console.ReadLine()?.ToLower();
             switch (a)
             {
                 case "8":

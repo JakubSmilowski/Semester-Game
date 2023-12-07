@@ -287,7 +287,7 @@ namespace foodman
                     Console.WriteLine(Questions[i]);
                     Console.WriteLine(Answers[i]);
 
-                    string Guess;
+                    string? Guess;
                     do
                     {
                         Console.Write("Guess: ");

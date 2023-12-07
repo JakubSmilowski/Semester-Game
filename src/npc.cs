@@ -96,8 +96,7 @@ class NPC
         Console.ReadLine();
         Console.WriteLine($"└|*-*|┘ - 'You look like a {Player.name}.'");
         Console.WriteLine("[Any Key] to continue..");
-        Console.ReadLine();
+        Console.ReadKey();
         Console.Clear();
-        }
     }
 }
