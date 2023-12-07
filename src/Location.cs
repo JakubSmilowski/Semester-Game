@@ -111,7 +111,8 @@ namespace foodman
                     Quest.Grocery(progress[id]);
                     break;
                 case 1:
-                    //restaraunt questline
+                    Player.MakeAction();
+                    Quest.Restaurant(progress[id]);
                     break;
                 //other locations will have the same thing. Such individuality allows us to make every quest unique
                 case 2:
