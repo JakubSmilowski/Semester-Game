@@ -32,35 +32,12 @@ namespace foodman
              //the only correct answer is the options in front of the answer so A or B or C
 
 
-            int score = 0;
-
             Console.WriteLine("Quizz Game");
 
             //run a cycle until there are questions 
 
-            for (int i = 0; i < Questions.Length; i++)
-            {
-                Console.WriteLine("******************");
-                Console.WriteLine(Questions[i]);          // writes the questions one by one
-                Console.WriteLine(Answers[i]);           // writes the answers for the question listed above
+            score = StartQuizz(Answers, Questions, CorrectAnswers);
 
-
-                Console.WriteLine("Guess: ");            // takes user input f
-                string? Guess = Console.ReadLine()?.ToUpper();  // checks if its a string and puts it into uppercase
-
-
-                if (Guess == CorrectAnswers[i])        // if the answer is correct it gives a point if not it doesnt
-                {
-                    Console.WriteLine("Correct");
-                    score++;
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect");
-                }
-                Console.WriteLine("******************");
-
-            }
             //writes out final score 
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
@@ -70,7 +47,6 @@ namespace foodman
         public static void FactoryQuiz()
         {
             string[] CorrectAnswers = { "A", "A", "B" };
-            score = 0;
 
             string[] Questions = {"1. How much food is wasted globally?: ",
                                   "2. How much food is wasted in Denmark?: ",
@@ -84,27 +60,8 @@ namespace foodman
             };
 
 
-            for (int i = 0; i < Questions.Length; i++)
-            {
-                Console.WriteLine("******************");
-                Console.WriteLine(Questions[i]);
-                Console.WriteLine(Answers[i]);
+            score = StartQuizz(Answers, Questions, CorrectAnswers);
 
-                Console.WriteLine("Guess: ");
-                string? Guess = Console.ReadLine()?.ToUpper();
-
-
-                if (Guess == CorrectAnswers[i])
-                {
-                    Console.WriteLine("Correct");
-                    score++;
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect");
-                }
-                Console.WriteLine("******************");
-            }
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
             CheckAndReward(Questions.Length, 3);
@@ -162,7 +119,6 @@ namespace foodman
         public static void GroceryStoreQuiz()
         {
             string[] CorrectAnswers = { "C", "A", "B" };
-            score = 0;
 
             string[] Questions = {"1. Does good food get discarded in supermarkets?: ",
                                   "2. What is the most wasted food in the world?: ",
@@ -176,27 +132,8 @@ namespace foodman
             };
 
 
-            for (int i = 0; i < Questions.Length; i++)
-            {
-                Console.WriteLine("******************");
-                Console.WriteLine(Questions[i]);
-                Console.WriteLine(Answers[i]);
-
-                Console.WriteLine("Guess: ");
-                string? Guess = Console.ReadLine()?.ToUpper();
-
-
-                if (Guess == CorrectAnswers[i])
-                {
-                    Console.WriteLine("Correct");
-                    score++;
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect");
-                }
-                Console.WriteLine("******************");
-            }
+            score = StartQuizz(Answers, Questions, CorrectAnswers);
+            
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
             CheckAndReward(Questions.Length, 0);
@@ -206,7 +143,6 @@ namespace foodman
         public static void JunkyardQuizz()
         {
             string[] CorrectAnswers = { "C", "A", "B" };
-            int score = 0;
 
             string[] Questions = {
                     "1. In real life, what is the major environmental consequence of improper food waste disposal?: ",
@@ -231,7 +167,6 @@ namespace foodman
            public static void JunkyardQuizz1()
             {
                 string[] CorrectAnswers = { "C", "B", "A" };
-                int score = 0;
 
                 string[] Questions = {
                     "1. What is the most effective way for individuals to reduce household waste?: ",
