@@ -31,7 +31,7 @@ namespace foodman
             {
                 Console.Write("[D] Try your luck with the Quiz ");
             }
-            Console.WriteLine("[T] Talk to someone at the" + locName + "  ");
+            Console.WriteLine("[T] Talk to someone at the " + locName + "  ");
             Console.WriteLine("[S] Leave the " + locName);
             string? answer = Console.ReadLine()?.ToLower();
             if (answer == "a" && Player.IsActionPossible())
@@ -109,8 +109,6 @@ namespace foodman
                 case 0:
                     Player.MakeAction();
                     Quest.Grocery(progress[id]);
-                    Console.WriteLine("Press any key to continue.");
-                    Console.ReadKey();
                     break;
                 case 1:
                     //restaraunt questline
