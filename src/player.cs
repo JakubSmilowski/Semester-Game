@@ -130,8 +130,6 @@ namespace foodman
                 Console.WriteLine($"You level up to {level}lv! Next level up in {neededXp} xp");
                 Console.WriteLine($"======================================================");
             }
-
-
         }
         //Checks if player can level up.
         public static void AddAndCheckXp(double xpGained)

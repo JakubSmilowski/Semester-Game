@@ -64,6 +64,7 @@ namespace foodman
             //writes out final score 
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 1);
             Console.WriteLine("******************");
         }
         public static void FactoryQuiz()
@@ -106,6 +107,7 @@ namespace foodman
             }
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 3);
             Console.WriteLine("******************");
         }
         public static void House()
@@ -152,6 +154,7 @@ namespace foodman
             }
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 2);
             Console.WriteLine("******************");
         }
 
@@ -196,6 +199,7 @@ namespace foodman
             }
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 0);
             Console.WriteLine("******************");
         }
 
@@ -220,23 +224,8 @@ namespace foodman
 
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 4);
             Console.WriteLine("******************");
-
-            if (score == Questions.Length)
-            {
-                Player.AddMoney(20);
-                Player.AddAndCheckXp(100);
-                Location.progress[4] += 1;
-                Console.WriteLine("You gained 100xp and 20$");
-            }
-            else
-            {
-                // Provide additional educational content about the consequences of food waste
-                Console.WriteLine("\nEducational Content:");
-                Console.WriteLine("Improper food waste disposal can contaminate water sources (Answer to Question 1).");
-                Console.WriteLine("Reducing food waste helps address global hunger by decreasing the demand for new food production (Answer to Question 2).");
-                Console.WriteLine("The decomposition of food waste in landfills can lead to the formation of harmful bacteria and pathogens, posing health risks (Answer to Question 3).");
-            }
         }
 
            public static void JunkyardQuizz1()
@@ -260,22 +249,8 @@ namespace foodman
 
                 Console.WriteLine("******************");
                 Console.WriteLine($"Final score: {score}/{Questions.Length}");
+                CheckAndReward(Questions.Length, 4);
                 Console.WriteLine("******************");
-
-                if (score == Questions.Length)
-                {
-                    Player.AddMoney(20);
-                    Player.AddAndCheckXp(100);
-                    Location.progress[4] += 1;
-                    Console.WriteLine("You gained 100xp and 20$");
-                }
-                else
-                {
-                // Provide additional educational content about the consequences of food waste
-                Console.WriteLine("Educational Content:\n Throwing everything in one trash bin is not the most effective way to reduce household waste. Recycling and separating recyclables are key practices that help prevent recyclable materials from ending up in landfills, promoting resource recovery, and reducing environmental impact.");
-                Console.WriteLine("Accelerating the decay of plastic is not the purpose of composting. Composting is a sustainable waste management practice that converts organic waste into nutrient-rich soil. This process reduces the volume of organic waste in landfills, contributes to soil health, and decreases the need for chemical fertilizers.");        
-                Console.WriteLine("All items with recycling symbols being recyclable is a common misconception. Recycling involves the collection and processing of materials to be used again. This reduces the demand for new raw materials, conserves energy, and minimizes environmental impact by decreasing the amount of waste sent to landfills.");
-                }
             }
 
             static int StartQuizz(string[] Answers, string[] Questions, string[] CorrectAnswers)
@@ -313,6 +288,24 @@ namespace foodman
                     Console.WriteLine("******************");
                 }
                 return score;
+            }
+            
+            static void CheckAndReward(int numberOfQuestions, int locationId)
+            {
+                if (score == numberOfQuestions)
+                {
+                    Player.AddMoney(20);
+                    Player.AddAndCheckXp(100);
+                    Location.progress[locationId] += 1;
+                    Console.WriteLine("You gained 100xp and 20$");
+                }
+                else
+                {
+                // Provide additional educational content about the consequences of food waste
+                Console.WriteLine("Educational Content:\n Throwing everything in one trash bin is not the most effective way to reduce household waste. Recycling and separating recyclables are key practices that help prevent recyclable materials from ending up in landfills, promoting resource recovery, and reducing environmental impact.");
+                Console.WriteLine("Accelerating the decay of plastic is not the purpose of composting. Composting is a sustainable waste management practice that converts organic waste into nutrient-rich soil. This process reduces the volume of organic waste in landfills, contributes to soil health, and decreases the need for chemical fertilizers.");        
+                Console.WriteLine("All items with recycling symbols being recyclable is a common misconception. Recycling involves the collection and processing of materials to be used again. This reduces the demand for new raw materials, conserves energy, and minimizes environmental impact by decreasing the amount of waste sent to landfills.");
+                }
             }
     }
 }
