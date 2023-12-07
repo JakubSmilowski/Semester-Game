@@ -80,7 +80,12 @@ namespace foodman
             {
                 switch (id)//place for npc
                 {
+                    case 2:
+                        Console.Clear();
+                        NPC.HouseholdRobot();
+                        break;
                     case 3:
+                        Console.Clear();
                         NPC.FacroyManager();
                         break;
                 }
@@ -116,34 +121,16 @@ namespace foodman
                     break;
                 //other locations will have the same thing. Such individuality allows us to make every quest unique
                 case 2:
-                    string? currentYear = "";
-                    Console.WriteLine("Welcome to the House! Press Enter to continue...");
-                    Console.ReadLine();
-                    Console.WriteLine("└|*-*|┘ - 'Hi! My name's Robert the Robot and I arrive from future, when I am your typical Eco-Friendly Robot assisting with everyday tasks.'");
-                    Console.ReadLine();
-                    Console.WriteLine("└|*-*|┘ - 'People of future are rarely needing my help as years of education throughout the FOODMAN have resulted in eco-aware society, that just knows how to waste less food.'");
-                    Console.ReadLine();
-                    Console.WriteLine("└|*-*|┘ - 'Even though I love humans of my times, I'd lie saying that I don't miss when they were less educated and needed my assistance more. That's why after consulting with them they've decided to try sending me back in time, so I could educate people of the past.'");
-                    Console.ReadLine();
-                    Console.WriteLine("└|*-*|┘ - 'Oh wow I think they did succeed right? Could you please tell me what year are we in?'");
-                    currentYear = Console.ReadLine();
-                    Console.WriteLine($"└|*-*|┘ - '{currentYear}?!?'");
-                    Console.ReadLine();
-                    Console.WriteLine("└|*-*|┘ - 'That is crazy!'");
-                    Console.ReadLine();
-                    Console.WriteLine("└|*-*|┘ - 'So it did work after all... Amazing! By the way excuse my poor manners, your name is ", Player.name + " right?'");
-                    Console.ReadLine();
-                    Console.WriteLine($"└|*-*|┘ - 'You look like a {Player.name}.'");
-                    Console.ReadLine();
-                    Console.WriteLine("└|*-*|┘ - 'OK, now that we know each other would you be interested in participating in a quizz that would evaluate your knowledge regarding ways of lessening food waste? Type YES if you would like to try, or NO if you would rather go on exploring other rooms.'");
-                    string? decisionQuizz = Console.ReadLine()?.ToLower();
-
-                    if (decisionQuizz == "yes")
+                    Console.WriteLine("└|*-*|┘ - 'It appears thaat humans of this year do not care about lessening food waste.");
+                    Console.WriteLine("└|*-*|┘ - 'Would you be interested in helping me clean up here? I... do not have the best arms.'");
+                    Console.WriteLine("└|*-*|┘ - 'Say YES if you would like to try, or NO if you would rather do something else.'");
+                    string? deci = Console.ReadLine()?.ToLower();
+                    if (deci == "yes")
                     {
                         if (Player.IsActionPossible())
                         {
                             Console.WriteLine("└|*-*|┘ - 'I AM SO EXCITED!!!!! Let's begin then.'");
-                            //Add "Player.MakeAction();" before executing the quiz.
+                            //Add "Player.MakeAction();" before executing the test.
                             //Quizz();
                             Quest.PressToExit("House", 2);
                         } else
