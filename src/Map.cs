@@ -159,7 +159,7 @@
             {
                 yPos -= 1;
                 Console.Clear();
-                Location.EnterRoom("Restaraunt", 1);
+                Restaurant.EnterRestaurant();
             }
             else if (xPos == hxPos && yPos == hyPos)//here too
             {

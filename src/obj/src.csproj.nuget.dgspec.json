@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kubun\\OneDrive\\Documents\\Semester-Game\\src\\src.csproj": {}
+    "/Users/leventesohar/semester project/final project/Semester-Game/src/src.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kubun\\OneDrive\\Documents\\Semester-Game\\src\\src.csproj": {
+    "/Users/leventesohar/semester project/final project/Semester-Game/src/src.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kubun\\OneDrive\\Documents\\Semester-Game\\src\\src.csproj",
+        "projectUniqueName": "/Users/leventesohar/semester project/final project/Semester-Game/src/src.csproj",
         "projectName": "src",
-        "projectPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Semester-Game\\src\\src.csproj",
-        "packagesPath": "C:\\Users\\kubun\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Semester-Game\\src\\obj\\",
+        "projectPath": "/Users/leventesohar/semester project/final project/Semester-Game/src/src.csproj",
+        "packagesPath": "/Users/leventesohar/.nuget/packages/",
+        "outputPath": "/Users/leventesohar/semester project/final project/Semester-Game/src/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kubun\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/leventesohar/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -48,30 +48,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.401/RuntimeIdentifierGraph.json"
         }
       }
     }

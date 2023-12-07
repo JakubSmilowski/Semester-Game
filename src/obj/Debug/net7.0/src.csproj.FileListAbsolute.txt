@@ -1,57 +1,71 @@
-C:\Users\kubun\SemesterProjectGame\src\bin\Debug\net7.0\src.exe
-C:\Users\kubun\SemesterProjectGame\src\bin\Debug\net7.0\src.deps.json
-C:\Users\kubun\SemesterProjectGame\src\bin\Debug\net7.0\src.runtimeconfig.json
-C:\Users\kubun\SemesterProjectGame\src\bin\Debug\net7.0\src.dll
-C:\Users\kubun\SemesterProjectGame\src\bin\Debug\net7.0\src.pdb
-C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\src.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\src.AssemblyInfoInputs.cache
-C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\src.AssemblyInfo.cs
-C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\src.csproj.CoreCompileInputs.cache
-C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\src.dll
-C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\refint\src.dll
-C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\src.pdb
-C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\src.genruntimeconfig.cache
-C:\Users\kubun\SemesterProjectGame\src\obj\Debug\net7.0\ref\src.dll
-A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.GeneratedMSBuildEditorConfig.editorconfig
-A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.AssemblyInfoInputs.cache
-A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.AssemblyInfo.cs
-A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.csproj.CoreCompileInputs.cache
-A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.dll
-A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\refint\src.dll
-A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.pdb
-A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.exe
-A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.deps.json
-A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.runtimeconfig.json
-A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.dll
-A:\uni\VS\Semester-Game-master\src\bin\Debug\net7.0\src.pdb
-A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\src.genruntimeconfig.cache
-A:\uni\VS\Semester-Game-master\src\obj\Debug\net7.0\ref\src.dll
-D:\Users\hp\Desktop\fixes\Semester-Game\src\bin\Debug\net7.0\src.exe
-D:\Users\hp\Desktop\fixes\Semester-Game\src\bin\Debug\net7.0\src.deps.json
-D:\Users\hp\Desktop\fixes\Semester-Game\src\bin\Debug\net7.0\src.runtimeconfig.json
-D:\Users\hp\Desktop\fixes\Semester-Game\src\bin\Debug\net7.0\src.dll
-D:\Users\hp\Desktop\fixes\Semester-Game\src\bin\Debug\net7.0\src.pdb
-D:\Users\hp\Desktop\fixes\Semester-Game\src\obj\Debug\net7.0\src.GeneratedMSBuildEditorConfig.editorconfig
-D:\Users\hp\Desktop\fixes\Semester-Game\src\obj\Debug\net7.0\src.AssemblyInfoInputs.cache
-D:\Users\hp\Desktop\fixes\Semester-Game\src\obj\Debug\net7.0\src.AssemblyInfo.cs
-D:\Users\hp\Desktop\fixes\Semester-Game\src\obj\Debug\net7.0\src.csproj.CoreCompileInputs.cache
-D:\Users\hp\Desktop\fixes\Semester-Game\src\obj\Debug\net7.0\src.dll
-D:\Users\hp\Desktop\fixes\Semester-Game\src\obj\Debug\net7.0\refint\src.dll
-D:\Users\hp\Desktop\fixes\Semester-Game\src\obj\Debug\net7.0\src.pdb
-D:\Users\hp\Desktop\fixes\Semester-Game\src\obj\Debug\net7.0\src.genruntimeconfig.cache
-D:\Users\hp\Desktop\fixes\Semester-Game\src\obj\Debug\net7.0\ref\src.dll
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.exe
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.deps.json
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.runtimeconfig.json
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.dll
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.pdb
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.AssemblyInfoInputs.cache
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.AssemblyInfo.cs
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.csproj.CoreCompileInputs.cache
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.sourcelink.json
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.dll
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\refint\src.dll
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.pdb
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.genruntimeconfig.cache
-C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\ref\src.dll
+C:/Users/kubun/SemesterProjectGame/src/bin/Debug/net7.0/src.exe
+C:/Users/kubun/SemesterProjectGame/src/bin/Debug/net7.0/src.deps.json
+C:/Users/kubun/SemesterProjectGame/src/bin/Debug/net7.0/src.runtimeconfig.json
+C:/Users/kubun/SemesterProjectGame/src/bin/Debug/net7.0/src.dll
+C:/Users/kubun/SemesterProjectGame/src/bin/Debug/net7.0/src.pdb
+C:/Users/kubun/SemesterProjectGame/src/obj/Debug/net7.0/src.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/kubun/SemesterProjectGame/src/obj/Debug/net7.0/src.AssemblyInfoInputs.cache
+C:/Users/kubun/SemesterProjectGame/src/obj/Debug/net7.0/src.AssemblyInfo.cs
+C:/Users/kubun/SemesterProjectGame/src/obj/Debug/net7.0/src.csproj.CoreCompileInputs.cache
+C:/Users/kubun/SemesterProjectGame/src/obj/Debug/net7.0/src.dll
+C:/Users/kubun/SemesterProjectGame/src/obj/Debug/net7.0/refint/src.dll
+C:/Users/kubun/SemesterProjectGame/src/obj/Debug/net7.0/src.pdb
+C:/Users/kubun/SemesterProjectGame/src/obj/Debug/net7.0/src.genruntimeconfig.cache
+C:/Users/kubun/SemesterProjectGame/src/obj/Debug/net7.0/ref/src.dll
+A:/uni/VS/Semester-Game-master/src/obj/Debug/net7.0/src.GeneratedMSBuildEditorConfig.editorconfig
+A:/uni/VS/Semester-Game-master/src/obj/Debug/net7.0/src.AssemblyInfoInputs.cache
+A:/uni/VS/Semester-Game-master/src/obj/Debug/net7.0/src.AssemblyInfo.cs
+A:/uni/VS/Semester-Game-master/src/obj/Debug/net7.0/src.csproj.CoreCompileInputs.cache
+A:/uni/VS/Semester-Game-master/src/obj/Debug/net7.0/src.dll
+A:/uni/VS/Semester-Game-master/src/obj/Debug/net7.0/refint/src.dll
+A:/uni/VS/Semester-Game-master/src/obj/Debug/net7.0/src.pdb
+A:/uni/VS/Semester-Game-master/src/bin/Debug/net7.0/src.exe
+A:/uni/VS/Semester-Game-master/src/bin/Debug/net7.0/src.deps.json
+A:/uni/VS/Semester-Game-master/src/bin/Debug/net7.0/src.runtimeconfig.json
+A:/uni/VS/Semester-Game-master/src/bin/Debug/net7.0/src.dll
+A:/uni/VS/Semester-Game-master/src/bin/Debug/net7.0/src.pdb
+A:/uni/VS/Semester-Game-master/src/obj/Debug/net7.0/src.genruntimeconfig.cache
+A:/uni/VS/Semester-Game-master/src/obj/Debug/net7.0/ref/src.dll
+D:/Users/hp/Desktop/fixes/Semester-Game/src/bin/Debug/net7.0/src.exe
+D:/Users/hp/Desktop/fixes/Semester-Game/src/bin/Debug/net7.0/src.deps.json
+D:/Users/hp/Desktop/fixes/Semester-Game/src/bin/Debug/net7.0/src.runtimeconfig.json
+D:/Users/hp/Desktop/fixes/Semester-Game/src/bin/Debug/net7.0/src.dll
+D:/Users/hp/Desktop/fixes/Semester-Game/src/bin/Debug/net7.0/src.pdb
+D:/Users/hp/Desktop/fixes/Semester-Game/src/obj/Debug/net7.0/src.GeneratedMSBuildEditorConfig.editorconfig
+D:/Users/hp/Desktop/fixes/Semester-Game/src/obj/Debug/net7.0/src.AssemblyInfoInputs.cache
+D:/Users/hp/Desktop/fixes/Semester-Game/src/obj/Debug/net7.0/src.AssemblyInfo.cs
+D:/Users/hp/Desktop/fixes/Semester-Game/src/obj/Debug/net7.0/src.csproj.CoreCompileInputs.cache
+D:/Users/hp/Desktop/fixes/Semester-Game/src/obj/Debug/net7.0/src.dll
+D:/Users/hp/Desktop/fixes/Semester-Game/src/obj/Debug/net7.0/refint/src.dll
+D:/Users/hp/Desktop/fixes/Semester-Game/src/obj/Debug/net7.0/src.pdb
+D:/Users/hp/Desktop/fixes/Semester-Game/src/obj/Debug/net7.0/src.genruntimeconfig.cache
+D:/Users/hp/Desktop/fixes/Semester-Game/src/obj/Debug/net7.0/ref/src.dll
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/bin/Debug/net7.0/src.exe
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/bin/Debug/net7.0/src.deps.json
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/bin/Debug/net7.0/src.runtimeconfig.json
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/bin/Debug/net7.0/src.dll
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/bin/Debug/net7.0/src.pdb
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/src.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/src.AssemblyInfoInputs.cache
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/src.AssemblyInfo.cs
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/src.csproj.CoreCompileInputs.cache
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/src.sourcelink.json
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/src.dll
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/refint/src.dll
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/src.pdb
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/src.genruntimeconfig.cache
+C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/ref/src.dll
+/Users/leventesohar/semester project/final project/Semester-Game/src/bin/Debug/net7.0/src
+/Users/leventesohar/semester project/final project/Semester-Game/src/bin/Debug/net7.0/src.deps.json
+/Users/leventesohar/semester project/final project/Semester-Game/src/bin/Debug/net7.0/src.runtimeconfig.json
+/Users/leventesohar/semester project/final project/Semester-Game/src/bin/Debug/net7.0/src.dll
+/Users/leventesohar/semester project/final project/Semester-Game/src/bin/Debug/net7.0/src.pdb
+/Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/src.GeneratedMSBuildEditorConfig.editorconfig
+/Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/src.AssemblyInfoInputs.cache
+/Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/src.AssemblyInfo.cs
+/Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/src.csproj.CoreCompileInputs.cache
+/Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/src.dll
+/Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/refint/src.dll
+/Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/src.pdb
+/Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/src.genruntimeconfig.cache
+/Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/ref/src.dll

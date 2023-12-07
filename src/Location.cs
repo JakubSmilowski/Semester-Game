@@ -58,6 +58,10 @@ namespace foodman
 
                         break;
 
+                    
+
+                        
+
                     case 2:
                         Player.MakeAction();
                         Program.House();

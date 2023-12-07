@@ -6,7 +6,7 @@ namespace foodman
         static string? nameRun = "";
         static string townName = "NAME LATER PLS";
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             //the game functions through this file. This is the file you need to open to launch the game
             //this file keeps track of the progression and invokes the methods from other files
