@@ -38,7 +38,7 @@
         };
 
         static string[] abc = { "A", "B", "C", "D", "E", "F" };
-        static string? playerCommand = "";
+        static char playerCommand;
 
         static void DrawText()
         {
@@ -49,7 +49,7 @@
             Console.WriteLine("[W]Up [A]Left [S]Down [D]Right [Help] [Rest]");
             Console.WriteLine("Type 'help' for more information.");
             Console.Write("Enter your command... ");
-            playerCommand = Console.ReadLine()?.ToLower();
+            playerCommand = Console.ReadKey().KeyChar;
             ReadPlayerInput();
         }
 
@@ -78,10 +78,11 @@
         static void ReadPlayerInput()
         {
             //If the player asks for help with commands and meaning of symbols
-            if ( playerCommand == "help" || playerCommand == "h")
+            if ( playerCommand == 'h')
             {
                 HelpPlayer();
-            } else if (playerCommand == "rest")
+            } 
+            else if (playerCommand == 'r')
             {
                 RestOutside();
             }
@@ -92,47 +93,28 @@
             map[yPos - 1][xPos - 1] = " ";
             switch (playerCommand)
             {
-                case "w":
-                case "u":
-                case "up":
-                case "north":
-                case "n":
+                case 'w':
                     if (yPos > 1)
                     {
                         yPos -= 1;
-                        Player.MakeAction();
                     }
                     break;
-                case "a":
-                case "l":
-                case "left":
-                case "west":
-                //case "w":
+                case 'a':
                     if (xPos > 1)
                     {
                         xPos -= 1;
-                        Player.MakeAction();
                     }
                     break;
-                case "s":
-                case "b":
-                case "back":
-                case "south":
+                case 's':
                     if (yPos < 6)
                     {
                         yPos += 1;
-                        Player.MakeAction();
                     }
                     break;
-                case "d":
-                case "r":
-                case "right":
-                case "east":
-                case "e":
+                case 'd':
                     if (xPos < 9)
                     {
                         xPos += 1;
-                        Player.MakeAction();
                     }
                     break;
             }
@@ -247,7 +229,7 @@
                 case "player":
                     Console.WriteLine("You can move in the four cardinal directions to explore different parts of the map by typing w/a/s/d or north/west/south/east. Each move costs 1 action point (AP), including talking and accepting quests/quizes. When you rest in the warehouse, you regain all your AP. When you rest outside, you regain half of AP.");
                     Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     HelpPlayer();
                     break;
                 case "w":
@@ -255,7 +237,7 @@
                 case "ware":
                     Console.WriteLine($"{Player.name}'s warehouse. Here you can check upgrade, your inventory, rest, complete quizes and see your progress.");
                     Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     HelpPlayer();
                     break;
                 case "g":
@@ -266,7 +248,7 @@
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     HelpPlayer();
                     break;
                 case "r":
@@ -276,7 +258,7 @@
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     HelpPlayer();
                     break;
                 case "h":
@@ -287,7 +269,7 @@
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     HelpPlayer();
                     break;
                 case "f":
@@ -298,7 +280,7 @@
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     HelpPlayer();
                     break;
                 case "j":
@@ -309,7 +291,7 @@
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     HelpPlayer();
                     break;
                     /*
@@ -325,7 +307,7 @@
         static void RestOutside()
         {
             Console.WriteLine("You are resting");
-            Console.WriteLine($"skiping to day {(Player.turn + 1)}");
+            Console.WriteLine($"skiping to day {Player.turn + 1}");
             Player.NextTurn();
             Player.RestoreHalf();
             Console.WriteLine("[Any Key] to continue...");
