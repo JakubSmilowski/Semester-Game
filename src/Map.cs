@@ -138,6 +138,12 @@
             }
             IfOnLocation();
             OpenMap();
+            } else
+            {
+                Console.WriteLine("You ran out of action points! You can rest outside to regain half of them.");
+                Console.WriteLine("[Any Key] to continue...");
+                Console.ReadLine();
+                OpenMap();
             }
 
         }
