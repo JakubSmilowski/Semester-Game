@@ -55,14 +55,11 @@ namespace foodman
                         if(Program.score == 3)
                             quizComp[0] = true;
                         break;
-<<<<<<< HEAD
 
                     
 
                         
 
-=======
->>>>>>> 7a975582d2392192cfbc93d95a25bce284198b7c
                     case 2:
                         Player.MakeAction();
                         Program.House();

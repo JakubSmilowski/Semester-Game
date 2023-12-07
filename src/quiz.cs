@@ -16,7 +16,6 @@ namespace foodman
         public static void RestarauntQuizz()
         {
             // here we can modify the questions later
-<<<<<<< HEAD
             string[] Questions = {"1. On average, what percentage of food purchased by restaurants ends up as food waste?: ", 
                                   "2. How can a restaurant effectively minimize food waste in its kitchen?: ", 
                                   "3. Why is it important for restaurants to track and analyze their food waste?: "};
@@ -25,18 +24,13 @@ namespace foodman
                 "A: 10%\tB: 25%\tC: 40%",
                 "A: Implementing a pre-packaged menu to control portions\tB:  Donating surplus food to local charities\tC: Increasing portion sizes to meet customer expectations",
                 "A: To boast about sustainable practices\tB: To identify areas for improvement and reduce costs\tC: To create an illusion of scarcity and increase demand"
-=======
            
->>>>>>> 7a975582d2392192cfbc93d95a25bce284198b7c
             };
 
             //correct answers
-<<<<<<< HEAD
             string[] CorrectAnswers = {"C", "B", "B"};  //the only correct answer is the options in front of the answer so A or B or C
-=======
              //the only correct answer is the options in front of the answer so A or B or C
 
->>>>>>> 7a975582d2392192cfbc93d95a25bce284198b7c
 
             int score = 0;
 
