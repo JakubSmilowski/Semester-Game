@@ -1,5 +1,6 @@
 using System.Collections;
 using System.ComponentModel;
+using System.Security;
 using foodman;
 
 namespace WorldOfZuul { }
@@ -56,14 +57,23 @@ class Quest
         if (read == "a")
         {
             Console.WriteLine("Manager: We usually trow the misformed food out, but you can buy it if you want.");
-            Console.WriteLine("[A] Buy the food [Any Key] Leave the Factory");
+            Console.WriteLine("[A] Buy the food (30$) [Any Key] Leave the Factory");
             read = Console.ReadLine()?.ToLower();
             Player.MakeAction();
             if (read == "a")
             {
-                Location.progress[3] += 1;
-                //subtract money
-                //add good food to inventory
+                if(Player.money >= 30)
+                {
+                    Player.SubstractMoney(30);
+                    System.Console.WriteLine("Good job!");
+                    Items.FoodDeformed.AddRandomAmount(1, 10);
+                    questReward(80, 30);
+                    Location.progress[3] += 1;
+                }
+                else
+                {
+                    System.Console.WriteLine("Not enough money!");
+                }
             }
             else
             {
@@ -77,27 +87,36 @@ class Quest
     }
     public static void Factory3()
     {
-        Console.WriteLine("You visit the factory ones again, but this time with a sugestion to the maniger to manage the food waste");
-        Console.WriteLine("[A] Go to the manigers office [Any Key] He probably won't find it interesting");
+        Console.WriteLine("You visit the factory ones again, but this time with a sugestion to the manager to manage the food waste");
+        Console.WriteLine("[A] Go to the managers office [Any Key] He probably won't find it interesting");
         string? read = Console.ReadLine()?.ToLower();
         if (read == "a")
         {
             Console.WriteLine(Player.name + ": I have an offer for you.");
             Console.WriteLine("Manager: I'm listening, tell me your offer");
-            Console.WriteLine(Player.name + ": I will instal beater machenes in your factory, which will reduce waste, but you will need to give me a cut of what you saved with these machenes.");
+            Console.WriteLine(Player.name + ": I will install better machenes in your factory, which will reduce waste, but you will need to give me a cut of what you saved with these machines.");
             Console.WriteLine("Manager: Sure, why not");
-            Console.WriteLine("[A] Buy the machenes (HERE WRITE THE AMOUNT THEY WILL COST) [Any Key] On other thoughts its not worth it");
+            Console.WriteLine("[A] Buy the machines (500$) [Any Key] On other thoughts its not worth it");
             read = Console.ReadLine()?.ToLower();
             Player.MakeAction();
             if (read == "a" && Player.IsActionPossible())
             {
-                Location.progress[3] += 1;
-                //subtract money
-                //make player get money every new day
+                if(Player.money >= 500)
+                {
+                    Player.SubstractMoney(500);
+                    System.Console.WriteLine("Good job!");
+                    
+                    questReward(120, 50);
+                    Location.progress[3] += 1;
+                }
+                else
+                {
+                    System.Console.WriteLine("Not enough money!");
+                }
             }
             else
             {
-                Console.WriteLine("You decided to ignore the benefits and save your money");
+                Console.WriteLine("You decided to ignore the benefits and save your money.");
             }
         }
         else
@@ -121,6 +140,7 @@ class Quest
                     Items.FoodExpired.AddRandomAmount(1, 10);
                     Items.FoodExpired.Display();
                     Location.progress[0]++;
+                    questReward(80, 30);
                     PressToExit("Grocery Store", 0);
                 }
                 else
@@ -139,6 +159,7 @@ class Quest
                 {
                     Console.WriteLine("You take the food. Now you can either eat it or sell it for 1/4 of its original price");
                     Location.progress[0]++;
+                    questReward(120, 50);
                     PressToExit("Grocery Store", 0);
                 }
                 else
@@ -184,6 +205,7 @@ class Quest
                         Console.WriteLine("Poor inventory control can result in overordering and excess stock, leading to items expiring or going to waste.");
                         Console.WriteLine("Regular changes in the menu can lead to excess inventory of ingredients that are no longer needed, especially if suppliers require large minimum orders.");
                         Location.progress[1]++;
+                        questReward(80, 30);
                     }
                     PressToExit("Restaurant", 1);
                 }
@@ -205,6 +227,7 @@ class Quest
                     Console.WriteLine("To your surprise, they agree with you. After they finish your order, you can see that they give something to the homeless person.");
                     Console.WriteLine("You can rest easy knowing that from now on, not only do their issue with leftovers is smaller, but the peopel in need revieve more food");
                     Location.progress[1]++;
+                    questReward(120, 50);
                     PressToExit("Restaurant", 1);
                 }
                 else
@@ -228,6 +251,7 @@ class Quest
                 Console.WriteLine("The government invites its citizens to sort the trash into food, paper, plastic, metal and other, but some people think that sorting is too hard for them.");
                 Console.WriteLine("Robert the Robot's powerful gaze forces you to sort the trash, even if you didn't want to.");
                 Location.progress[2]++;
+                questReward(80, 30);
                 PressToExit("House", 2);
                 break;
             case 1:
@@ -245,6 +269,7 @@ class Quest
                     {
                         Console.WriteLine("You throw out the trash while Robert the Robot donates the excess food to people in need");
                         Location.progress[2]++;
+                        questReward(120, 50);
                         PressToExit("House", 2);
                     }
                     else
@@ -273,5 +298,12 @@ class Quest
             PressToExit(location, locId);
         Console.Clear();
         Location.EnterRoom(location, locId);
+    }
+
+    public static void questReward(int xp, int money)
+    {
+        System.Console.WriteLine($"Quest is completed. You received {money}$ and {xp} xp.");
+        Player.AddAndCheckXp(xp);
+        Player.AddMoney(money);
     }
 }

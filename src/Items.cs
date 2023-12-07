@@ -12,11 +12,15 @@ namespace foodman
         public static Item Snacks = new
         ("Snacks", "The tasty treats you bought at the store", 10);
 
+        public static Item FoodDeformed = new
+        ("Food from the factory", "Edible food from the factory. Apart from the visual deformation, it's perfectly safe to eat!", 20);
+
 
         private static List<Item> itemList = new List<Item>()
         {
             FoodExpired,
-            Snacks
+            Snacks,
+            FoodDeformed
         };
         
         public static void OpenInventory()

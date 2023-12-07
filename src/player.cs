@@ -17,7 +17,8 @@ namespace foodman
         private static double xpRequired { get; set; } = 100;
         public static int levelPoints { get; private set; } = 0;
 
-        private static double money { get; set; } = 100;
+        public static double money { get; set; } = 100;
+        private static bool isMachineBought = false;
         public static int maxActionPoints { get; private set; } = 12;
         public static int maxInventoryCapacity { get; private set; } = 5;
         public static double moneyMultiplier { get; private set; } = 1;
@@ -80,6 +81,12 @@ namespace foodman
             if (currentDate.Day == 1)
             {
                 currentDate = currentDate.AddMonths(1);
+            }
+
+            if(isMachineBought) 
+            {
+                AddMoney(60);
+                System.Console.WriteLine("You received 60$ from the machine.");
             }
 
             return currentDate;
