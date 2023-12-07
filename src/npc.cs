@@ -80,4 +80,24 @@ class NPC
                 Console.WriteLine("Manager: Hi, I wanted to thank you for making our factory more eco-friendly, and in turn more profitable!");
             }
         }
+
+    public static void HouseholdRobot()
+    {
+        Console.WriteLine("└|*-*|┘ - 'Hi! My name's Robert the Robot and I arrive from future, when I am your typical Eco-Friendly Robot assisting with everyday tasks.'\n");
+        Console.WriteLine("└|*-*|┘ - 'People of future are rarely needing my help as years of education throughout the FOODMAN have resulted in eco-aware society, that just knows how to waste less food.'");
+        Console.WriteLine("└|*-*|┘ - 'Even though I love humans of my times, I'd lie saying that I don't miss when they were less educated and needed my assistance more. That's why after consulting with them they've decided to try sending me back in time, so I could educate people of the past.'");
+        Console.WriteLine("└|*-*|┘ - 'I think they did succeed right? Could you please tell me what year are we in?'");
+        Console.Write($"{Player.name} - 'I think it is...");
+        string? currentYear = "";
+        currentYear = Console.ReadLine();
+        Console.WriteLine($"└|*-*|┘ - '{currentYear}?!?'");
+        Console.WriteLine("└|*-*|┘ - 'That is crazy!'\n");
+        Console.WriteLine("└|*-*|┘ - 'So it did work after all... Amazing! By the way excuse my poor manners, your name is " + Player.name + " right?'");
+        Console.ReadLine();
+        Console.WriteLine($"└|*-*|┘ - 'You look like a {Player.name}.'");
+        Console.WriteLine("[Any Key] to continue..");
+        Console.ReadLine();
+        Console.Clear();
+        }
+    }
 }

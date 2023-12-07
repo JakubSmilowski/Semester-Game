@@ -218,6 +218,48 @@ class Quest
         }
     }
 
+    public static void House(int progress)
+    {
+        switch(progress)
+        {
+            case 0:
+                Console.WriteLine("You look into the trash can and see that whoever lives here doesn't sort their trash.");
+                Console.WriteLine("The government invites its citizens to sort the trash into food, paper, plastic, metal and other, but some people think that sorting is too hard for them.");
+                Console.WriteLine("Robert the Robot's powerful gaze forces you to sort the trash, even if you didn't want to.");
+                Location.progress[2]++;
+                PressToExit("House", 2);
+                break;
+            case 1:
+                Console.WriteLine("└|*-*|┘ - 'There is far too much food in the fridge. Some of it has even started to go bad.'");
+                Console.WriteLine("[A] No one could eat this much [Any Key] That's not our problem");
+                string? read = Console.ReadLine()?.ToLower();
+                if (read == "a")
+                {
+                    Console.WriteLine("└|*-*|┘ - 'I agree. Let's help them and throw out the moldy food, and donate the food that they don't need'");
+                    Console.WriteLine($"{Player.name} - Just don't forget to sort the trash");
+                    Console.WriteLine("└|*-*|┘ - 'Okay! Thank you for reminding me.'");
+                    Console.WriteLine("[A] Donate the food [Any Key] Just put it in a freezer");
+                    read = Console.ReadLine()?.ToLower();
+                    if (read == "a")
+                    {
+                        Console.WriteLine("You throw out the trash while Robert the Robot donates the excess food to people in need");
+                        Location.progress[2]++;
+                        PressToExit("House", 2);
+                    } else
+                    {
+                        Console.WriteLine("└|*-*|┘ - 'Oh... I guess that's also an option.");
+                        PressToExit("House", 2);
+                    }
+                } else
+                {
+                    Console.WriteLine("└|*-*|┘ - 'I guess you are correct. We have no right to decide what to do with other people's food.'");
+                    Console.WriteLine($"{Player.name} - 'It's not our busines, true. Goodbye, Robert'");
+                    PressToExit("House", 2);
+                }
+                break;
+        }
+    }
+
     public static void PressToExit(string location, int locId)
     {
         Console.WriteLine("=========================================");
