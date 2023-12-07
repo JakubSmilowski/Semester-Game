@@ -60,7 +60,7 @@ namespace foodman
 
                 string? userInput = Console.ReadLine();
 
-                switch (userInput.ToLower())
+                switch (userInput?.ToLower())
                 {
                     case "o":
                         //Here player will be able to sell food waste for money
@@ -74,7 +74,7 @@ namespace foodman
                         break;
                     case "d":
                         //Open quiz
-                        Program.JunkyardQuizz();
+                        JunkyardStartQuizz();
                         ContinueMessage();
                         break;
                     case "t":
@@ -136,6 +136,18 @@ namespace foodman
             else
             {
                 Quest.JunkyardQest();
+            }
+        }
+        //Starts the quizz, and decide wich one to display.
+        private static void JunkyardStartQuizz()
+        {
+            if (Location.progress[4] == 0)
+            {
+                Program.JunkyardQuizz();
+            }
+            else
+            {
+                //Program.JunkyardQuizz1();
             }
         }
 

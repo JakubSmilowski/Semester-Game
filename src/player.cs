@@ -107,6 +107,11 @@ namespace foodman
         {
             actionPoints = maxActionPoints;
         }
+
+        public static void RestoreHalf()
+        {
+            actionPoints = maxActionPoints/2;
+        }
         //Levles up the player. For each lvel player gains 2 level points.
         public static void LevelUp()
         {

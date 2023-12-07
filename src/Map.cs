@@ -46,7 +46,7 @@
             Console.WriteLine($"Today is  {Player.currentlyDate.ToShortDateString()}");
             Console.WriteLine($"You have {Player.actionPoints} action points left");
             GameRuntime.LineSep();
-            Console.WriteLine("[W]Up [A]Left [S]Down [D]Right");
+            Console.WriteLine("[W]Up [A]Left [S]Down [D]Right [Help] [Rest]");
             Console.WriteLine("Type 'help' for more information.");
             Console.Write("Enter your command... ");
             playerCommand = Console.ReadLine()?.ToLower();
@@ -81,6 +81,9 @@
             if ( playerCommand == "help" || playerCommand == "h")
             {
                 HelpPlayer();
+            } else if (playerCommand == "rest")
+            {
+                RestOutside();
             }
 
             //player movement
@@ -135,6 +138,12 @@
             }
             IfOnLocation();
             OpenMap();
+            } else
+            {
+                Console.WriteLine("You ran out of action points! You can rest outside to regain half of them.");
+                Console.WriteLine("[Any Key] to continue...");
+                Console.ReadLine();
+                OpenMap();
             }
 
         }
@@ -148,14 +157,14 @@
                 Console.Clear();
                 Base.EnterBase();
             }
-            else if (xPos == gxPos && yPos == gyPos)//don't forget to add a level check. //No need, Grocery store is available at lvl 1
+            else if (xPos == gxPos && yPos == gyPos)
             {
                 //enter grocery store
                 yPos += 1;
                 Console.Clear();
                 Location.EnterRoom("Grocery Store", 0);
             }
-            else if (xPos == rxPos && yPos == ryPos)//here too
+            else if (xPos == rxPos && yPos == ryPos)//don't forget to add a level check
             {
                 yPos -= 1;
                 Console.Clear();
@@ -230,7 +239,8 @@
             Console.Clear();
             Console.WriteLine($"8 - {Player.name}, W - Warehouse, G - Grocery Store, R - Restaraunt, H - House, F - Factory, J - Junkyard, C - Recycling Centre");
             Console.WriteLine("Type the name of object for more specific help");
-            string a = Console.ReadLine().ToLower();
+            Console.WriteLine("[Any Key] To exit");
+            string? a = Console.ReadLine()?.ToLower();
             switch (a)
             {
                 case "8":
@@ -312,5 +322,14 @@
             }
         }
 
+        static void RestOutside()
+        {
+            Console.WriteLine("You are resting");
+            Console.WriteLine($"skiping to day {(Player.turn + 1)}");
+            Player.NextTurn();
+            Player.RestoreHalf();
+            Console.WriteLine("[Any Key] to continue...");
+            Console.ReadLine();
+        }
     }
 }

@@ -157,6 +157,109 @@ class Quest
         
     }
 
+    public static void Restaurant(int progress)
+    {
+        switch (progress)
+        {
+            case 0:
+                Console.WriteLine("You notice that an employee is taking out an unreasonably large amount of trash. Why could he be doing that?");
+                Console.WriteLine("[A] Talk with the employee [Any Key] Ignore the situation");
+                string? read = Console.ReadLine()?.ToLower();
+                if (read == "a")
+                {
+                    Console.WriteLine("Employee: 'Oh, this? We actually ordered Way too much food, but now most of it has gone bad.'");
+                    Console.WriteLine($"{Player.name}: 'Why would he order so much food if you won't ever use it?'");
+                    Console.WriteLine("Employee: 'I guess it's because last month we had a boom of customers, but now there's not as many.'");
+                    Console.WriteLine($"{Player.name}: 'So an issue with inventory management and menu planning caused this waste?'");
+                    Console.WriteLine("Employee: 'I guess. Well, I have to go back to work. You can talk to my boss about your proposal if you want'");
+
+                    Console.WriteLine("[A] Go talk with the boss [Any Key] Ignore it");
+                    read = Console.ReadLine()?.ToLower();
+                    if (read == "a")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("You have a long talk with the boos. You educate him on the issues of Overproduction, Excess Inventory and Menu Planning.");
+                        Console.WriteLine("Cooking or preparing more food than needed can lead to significant waste if not all of it is sold or consumed.");
+                        Console.WriteLine("Poor inventory control can result in overordering and excess stock, leading to items expiring or going to waste.");
+                        Console.WriteLine("Regular changes in the menu can lead to excess inventory of ingredients that are no longer needed, especially if suppliers require large minimum orders.");
+                        Location.progress[1]++;
+                    }
+                    PressToExit("Restaurant", 1);
+                }
+                else
+                {
+                    Console.WriteLine("You ignore the clear issue and decide to leave.");
+                    PressToExit("Restaurant", 1);
+                }
+                break;
+            case 1:
+                Console.WriteLine("Something outside catches your eye. It is a homeless person that stays outside the establishment, begging for food.");
+                Console.WriteLine("You sit inside and order some food. While waiting for it, you look into the open kitchen.");
+                Console.WriteLine("The cooks actually throw out some parts of the food that they don't need in the order");
+                Console.WriteLine("[A] Ask them to give leftovers to charities [Any Key] Forget about it");
+                read = Console.ReadLine()?.ToLower();
+                if (read == "a")
+                {
+                    Console.WriteLine("You ask the workers to not throw out small pieces of food and instead to give them to people in need, liek the one outside.");
+                    Console.WriteLine("To your surprise, they agree with you. After they finish your order, you can see that they give something to the homeless person.");
+                    Console.WriteLine("You can rest easy knowing that from now on, not only do their issue with leftovers is smaller, but the peopel in need revieve more food");
+                    Location.progress[1]++;
+                    PressToExit("Restaurant", 1);
+                }
+                else
+                {
+                    Console.WriteLine("You ignore the homeless person and the issue with the leftovers. Deciding to not interfere is better, right?");
+                    PressToExit("Restaurant", 1);
+                }
+                break;
+            default:
+                Console.WriteLine("There is nothing left for you to do here...");
+                break;
+        }
+    }
+
+    public static void House(int progress)
+    {
+        switch(progress)
+        {
+            case 0:
+                Console.WriteLine("You look into the trash can and see that whoever lives here doesn't sort their trash.");
+                Console.WriteLine("The government invites its citizens to sort the trash into food, paper, plastic, metal and other, but some people think that sorting is too hard for them.");
+                Console.WriteLine("Robert the Robot's powerful gaze forces you to sort the trash, even if you didn't want to.");
+                Location.progress[2]++;
+                PressToExit("House", 2);
+                break;
+            case 1:
+                Console.WriteLine("└|*-*|┘ - 'There is far too much food in the fridge. Some of it has even started to go bad.'");
+                Console.WriteLine("[A] No one could eat this much [Any Key] That's not our problem");
+                string? read = Console.ReadLine()?.ToLower();
+                if (read == "a")
+                {
+                    Console.WriteLine("└|*-*|┘ - 'I agree. Let's help them and throw out the moldy food, and donate the food that they don't need'");
+                    Console.WriteLine($"{Player.name} - Just don't forget to sort the trash");
+                    Console.WriteLine("└|*-*|┘ - 'Okay! Thank you for reminding me.'");
+                    Console.WriteLine("[A] Donate the food [Any Key] Just put it in a freezer");
+                    read = Console.ReadLine()?.ToLower();
+                    if (read == "a")
+                    {
+                        Console.WriteLine("You throw out the trash while Robert the Robot donates the excess food to people in need");
+                        Location.progress[2]++;
+                        PressToExit("House", 2);
+                    } else
+                    {
+                        Console.WriteLine("└|*-*|┘ - 'Oh... I guess that's also an option.");
+                        PressToExit("House", 2);
+                    }
+                } else
+                {
+                    Console.WriteLine("└|*-*|┘ - 'I guess you are correct. We have no right to decide what to do with other people's food.'");
+                    Console.WriteLine($"{Player.name} - 'It's not our busines, true. Goodbye, Robert'");
+                    PressToExit("House", 2);
+                }
+                break;
+        }
+    }
+
     public static void PressToExit(string location, int locId)
     {
         Console.WriteLine("=========================================");
