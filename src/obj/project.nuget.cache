@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "HqTrqp+8nH7LcVY6+4RlvbN2jnpbjZhLFb7Jl7NUs3MKjx7K0WmIUxSzmVTimA+XjCC0jNMJt0Q0t6w1YCwcdQ==",
+  "dgSpecHash": "SNUI2XC6PhXkm2ofe/BymEQIFIIgmsvaFp9GMJtfOtOlzEQpeI36K+farC7hMtr3naWUj9bE3gjwRTwXPRh1OQ==",
   "success": true,
-  "projectFilePath": "/Users/leventesohar/semester project/final project/Semester-Game/src/src.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\kubun\\OneDrive\\Documents\\Semester-Game\\src\\src.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kubun\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\kubun\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\kubun\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\kubun\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
+  ],
   "logs": []
 }

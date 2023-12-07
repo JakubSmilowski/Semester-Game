@@ -69,3 +69,18 @@ C:/Users/kubun/OneDrive/Documents/Semester-Game/src/obj/Debug/net7.0/ref/src.dll
 /Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/src.pdb
 /Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/src.genruntimeconfig.cache
 /Users/leventesohar/semester project/final project/Semester-Game/src/obj/Debug/net7.0/ref/src.dll
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.exe
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.deps.json
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.runtimeconfig.json
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.dll
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\bin\Debug\net7.0\src.pdb
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.AssemblyInfoInputs.cache
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.AssemblyInfo.cs
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.csproj.CoreCompileInputs.cache
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.sourcelink.json
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.dll
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\refint\src.dll
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.pdb
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\src.genruntimeconfig.cache
+C:\Users\kubun\OneDrive\Documents\Semester-Game\src\obj\Debug\net7.0\ref\src.dll

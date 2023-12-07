@@ -147,7 +147,7 @@ namespace foodman
             }
             else
             {
-                //Program.JunkyardQuizz1();
+                Program.JunkyardQuizz1();
             }
         }
 

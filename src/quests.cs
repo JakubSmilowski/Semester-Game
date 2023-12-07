@@ -153,7 +153,8 @@ class Quest
         }
     }
 
-    public static void JunkyardQest(){
+    public static void JunkyardQest()
+    {
         
     }
 
@@ -220,7 +221,7 @@ class Quest
 
     public static void House(int progress)
     {
-        switch(progress)
+        switch (progress)
         {
             case 0:
                 Console.WriteLine("You look into the trash can and see that whoever lives here doesn't sort their trash.");
@@ -245,12 +246,14 @@ class Quest
                         Console.WriteLine("You throw out the trash while Robert the Robot donates the excess food to people in need");
                         Location.progress[2]++;
                         PressToExit("House", 2);
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("└|*-*|┘ - 'Oh... I guess that's also an option.");
                         PressToExit("House", 2);
                     }
-                } else
+                }
+                else
                 {
                     Console.WriteLine("└|*-*|┘ - 'I guess you are correct. We have no right to decide what to do with other people's food.'");
                     Console.WriteLine($"{Player.name} - 'It's not our busines, true. Goodbye, Robert'");

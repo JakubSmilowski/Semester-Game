@@ -27,6 +27,9 @@ namespace foodman
         private static int greenPointsNeededToWin { get; set; } = 22;
         public static int greenPoints { get; private set; } = 0;
 
+        public static double allTheMoneyEarned { get; private set; } = 0;
+        public static double allTheXpEarned { get; private set; } = 0;
+
         // Player constructor
         public Player(string name, int actionPoints, int money, int endOfTheGame, int greenPointsNeededToWin)
         {
@@ -110,7 +113,7 @@ namespace foodman
 
         public static void RestoreHalf()
         {
-            actionPoints = maxActionPoints/2;
+            actionPoints = maxActionPoints / 2;
         }
         //Levles up the player. For each lvel player gains 2 level points.
         public static void LevelUp()
@@ -135,6 +138,7 @@ namespace foodman
         {
             xpGained = CalculateXp(xpGained);
             xp += xpGained;
+            allTheXpEarned += xpGained;
             while (xp >= xpRequired)
             {
                 LevelUp();
@@ -150,6 +154,7 @@ namespace foodman
         {
             value = CalculateMoney(value);
             money += value;
+            allTheMoneyEarned += value;
         }
 
         public static void SubstractMoney(int moneyValue)
@@ -299,14 +304,29 @@ namespace foodman
         }
 
         //Messege displayed when limited time for playing comes to an end
-        private static void EndOfTheGameMessage(){
+        private static void EndOfTheGameMessage()
+        {
             Console.WriteLine("Thank you for playing FOODMAN!");
         }
-
-
-
-
-
-
+        
+        private static double calulateFinalScore()
+        {
+            double finalScore = 0;
+            foreach (bool quest in Location.quizComp){
+                if(quest == true){
+                    finalScore += 100;
+                }
+            }
+            finalScore += money*0.2;
+            finalScore += level*10;
+            finalScore += greenPoints *100;
+            finalScore = Math.Round(finalScore);
+            return finalScore;
+        } 
+        //Caled at the end of the game
+        public static void AllTheStatsAtEnd()
+        {
+            Console.WriteLine($"Your final score is {calulateFinalScore()}");
+        }
     }
 }
