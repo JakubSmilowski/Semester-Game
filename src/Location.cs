@@ -46,7 +46,6 @@ namespace foodman
             else if (answer == "d" && Player.IsActionPossible())
             {
                 //Do the quiz of the respectable location
-
                 switch (id)
                 {
                     // add quizes (id - the number of your room)
@@ -55,22 +54,18 @@ namespace foodman
                         Program.GroceryStoreQuiz();
                         if(Program.score == 3)
                             quizComp[0] = true;
-
                         break;
-
                     case 2:
                         Player.MakeAction();
                         Program.House();
                         if (Program.score == 5)
                             quizComp[2] = true;
-
                         break;
                     case 3:
                         Player.MakeAction();
                         Program.FactoryQuiz();
                         if (Program.score == 3)
                             quizComp[3] = true;
-
                         break;
                 }
                 Console.WriteLine("PLACEHOLDER FOR QUIZZES");
@@ -121,7 +116,7 @@ namespace foodman
                     break;
                 //other locations will have the same thing. Such individuality allows us to make every quest unique
                 case 2:
-                    Console.WriteLine("└|*-*|┘ - 'It appears thaat humans of this year do not care about lessening food waste.");
+                    Console.WriteLine("└|*-*|┘ - 'It appears that humans of this year do not care about lessening food waste.");
                     Console.WriteLine("└|*-*|┘ - 'Would you be interested in helping me clean up here? I... do not have the best arms.'");
                     Console.WriteLine("└|*-*|┘ - 'Say YES if you would like to try, or NO if you would rather do something else.'");
                     string? deci = Console.ReadLine()?.ToLower();
@@ -130,8 +125,8 @@ namespace foodman
                         if (Player.IsActionPossible())
                         {
                             Console.WriteLine("└|*-*|┘ - 'I AM SO EXCITED!!!!! Let's begin then.'");
-                            //Add "Player.MakeAction();" before executing the test.
-                            //Quizz();
+                            Player.MakeAction();
+                            Quest.House(progress[id]);
                             Quest.PressToExit("House", 2);
                         } else
                         {
@@ -143,7 +138,6 @@ namespace foodman
                         Console.WriteLine("└|*-*|┘ - 'Fine, no worries. In case you would change your mind, please do not hesitate to come back, I'll be waiting.'");
                         Quest.PressToExit("House", 2);
                     }
-
                     break;
 
                 case 3:
@@ -160,11 +154,7 @@ namespace foodman
                         break;
                     }
                     break;
-    
-
-
             }
         }
-
     }
 }
