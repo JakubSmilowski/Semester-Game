@@ -50,6 +50,7 @@
             Console.WriteLine("Type 'help' for more information.");
             Console.Write("Enter your command... ");
             playerCommand = Console.ReadKey().KeyChar;
+            Console.Write("\n");
             ReadPlayerInput();
         }
 
@@ -244,7 +245,7 @@
                 case "grocery store":
                 case "grocery":
                     Console.Write($"A grocery store. One of millions. Would your actions even matter on a larger scale? {(2 - Location.progress[0])} available quests, A quiz has");
-                    if (Location.quizComp[0])
+                    if (!Location.quizComp[0])
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
@@ -254,7 +255,7 @@
                 case "r":
                 case "restaraunt":
                     Console.Write($"A restaraunt. The food is good, but what really happens in their kitchen? I wonder what happens with their leftovers. {(2 - Location.progress[1])} available quests, A quiz has");
-                    if (Location.quizComp[1])
+                    if (!Location.quizComp[1])
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
@@ -265,7 +266,7 @@
                 case "house":
                 case "home":
                     Console.Write($"A home that has an unusual guest. Maybe there's something interesting you can learm there? {(2 - Location.progress[2])} available quests, A quiz has");
-                    if (Location.quizComp[2])
+                    if (!Location.quizComp[2])
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
@@ -276,7 +277,7 @@
                 case "factory":
                 case "fact":
                     Console.Write($"A small factory with a friendly and gullible manager. Something doesn't feel right about it. Maybe you can figure out what's the issue by talking to him. {(2 - Location.progress[3])} available quests, A quiz has");
-                    if (Location.quizComp[3])
+                    if (!Location.quizComp[3])
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
@@ -287,20 +288,20 @@
                 case "junkyard":
                 case "junk":
                     Console.Write($"A large, disgusting junkyard. It smells like rotting food. THere are definitely issues with it. {(2 - Location.progress[4])} available quests, A quiz has");
-                    if (Location.quizComp[4])
+                    if (!Location.quizComp[4])
                         Console.Write("n't");
                     Console.WriteLine(" been completed.");
                     Console.WriteLine("[Any Key] to go back");
                     Console.ReadKey();
                     HelpPlayer();
                     break;
-                    /*
-                case "c":
-                case "rc":
-                case "recyling centre":
-                case "centre":
-                    break;
-                    */
+                    Console.Write($"Brand new building in Foodwill. Some speculate that it uses a dark magic to turn trash into something usable, but it's just advanced engineering and sorting. {(2 - Location.progress[5])} available quests, A quiz has");
+                    if (!Location.quizComp[5])
+                        Console.Write("n't");
+                    Console.WriteLine(" been completed.");
+                    Console.WriteLine("[Any Key] to go back");
+                    Console.ReadKey();
+                    HelpPlayer();
             }
         }
 
