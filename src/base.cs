@@ -548,7 +548,7 @@ Take a deep breath, recharge your spirit, and let's continue our mission to save
         }
 
         //Quest display 
-        static void ShowProgress()
+        public static void ShowProgress()
         {
             /*  0 - Grocery Store
              *  1 - Restaraunt
