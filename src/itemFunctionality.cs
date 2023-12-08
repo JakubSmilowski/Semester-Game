@@ -28,6 +28,7 @@ namespace foodman
 {    
     public class Item
     {
+        //CHANGE THIS TO 0 ONCE SHOP TESTING IS OVER
         public int Quantity = 10;
         public string ItemName;
         public string Description = "";
