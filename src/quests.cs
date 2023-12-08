@@ -2,6 +2,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Security;
 using foodman;
+using Microsoft.VisualBasic.FileIO;
 
 namespace WorldOfZuul { }
 
@@ -174,10 +175,174 @@ class Quest
         }
     }
 
-    public static void JunkyardQest()
+    //Junkyard quest
+    public static void JunkyardQuest()
     {
-        
+        if(Player.IsActionPossible()){
+            ExecuteQuestStep("Grizzle, the dedicated Junkyard worker, approaches you with a gleam in their eye.",
+                    "Grizzle: Welcome, friend! The Junkyard has stories to tell. Ready to embark on a quest of transformation?\n");
+
+            ExecuteQuestStep("Grizzle gestures toward the sprawling Junkyard.",
+                    "Grizzle: This is where it all begins. Explore and observe; the Junkyard holds the tale of food waste.\n");
+            Console.WriteLine("Are you redy to start this journey? (Y/N)");
+            Console.Write("> ");
+
+            if (userInputValidation()){
+                Console.WriteLine("The journey begins...");       
+            }else{
+                return;
+            }
+
+            ExecuteQuestStep("As you wander, Grizzle introduces you to various Junkyard denizens and scrap collectors.",
+                    "Grizzle: These folks know the tale of every discarded item. Engage them in conversation, learn about the consequences of improper disposal, and the impact of food waste.\n");
+
+            ExecuteQuestStep("Grizzle challenges you with a quiz to test your knowledge on global food waste and its disposal.",
+                "Grizzle: Let's delve into the broader picture of food waste and its impact on the planet.\n");
+
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+
+            //Quiz of the foodwast, part of the quest.
+            Console.WriteLine("Quiz Question: What percentage of global food waste typically ends up in improperly managed locations like junkyards?");
+            Console.WriteLine("A) 5%\tB) 25%\tC) 50%\tD) 75%");
+            Console.Write("Your answer (enter A, B, C, or D): ");
+            string playerAnswer = Console.ReadLine().ToUpper();
+
+            if (playerAnswer == "D")
+            {
+                Console.WriteLine("Correct! You've earned 10 green points and 20$.");
+                Player.AddGreenPoints(10);
+                Player.AddMoney(20);
+            }
+            else
+            {
+                Console.WriteLine("Incorrect. The correct answer is D) 75%.");
+            }
+
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+
+
+            ExecuteQuestStep("Grizzle points to a designated area and hands you a sack.",
+                    "Grizzle: Time to put theory into practice. Gather recyclable items – focus on food containers, plastic, and paper. We're laying the foundation for change.\n");
+
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+            //Minigame in the quest
+            GuessTheNumberMiniGame();
+
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+
+            ExecuteQuestStep("Grizzle leads you through the process of sorting and recycling.",
+                    "Grizzle: Each item has a purpose. Watch as we turn what was once considered waste into valuable resources. It's the first step towards transforming this Junkyard.\n");
+
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+
+            ExecuteQuestStep("Grizzle reflects on the progress made and the potential for transformation.",
+                    "Grizzle: Look around. We've begun the journey from trash to treasure. Share what you've learned, and let's inspire others to contribute to a cleaner, greener future.\n");
+
+            ExecuteQuestStep("Grizzle unveils a blueprint of a Recycling Center.",
+                    "Grizzle: The time has come. With your newfound knowledge and the progress we've made, let's propose the establishment of a Recycling Center right here in the Junkyard.\n");
+            
+            //User input:
+            Console.WriteLine("Accept Recycling center blueprint Y/N");
+            Console.Write("> ");
+            if (userInputValidation()){
+                Console.WriteLine("Recycle center blueprint added to your inventory");
+                Junkyard.hasRecyclingCenterBlueprint = true;            
+            }else{
+                Console.WriteLine("You miss the chanse to get bluprint of the recycle center");
+            }
+
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+
+            Console.WriteLine("\nQuest Completed! You earned green points and made the junkyard a better place.");
+            Console.WriteLine("\nYou earn 213xp and 7$");
+            Console.WriteLine("Recycling Center Blueprint Unlocked: " + (Junkyard.hasRecyclingCenterBlueprint ? "Yes" : "No"));
+            Player.AddAndCheckXp(213);
+            Player.AddMoney(7);
+            Junkyard.QuestCompleted = true;
+        }
     }
+
+    static void GuessTheNumberMiniGame()
+    {
+        Console.WriteLine("Welcome to trash recycle symulator! Here your score in the guess the number minigame will define your efficiency.");
+        Console.WriteLine("I've picked a number between 1 and 100. Try to guess it.");
+        Console.WriteLine("Your score will indicate how much recyclable items you gathered!");
+
+        // Generate a random number between 1 and 100
+        Random random = new Random();
+        int secretNumber = random.Next(1, 101);
+
+        int numberOfTries = 0;
+        int userGuess = 0;
+        double finalScore = 0;
+
+        while (userGuess != secretNumber)
+        {
+            Console.Write("Enter your guess: ");
+            string userInput = Console.ReadLine();
+
+            // Check if the input is a valid integer
+            if (!int.TryParse(userInput, out userGuess))
+            {
+                Console.WriteLine("Please enter a valid number.");
+                continue;
+            }
+
+            numberOfTries++;
+
+            if (userGuess < secretNumber)
+            {
+                Console.WriteLine("You serch too low! Try again.");
+            }
+            else if (userGuess > secretNumber)
+            {
+                Console.WriteLine("You serch too high! Try again.");
+            }
+            else
+            {
+                finalScore = 100 / numberOfTries;
+                Math.Round(finalScore);
+                double finalGreenPoints = finalScore*0.2;
+                finalGreenPoints = Math.Round(finalGreenPoints);
+                Console.WriteLine($"Good job! You gather {finalScore} recyclable items and earn {finalGreenPoints} green points.");
+                Player.AddGreenPoints(Convert.ToInt32(finalGreenPoints));
+            }
+        }
+    }
+
+    static bool userInputValidation(){
+        string? userInput = Console.ReadLine();
+
+            do{
+
+                if(userInput != null){
+                    if(userInput.ToLower()== "y"){
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }else{
+                    Console.WriteLine("Wrong input, try again!");
+                }
+            }while(true);
+    }
+
+    static void ExecuteQuestStep(string description, string dialogue)
+    {
+        Console.Clear();
+        Console.WriteLine($"** {description} **");
+        Console.WriteLine(dialogue);
+        Console.WriteLine("Press Enter to continue...");
+        Console.ReadLine();
+    }
+    //Junkyard quest finish
 
     public static void Restaurant(int progress)
     {

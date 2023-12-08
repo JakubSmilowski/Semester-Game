@@ -101,11 +101,37 @@ class NPC
     }
 
 
-    public static void JunkyardWorker()
+    public static void JunkyardBoss()
     {
-        
+        Console.Clear();
+        Console.WriteLine("Player enters the Junkyard and approaches Johan, the Junkyard boss.");
+
+        if (Junkyard.QuestCompleted)
+        {
+            Console.Clear();
+            Console.WriteLine("Johan: Hey there! What can I do for you?");
+            Console.WriteLine("[A] Ask about transforming the Junkyard into a Recycling Center.\n Walk away. [Any Key]");
+
+            string? playerChoice = Console.ReadLine();
+
+            if (playerChoice == "a" || playerChoice == "A")
+            {
+                if (Junkyard.hasRecyclingCenterBlueprint && Player.money >= 300)
+                {
+                    Console.WriteLine("Johan: Ah, you've got the blueprint and $300. Let's make a change!");
+                    Junkyard.TransformJunkyardIntoRecycleCenter();
+                }
+                else
+                {
+                    Console.WriteLine("Johan: I'd love to do that, but I need the blueprint and $300 to make it happen.");
+                }
+            }else {
+                return;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Johan: I don't have time for that right now. Come back when you've done something noteworthy.");
+        }
     }
-
-
-
 }
