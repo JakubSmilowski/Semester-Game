@@ -266,6 +266,12 @@ namespace foodman
             }
         }
 
+        public static void MachineBought()
+        {
+            isMachineBought = true;
+            System.Console.WriteLine("Machine was succesfully purchased, from now on you will receive a daily bonus of 60$!");
+        }
+
         //Displays main stats
         public static void DisplayBasicStats()
         {
