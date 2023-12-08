@@ -48,11 +48,13 @@ namespace foodman
                                             Console.WriteLine("You have chosen the Mexican dish.\nIt costs 10 dollars.");
                                             Quest.isPurchasedFood = true;
                                             Player.money -= 10;
+                                            Console.WriteLine($"you have {Player.money} money left");
                                             break;
                                         case "3":
                                             Console.WriteLine("You have chosen the Chinese dish.\nIt costs 5 dollars.");
                                             Quest.isPurchasedFood = true;
                                             Player.money -= 5;
+                                            Console.WriteLine($"you have {Player.money} money left");
                                             break;
                                         case "4":
                                             break;
