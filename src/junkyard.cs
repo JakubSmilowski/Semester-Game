@@ -38,11 +38,11 @@ namespace foodman
             {
                 if (i == 0)
                 {
-                    Console.Write("\n|\t\t    |");
+                    Console.Write("\n|A\t\t   D|");
                 }
                 else if (i == 3)
                 {
-                    Console.Write("\n|\t\t    |");
+                    Console.Write("\n|T\t\t   O|");
                     break;
                 }
                 Console.Write("\n|\t\t    |");
