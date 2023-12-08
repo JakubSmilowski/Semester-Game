@@ -24,8 +24,8 @@ namespace foodman
         public static double moneyMultiplier { get; private set; } = 1;
         public static double xpMultiplier { get; private set; } = 1;
 
-        private static int endOfTheGame { get; set; } = 7;
-        private static int greenPointsNeededToWin { get; set; } = 22;
+        private static int endOfTheGame { get; set; } = 15;
+        private static int greenPointsNeededToWin { get; set; } = 55;
         public static int greenPoints { get; private set; } = 0;
 
         public static double allTheMoneyEarned { get; private set; } = 0;
@@ -53,17 +53,20 @@ namespace foodman
             {
                 if (greenPoints >= greenPointsNeededToWin)
                 {
+                    Console.Clear();
                     Console.WriteLine("You won! NEW HIGH SCORE!");
                     Console.WriteLine("All player stats in this game:");
                     AllTheStatsAtEnd();
                     EndOfTheGameMessage();
+                    Environment.Exit(0);
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("You run out of time to colect required green points. Good luck next time!");
                     AllTheStatsAtEnd();
                     EndOfTheGameMessage();
-                    return;
+                    Environment.Exit(0);
                 }
             }
             else
@@ -346,9 +349,9 @@ namespace foodman
             Console.WriteLine($"All the xp: {allTheXpEarned}.");
             Console.WriteLine($"All the money: {allTheMoneyEarned}.");
             Console.WriteLine("==========================================");
-            Console.WriteLine("Finished quizzes: ");
-            Base.ShowProgress();
-            Console.WriteLine("==========================================");
+            // Console.WriteLine("Finished quizzes: ");
+            // Base.ShowProgress();
+            // Console.WriteLine("==========================================");
         }
     }
 }
