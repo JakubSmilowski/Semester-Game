@@ -16,7 +16,7 @@ namespace foodman
         ("Food from the factory", "Edible food from the factory. Apart from the visual deformation, it's perfectly safe to eat!", 20);
 
 
-        private static List<Item> itemList = new List<Item>()
+        public static List<Item> itemList = new List<Item>()
         {
             FoodExpired,
             Snacks,
