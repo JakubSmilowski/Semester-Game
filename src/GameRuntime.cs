@@ -4,7 +4,7 @@ namespace foodman
     {
         //local use, actual variables will be sent to STATS file
         static string? nameRun = "";
-        static string townName = "NAME LATER PLS";
+        static string townName = "Foodtown";
 
         public static void Main(string[] args)
         {
