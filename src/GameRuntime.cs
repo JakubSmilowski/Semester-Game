@@ -13,6 +13,7 @@ namespace foodman
             Console.Clear();//to delete the console messages in the begining
             Console.WriteLine("Welcome to FOODMAN!");
             Console.WriteLine("In this whimsical text-based game, you step into the shoes of a clever and compassionate citizen on a quest to tackle the issues of food waste in his town!");
+            Console.WriteLine("This game was created to raise the awaraness about the excessive food waste, with the goal to educate the player about everyday life ways to make a big global difference in the direction of more sustainable future, while also providing a great amout of fun!");
             Naming();
             //Disclaimer? If needed
             Intro();
