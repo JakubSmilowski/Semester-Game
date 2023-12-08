@@ -23,6 +23,10 @@ namespace foodman
             {
                 Console.WriteLine("The quiz of this area has not been completed");
             }
+            if (id == 5)
+            {
+                Console.Write("[W] Recycle ");
+            }
             if (progress[id] < 2)
             {
                 Console.Write("[A] Accept quest ");
@@ -98,6 +102,10 @@ namespace foodman
                         break;
                 }
                 EnterRoom(locName, id);
+            } else if (answer == "w")
+            {
+                Console.Clear();
+                RecycleItems();
             }
             else
             {
@@ -168,6 +176,53 @@ namespace foodman
                     }
                     break;
             }
+        }
+
+        static void RecycleItems()
+        {
+            Console.WriteLine("Here you can select which item to sell for green points (GP)");
+            Items.OpenInventory();
+            Console.WriteLine("============================================================");
+            // [1] Item #1 [2] Item #2 [3]  Item #3
+            int i = 0;
+            foreach (var item in Items.itemList)
+            {
+                Console.WriteLine($"[{i+1}] {item.ItemName} ");
+                i++;
+            }
+            Console.WriteLine("[0] Exit");
+            string itemSell = Console.ReadLine();
+            if (itemSell == "1" || itemSell == "2" || itemSell == "3")
+            {
+                i = Convert.ToInt32(itemSell);
+                i--;
+                try
+                {
+                    if (Items.itemList[i].Quantity > 0)
+                    {
+                        int quant = Items.itemList[i].Quantity;
+                        Items.itemList[i].Quantity = 0;
+                        Console.WriteLine($"Item successfully recycled! You get +{quant} GP!");
+                        Player.AddGreenPoints(quant);
+                    } else
+                    {
+                        Console.WriteLine("You don't have that item! Sorry, but you can't pour from empty to empty...");
+                    }
+                } catch (ArgumentOutOfRangeException) {
+                    Console.WriteLine("Something went REALLY wrong. Pretend that nothing happened, ok?");
+                }
+
+            } else if (itemSell == "0")
+            {
+                //this field has to be empty but it felt cool to put SOMETHING here     \[T]/
+                Console.WriteLine(Player.name + " will be charged for false use of the Recycling Center");
+                Console.WriteLine("SOCIAL CREDIT DECREASED!!!");
+            } else
+            {
+                Console.WriteLine("Unknown input. Proceeding to throw the user out of the room...");
+            }
+
+            Quest.PressToExit("Recycling Center", 5);
         }
     }
 }
