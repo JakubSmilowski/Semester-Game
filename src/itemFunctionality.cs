@@ -28,7 +28,7 @@ namespace foodman
 {    
     public class Item
     {
-        public int Quantity = 0;
+        public int Quantity = 10;
         public string ItemName;
         public string Description = "";
         public int MaxCapacity = 0;
