@@ -178,23 +178,27 @@ namespace foodman
             do
             {
                 Console.Clear();
-                Console.WriteLine("> You entered the shop. Press [s] to leave.");
-                Console.WriteLine("> Here you can throw out not needed items to earn extra money.\n");
-                Console.WriteLine("> What do you want to throw out?");
-                Items.OpenInventory();
+                Console.WriteLine("> You entered the shop.");
+                Console.WriteLine("> Here you can throw out not needed items to earn extra money.");
+                Console.WriteLine("> Junkyard prices are firm. No matter what you bring, we pay out 4$ for each item.\n");
+                Console.WriteLine("> Do you want to proceed? [Y/N]");
                 string? userInput = Console.ReadLine();
 
                 if (userInput != null)
                 {
-                    if (userInput.ToLower() == "s")
+                    if (userInput.ToLower() == "n")
                     {
                         Console.WriteLine("You are leaving the shop.");
                         leave = true;
                     }
+                    else if (userInput.ToLower() == "y")
+                    {
+                        Items.JunkyardSellMenu();
+                        leave = true;
+                    }
                     else
                     {
-                        Console.WriteLine("Work in progress!");
-                        //Item.SellItem();
+                        Console.WriteLine("Wrong input.");
                     }
                 }
                 else
