@@ -47,6 +47,20 @@ class Quest
         }
     }
     */
+    public static bool isPurchasedFood = false; //its for the restaurant quest, dont remove
+    public static void RestaurantQuest()
+    {
+        
+        Console.WriteLine("Good job, you found the secret quest!");
+        Console.WriteLine("To complete the quest you have to order a meal from the menu.");
+        Player.MakeAction();
+        if(isPurchasedFood == true)
+        {
+            Location.progress[1] += 1;
+        }
+        
+
+    }
     public static void Factory2()
     {
         Console.WriteLine("You visit the factory. You see all the food that is being thrown out because it doesn't meet the factory's standarts...");

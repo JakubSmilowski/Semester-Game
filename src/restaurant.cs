@@ -5,7 +5,7 @@ namespace foodman
 {
     public class Restaurant
     {
-
+        
 
         public static void Menu()
         {
@@ -16,10 +16,12 @@ namespace foodman
         {           
             string? userInput;
             
-
+            
             do
             {
-                Console.WriteLine("Press M to see the menu or L to quit");
+                Console.WriteLine("Welcome, I am your waiter for today. What woud you like to do?");
+                Console.WriteLine("Press M to see the menu, H to start the secret quest or L to quit");
+                Console.WriteLine("");
                 userInput = Console.ReadLine()?.ToUpperInvariant();
 
                 if(userInput != null)
@@ -37,15 +39,15 @@ namespace foodman
                                     {
                                         case "1":
                                             Console.WriteLine("You have chosen the Italian dish.\nIt costs 15 dollars.");
-
+                                            Quest.isPurchasedFood = true;
                                             break;
                                         case "2":
                                             Console.WriteLine("You have chosen the Mexican dish.\nIt costs 10 dollars.");
-
+                                            Quest.isPurchasedFood = true;
                                             break;
                                         case "3":
                                             Console.WriteLine("You have chosen the Chinese dish.\nIt costs 5 dollars.");
-
+                                            Quest.isPurchasedFood = true;
                                             break;
                                         case "4":
                                             break;
@@ -56,7 +58,7 @@ namespace foodman
                             }while(menuInput != "4");
                             break;
                         case "H":
-                            Program.RestarauntQuizz();
+                            Quest.RestaurantQuest();
                             break;
                         case "L":
                             Console.WriteLine("Exiting the loop. Goodbye!");
@@ -82,7 +84,7 @@ namespace foodman
 
                Console.WriteLine("Welcome to the restaurant!");
                Console.WriteLine("You can buy a nutritious meal here");
-               Console.WriteLine("You have  dollars"); 
+               Console.WriteLine("There is a hidden quest in this room. Walk around to find it."); 
                Console.Write("\n=====================");
 
                for (int i = 0; i < 6; i++)
