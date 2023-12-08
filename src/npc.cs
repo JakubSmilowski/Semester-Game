@@ -178,12 +178,17 @@ class NPC
             switch(ans)
             {
                 case "a":
-
                     Console.WriteLine("Worker: in total about 32% of food waste is recyceled and we are trying to increase the procentage");
+                    Console.WriteLine("[Any Key] to continue..");
+                    Console.ReadKey();
+                    Console.Clear();
                     break;
                 case "b":
                 default:
                     Console.WriteLine("Feel free to come talk to me any time");
+                    Console.WriteLine("[Any Key] to continue..");
+                    Console.ReadKey();
+                    Console.Clear();
                     break;
 
 
