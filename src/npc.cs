@@ -134,4 +134,60 @@ class NPC
             Console.WriteLine("Johan: I don't have time for that right now. Come back when you've done something noteworthy.");
         }
     }
+
+    public static void GroceryStoreOwner()
+    {
+            string? ans = "";
+            if(Player.IsActionPossible()){
+                Player.MakeAction();
+                Console.WriteLine("Owner: Hi, welcome to the gorcery store,");
+                Console.WriteLine("here we sell food to all residents of Foodwill");
+                Console.WriteLine(Player.name + ":");
+                Console.WriteLine("[A] Do you trow out a lot of food?");
+                Console.WriteLine("[B] ...");
+
+                ans = Console.ReadLine()?.ToLower();
+                switch(ans)
+                {
+                    case "a":
+
+                        Console.WriteLine("Owner: Actually yes. We throw out about 5% of the food we sell.");
+                        Console.WriteLine("If you want to hellp us trow out less food, feel free to buy some.");
+                        Console.WriteLine();
+                        break;
+                    case "b":
+                    default:
+
+                        Console.WriteLine("Manager: If you need anything feel free to ask!");
+                        Console.WriteLine();
+                        break;
+                }
+            }
+
+    }
+    public static void RecycilingCenterWorker()
+    {
+        string? ans = "";
+        if(Player.IsActionPossible()){
+            Player.MakeAction();
+            Console.WriteLine("Worker: Wlcome to the recyciling center, how can I help you?");
+            Console.WriteLine("[A] I just wanted to ask how mouch food waste do you recycle?");
+            Console.WriteLine("[B] ...");
+
+            ans = Console.ReadLine()?.ToLower();
+            switch(ans)
+            {
+                case "a":
+
+                    Console.WriteLine("Worker: in total about 32% of food waste is recyceled and we are trying to increase the procentage");
+                    break;
+                case "b":
+                default:
+                    Console.WriteLine("Feel free to come talk to me any time");
+                    break;
+
+
+            }
+        }
+    }
 }

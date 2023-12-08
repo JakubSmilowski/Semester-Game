@@ -80,6 +80,10 @@ namespace foodman
             {
                 switch (id)//place for npc
                 {
+                    case 0:
+                        Console.Clear();
+                        NPC.GroceryStoreOwner();
+                        break;
                     case 2:
                         Console.Clear();
                         NPC.HouseholdRobot();
@@ -87,6 +91,10 @@ namespace foodman
                     case 3:
                         Console.Clear();
                         NPC.FacroyManager();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        NPC.RecycilingCenterWorker();
                         break;
                 }
                 EnterRoom(locName, id);
