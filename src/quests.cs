@@ -172,7 +172,9 @@ class Quest
                 read = Console.ReadLine()?.ToLower();
                 if (read == "a")
                 {
-                    Console.WriteLine("You take the food. Now you can either eat it or sell it for 1/4 of its original price");
+                    Console.WriteLine("You take the food. It is about to expire, but it is still edible.");
+                    Console.WriteLine("You decide to put it away for now, but when you look at it again, you notice that it is already expired.");
+                    Items.FoodExpired.AddRandomAmount(1, 10);
                     Location.progress[0]++;
                     questReward(120, 50);
                     PressToExit("Grocery Store", 0);
