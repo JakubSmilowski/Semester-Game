@@ -55,13 +55,14 @@ namespace foodman
                 {
                     Console.WriteLine("You won! NEW HIGH SCORE!");
                     Console.WriteLine("All player stats in this game:");
-                    DisplayBasicStats();
-                    DisplayUpgradeStats();
+                    AllTheStatsAtEnd();
                     EndOfTheGameMessage();
                 }
                 else
                 {
                     Console.WriteLine("You run out of time to colect required green points. Good luck next time!");
+                    AllTheStatsAtEnd();
+                    EndOfTheGameMessage();
                     return;
                 }
             }
@@ -276,12 +277,6 @@ namespace foodman
             Console.WriteLine($"> Your curret money multiplier {moneyMultiplier}");
             Console.WriteLine($"> Your curret xp multiplier {xpMultiplier}");
         }
-        // //Saves Current Position
-        // public static void SaveCurrentPosition(int xPositon, int yPosition)
-        // {
-        //     currentXPosition = xPositon;
-        //     currentYPosition = yPosition;
-        // }
 
         static string Truncate(double value, int precision)
         {
@@ -328,10 +323,20 @@ namespace foodman
             finalScore = Math.Round(finalScore);
             return finalScore;
         } 
-        //Caled at the end of the game
-        public static void AllTheStatsAtEnd()
+        //Caled at the end of the game, all the stats 
+        private static void AllTheStatsAtEnd()
         {
+            Console.WriteLine("==========================================");
             Console.WriteLine($"Your final score is {calulateFinalScore()}");
+            Console.WriteLine("==========================================");
+            Console.WriteLine($"Level: {level}.");
+            Console.WriteLine($"Money: {money}.");
+            Console.WriteLine($"All the xp: {allTheXpEarned}.");
+            Console.WriteLine($"All the money: {allTheMoneyEarned}.");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Finished quizzes: ");
+            Base.ShowProgress();
+            Console.WriteLine("==========================================");
         }
     }
 }
