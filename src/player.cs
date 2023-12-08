@@ -17,7 +17,8 @@ namespace foodman
         private static double xpRequired { get; set; } = 100;
         public static int levelPoints { get; private set; } = 0;
 
-        private static double money { get; set; } = 100;
+        public static double money { get; set; } = 100;
+        private static bool isMachineBought = false;
         public static int maxActionPoints { get; private set; } = 12;
         public static int maxInventoryCapacity { get; private set; } = 5;
         public static double moneyMultiplier { get; private set; } = 1;
@@ -26,6 +27,9 @@ namespace foodman
         private static int endOfTheGame { get; set; } = 7;
         private static int greenPointsNeededToWin { get; set; } = 22;
         public static int greenPoints { get; private set; } = 0;
+
+        public static double allTheMoneyEarned { get; private set; } = 0;
+        public static double allTheXpEarned { get; private set; } = 0;
 
         // Player constructor
         public Player(string name, int actionPoints, int money, int endOfTheGame, int greenPointsNeededToWin)
@@ -79,6 +83,12 @@ namespace foodman
                 currentDate = currentDate.AddMonths(1);
             }
 
+            if(isMachineBought) 
+            {
+                AddMoney(60);
+                System.Console.WriteLine("You received 60$ from the machine.");
+            }
+
             return currentDate;
 
         }
@@ -110,7 +120,7 @@ namespace foodman
 
         public static void RestoreHalf()
         {
-            actionPoints = maxActionPoints/2;
+            actionPoints = maxActionPoints / 2;
         }
         //Levles up the player. For each lvel player gains 2 level points.
         public static void LevelUp()
@@ -127,14 +137,13 @@ namespace foodman
                 Console.WriteLine($"You level up to {level}lv! Next level up in {neededXp} xp");
                 Console.WriteLine($"======================================================");
             }
-
-
         }
         //Checks if player can level up.
         public static void AddAndCheckXp(double xpGained)
         {
             xpGained = CalculateXp(xpGained);
             xp += xpGained;
+            allTheXpEarned += xpGained;
             while (xp >= xpRequired)
             {
                 LevelUp();
@@ -150,6 +159,7 @@ namespace foodman
         {
             value = CalculateMoney(value);
             money += value;
+            allTheMoneyEarned += value;
         }
 
         public static void SubstractMoney(int moneyValue)
@@ -299,14 +309,29 @@ namespace foodman
         }
 
         //Messege displayed when limited time for playing comes to an end
-        private static void EndOfTheGameMessage(){
+        private static void EndOfTheGameMessage()
+        {
             Console.WriteLine("Thank you for playing FOODMAN!");
         }
-
-
-
-
-
-
+        
+        private static double calulateFinalScore()
+        {
+            double finalScore = 0;
+            foreach (bool quest in Location.quizComp){
+                if(quest == true){
+                    finalScore += 100;
+                }
+            }
+            finalScore += money*0.2;
+            finalScore += level*10;
+            finalScore += greenPoints *100;
+            finalScore = Math.Round(finalScore);
+            return finalScore;
+        } 
+        //Caled at the end of the game
+        public static void AllTheStatsAtEnd()
+        {
+            Console.WriteLine($"Your final score is {calulateFinalScore()}");
+        }
     }
 }

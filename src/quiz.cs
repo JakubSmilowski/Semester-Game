@@ -32,44 +32,21 @@ namespace foodman
              //the only correct answer is the options in front of the answer so A or B or C
 
 
-            int score = 0;
-
             Console.WriteLine("Quizz Game");
 
             //run a cycle until there are questions 
 
-            for (int i = 0; i < Questions.Length; i++)
-            {
-                Console.WriteLine("******************");
-                Console.WriteLine(Questions[i]);          // writes the questions one by one
-                Console.WriteLine(Answers[i]);           // writes the answers for the question listed above
+            score = StartQuizz(Answers, Questions, CorrectAnswers);
 
-
-                Console.WriteLine("Guess: ");            // takes user input f
-                string? Guess = Console.ReadLine()?.ToUpper();  // checks if its a string and puts it into uppercase
-
-
-                if (Guess == CorrectAnswers[i])        // if the answer is correct it gives a point if not it doesnt
-                {
-                    Console.WriteLine("Correct");
-                    score++;
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect");
-                }
-                Console.WriteLine("******************");
-
-            }
             //writes out final score 
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 1);
             Console.WriteLine("******************");
         }
         public static void FactoryQuiz()
         {
             string[] CorrectAnswers = { "A", "A", "B" };
-            score = 0;
 
             string[] Questions = {"1. How much food is wasted globally?: ",
                                   "2. How much food is wasted in Denmark?: ",
@@ -83,29 +60,11 @@ namespace foodman
             };
 
 
-            for (int i = 0; i < Questions.Length; i++)
-            {
-                Console.WriteLine("******************");
-                Console.WriteLine(Questions[i]);
-                Console.WriteLine(Answers[i]);
+            score = StartQuizz(Answers, Questions, CorrectAnswers);
 
-                Console.WriteLine("Guess: ");
-                string? Guess = Console.ReadLine()?.ToUpper();
-
-
-                if (Guess == CorrectAnswers[i])
-                {
-                    Console.WriteLine("Correct");
-                    score++;
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect");
-                }
-                Console.WriteLine("******************");
-            }
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 3);
             Console.WriteLine("******************");
         }
         public static void House()
@@ -152,6 +111,7 @@ namespace foodman
             }
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 2);
             Console.WriteLine("******************");
         }
 
@@ -159,7 +119,6 @@ namespace foodman
         public static void GroceryStoreQuiz()
         {
             string[] CorrectAnswers = { "C", "A", "B" };
-            score = 0;
 
             string[] Questions = {"1. Does good food get discarded in supermarkets?: ",
                                   "2. What is the most wasted food in the world?: ",
@@ -173,36 +132,17 @@ namespace foodman
             };
 
 
-            for (int i = 0; i < Questions.Length; i++)
-            {
-                Console.WriteLine("******************");
-                Console.WriteLine(Questions[i]);
-                Console.WriteLine(Answers[i]);
-
-                Console.WriteLine("Guess: ");
-                string? Guess = Console.ReadLine()?.ToUpper();
-
-
-                if (Guess == CorrectAnswers[i])
-                {
-                    Console.WriteLine("Correct");
-                    score++;
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect");
-                }
-                Console.WriteLine("******************");
-            }
+            score = StartQuizz(Answers, Questions, CorrectAnswers);
+            
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 0);
             Console.WriteLine("******************");
         }
 
         public static void JunkyardQuizz()
         {
             string[] CorrectAnswers = { "C", "A", "B" };
-            int score = 0;
 
             string[] Questions = {
                     "1. In real life, what is the major environmental consequence of improper food waste disposal?: ",
@@ -220,29 +160,13 @@ namespace foodman
 
             Console.WriteLine("******************");
             Console.WriteLine($"Final score: {score}/{Questions.Length}");
+            CheckAndReward(Questions.Length, 4);
             Console.WriteLine("******************");
-
-            if (score == Questions.Length)
-            {
-                Player.AddMoney(20);
-                Player.AddAndCheckXp(100);
-                Location.progress[4] += 1;
-                Console.WriteLine("You gained 100xp and 20$");
-            }
-            else
-            {
-                // Provide additional educational content about the consequences of food waste
-                Console.WriteLine("\nEducational Content:");
-                Console.WriteLine("Improper food waste disposal can contaminate water sources (Answer to Question 1).");
-                Console.WriteLine("Reducing food waste helps address global hunger by decreasing the demand for new food production (Answer to Question 2).");
-                Console.WriteLine("The decomposition of food waste in landfills can lead to the formation of harmful bacteria and pathogens, posing health risks (Answer to Question 3).");
-            }
         }
 
            public static void JunkyardQuizz1()
             {
                 string[] CorrectAnswers = { "C", "B", "A" };
-                int score = 0;
 
                 string[] Questions = {
                     "1. What is the most effective way for individuals to reduce household waste?: ",
@@ -260,22 +184,8 @@ namespace foodman
 
                 Console.WriteLine("******************");
                 Console.WriteLine($"Final score: {score}/{Questions.Length}");
+                CheckAndReward(Questions.Length, 4);
                 Console.WriteLine("******************");
-
-                if (score == Questions.Length)
-                {
-                    Player.AddMoney(20);
-                    Player.AddAndCheckXp(100);
-                    Location.progress[4] += 1;
-                    Console.WriteLine("You gained 100xp and 20$");
-                }
-                else
-                {
-                // Provide additional educational content about the consequences of food waste
-                Console.WriteLine("Educational Content:\n Throwing everything in one trash bin is not the most effective way to reduce household waste. Recycling and separating recyclables are key practices that help prevent recyclable materials from ending up in landfills, promoting resource recovery, and reducing environmental impact.");
-                Console.WriteLine("Accelerating the decay of plastic is not the purpose of composting. Composting is a sustainable waste management practice that converts organic waste into nutrient-rich soil. This process reduces the volume of organic waste in landfills, contributes to soil health, and decreases the need for chemical fertilizers.");        
-                Console.WriteLine("All items with recycling symbols being recyclable is a common misconception. Recycling involves the collection and processing of materials to be used again. This reduces the demand for new raw materials, conserves energy, and minimizes environmental impact by decreasing the amount of waste sent to landfills.");
-                }
             }
 
             static int StartQuizz(string[] Answers, string[] Questions, string[] CorrectAnswers)
@@ -313,6 +223,24 @@ namespace foodman
                     Console.WriteLine("******************");
                 }
                 return score;
+            }
+            
+            static void CheckAndReward(int numberOfQuestions, int locationId)
+            {
+                if (score == numberOfQuestions)
+                {
+                    Player.AddMoney(20);
+                    Player.AddAndCheckXp(100);
+                    Location.progress[locationId] += 1;
+                    Console.WriteLine("You gained 100xp and 20$");
+                }
+                else
+                {
+                // Provide additional educational content about the consequences of food waste
+                Console.WriteLine("Educational Content:\n Throwing everything in one trash bin is not the most effective way to reduce household waste. Recycling and separating recyclables are key practices that help prevent recyclable materials from ending up in landfills, promoting resource recovery, and reducing environmental impact.");
+                Console.WriteLine("Accelerating the decay of plastic is not the purpose of composting. Composting is a sustainable waste management practice that converts organic waste into nutrient-rich soil. This process reduces the volume of organic waste in landfills, contributes to soil health, and decreases the need for chemical fertilizers.");        
+                Console.WriteLine("All items with recycling symbols being recyclable is a common misconception. Recycling involves the collection and processing of materials to be used again. This reduces the demand for new raw materials, conserves energy, and minimizes environmental impact by decreasing the amount of waste sent to landfills.");
+                }
             }
     }
 }

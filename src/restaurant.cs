@@ -19,9 +19,10 @@ namespace foodman
             
             do
             {
+                Console.WriteLine("");
                 Console.WriteLine("Welcome, I am your waiter for today. What woud you like to do?");
                 Console.WriteLine("Press M to see the menu, H to start the secret quest or L to quit");
-                Console.WriteLine("");
+                
                 userInput = Console.ReadLine()?.ToUpperInvariant();
 
                 if(userInput != null)
@@ -40,14 +41,18 @@ namespace foodman
                                         case "1":
                                             Console.WriteLine("You have chosen the Italian dish.\nIt costs 15 dollars.");
                                             Quest.isPurchasedFood = true;
+                                            Player.money -= 15;
+                                            Console.WriteLine($"you have {Player.money} money left");
                                             break;
                                         case "2":
                                             Console.WriteLine("You have chosen the Mexican dish.\nIt costs 10 dollars.");
                                             Quest.isPurchasedFood = true;
+                                            Player.money -= 10;
                                             break;
                                         case "3":
                                             Console.WriteLine("You have chosen the Chinese dish.\nIt costs 5 dollars.");
                                             Quest.isPurchasedFood = true;
+                                            Player.money -= 5;
                                             break;
                                         case "4":
                                             break;

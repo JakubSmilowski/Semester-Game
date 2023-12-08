@@ -99,4 +99,13 @@ class NPC
         Console.ReadKey();
         Console.Clear();
     }
+
+
+    public static void JunkyardWorker()
+    {
+        
+    }
+
+
+
 }

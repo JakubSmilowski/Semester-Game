@@ -397,7 +397,7 @@ namespace foodman
 
 
         //Method caled after correctly answering the question.
-        private static void QuizzCorrect(double xp, double money)
+        public static void QuizzCorrect(double xp, double money)
         {
             Location.progress[6] += 1;
             Base.id += 1;
